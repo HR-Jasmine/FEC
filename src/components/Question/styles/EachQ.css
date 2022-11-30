@@ -1,0 +1,37 @@
+.question-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px
+}
+
+.question-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.answer-row{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.A{
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  align-items: flex-start;
+  color: blueviolet;
+}
+
+.answer-details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}

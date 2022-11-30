@@ -7,6 +7,12 @@ module.exports = {
     path: path.join(__dirname, 'public'),
     filename: "bundle.js"
   },
+  resolve: {
+    fallback: {
+      os: require.resolve('os-browserify/browser'),
+      path: require.resolve('path-browserify'),
+    }
+  }
   module: {
     rules: [
       {
