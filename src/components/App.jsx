@@ -7,7 +7,7 @@ const App = () => {
 
   return (
     <div className="app">
-      {process.env.TEST}
+      Is it here? {process.env.TEST}
     </div>
   )
 }
