@@ -1,4 +1,5 @@
 const path = require("path");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   mode: "development",
@@ -32,5 +33,10 @@ module.exports = {
     compress: true,
     // [port] what port on our local machine to run the dev server
     port: 3000,
-  }
+  },
+
+  plugins: [
+    new Dotenv()
+  ]
+
 }
