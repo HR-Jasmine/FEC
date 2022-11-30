@@ -4,7 +4,7 @@
   "description": "README with proper file extension",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --mode=development",
+    "start": "webpack --mode=development -w",
     "build": "webpack --mode=production",
     "dev": "webpack serve --open"
   },
