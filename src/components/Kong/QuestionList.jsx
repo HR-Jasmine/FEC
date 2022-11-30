@@ -1,14 +1,12 @@
 import React from 'react';
-import EachQ from './EachQ.jsx'
-import './styles/QuestionList.css'
-
+import './styles/list.css';
+import EachQA from './EachQA.jsx'
 
 const QuestionList = () => {
   return (
     <div className='question-list-container'>
-      <EachQ/>
+      <EachQA />
     </div>
   )
 }
-
 export default QuestionList;

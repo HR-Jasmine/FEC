@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.question-card{
+  border: 2px solid blue;
+  width: 80%;
+}
+h4{
+  padding: none;
+}
+.question-row{
+  border: 2px solid orangered;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
