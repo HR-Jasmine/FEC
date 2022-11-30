@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
+import Question from './Question/QuestionSection.jsx'
 
 const App = () => {
 
@@ -7,7 +8,9 @@ const App = () => {
 
   return (
     <div className="app">
-      {process.env.TEST}
+
+
+      <Question />
     </div>
   )
 }
