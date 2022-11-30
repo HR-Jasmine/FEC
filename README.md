@@ -1,5 +1,17 @@
-Install all dependencies with......... 'npm install'
+Install all dependencies. 'npm install'
 
-Run compiler.......................... 'npm start'
+```js
+  npm install
+```
 
-Serve files to http://localhost:3000.. 'npm run dev'
+Run compiler.
+
+```js
+  npm start
+```
+
+Serve files to http://localhost:3000.
+
+```js
+  npm run dev
+```
