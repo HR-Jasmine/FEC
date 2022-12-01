@@ -1,7 +1,7 @@
 {
   "name": "fec",
   "version": "1.0.0",
-  "description": "README with proper file extension",
+  "description": "./README.md",
   "main": "index.js",
   "scripts": {
     "start": "webpack --mode=development -w",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/HR-Jasmine/FEC#readme",
   "dependencies": {
-    "dotenv": "^16.0.3",
+    "dotenv": "^10.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -31,12 +31,13 @@
     "axios": "^1.2.0",
     "babel-loader": "^9.1.0",
     "css-loader": "^6.7.2",
+    "date-fns": "^2.29.3",
     "dotenv-webpack": "^8.0.1",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.0",
+    "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^4.11.1"
   }
 }

@@ -4,26 +4,35 @@ import Reviews from './Reviews/Reviews.jsx'
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import axios from 'axios';
 
+import Reviews from './Reviews/Reviews.jsx';
+import Overview from './Overview/Overview.jsx';
+import './styles/app.css';
+
+var headers = {'Authorization': process.env.API_KEY};
+
 const App = () => {
+  const [state, setState] = useState({
+    productId: '1',
+    product: null
+  });
 
-  const [productId, setProductId] = useState('');
+  var getProducts = function() {
+    var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/';
 
-  useEffect(() => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/',
-      {
-        headers: {
-          'Authorization': process.env.API_KEY
-        }
-    })
+    axios.get(url, {headers})
       .then(response => {
-        setProductId(response.data[0].id);
+        setState({
+          productId: response.data[0].id,
+          product: response.data[0]
+        });
       })
-  }, [])
+  };
+
+  useEffect(getProducts, [])
 
   return (
     <div className="app">
       <Reviews productId={productId} />
-      <RelatedProducts productId={productId}/>
     </div>
   )
 }
