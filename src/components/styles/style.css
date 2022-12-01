@@ -1,3 +1,10 @@
+/* style.css can be used for app-wide styles
+
+  v = vertical flex;
+  h = horizontal flex;
+
+*/
+
 .v {
   display: flex;
   flex-direction: column;
@@ -14,4 +21,17 @@ h1 {
   font-size: 24px;
   margin: 16px;
   color: white;
+}
+
+select, button {
+  border-width: 1px;
+  border-style: solid;
+
+  margin: 16px;
+  height: 64px;
+  min-width: 64px;
+}
+
+.star {
+  font-size: 48px;
 }

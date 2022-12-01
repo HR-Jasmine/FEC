@@ -23,10 +23,10 @@ const App = () => {
           productId: response.data[0].id,
           product: response.data[0]
         });
-      })
+      });
   };
 
-  useEffect(getProducts, [])
+  useEffect(getProducts, []);
 
   return (
     <div className="app">

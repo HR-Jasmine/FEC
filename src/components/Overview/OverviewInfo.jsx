@@ -15,7 +15,7 @@ const OverviewInfo = (props) => {
 
   if (props.product && !product.id) {
     setProduct(props.product);
-  }
+  };
 
   return (
     <div className="interface v">
@@ -24,13 +24,13 @@ const OverviewInfo = (props) => {
       <h2>{product.name}</h2>
       {`$${product.default_price}`}
       <div className="styles">Styles Placeholder</div>
-      <div className="selectors">
+      <div className="selectors h">
         <select id="selectSize"></select>
         <select id="selectQuantity"></select>
       </div>
-      <div className="productButtons">
+      <div className="productButtons h">
         <button id="addToCart">Add to Cart</button>
-        <button id="addToFav">Favorite</button>
+        <button id="addToFav"><div className='star'>★</div></button>
       </div>
     </div>
   )
