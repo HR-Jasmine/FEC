@@ -1,0 +1,55 @@
+.overview {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 400px;
+  width: 1280px;
+  height: 800px;
+  text-align: center;
+}
+
+.navbar {
+  border-width: 0px;
+  border-style: none none solid none;
+  border-color: rgb(156, 96, 96);
+
+  background-color: rgb(73, 78, 124);
+}
+
+input {
+  align-self: flex-end;
+  height: 24px;
+  margin: 16px;
+}
+
+.announce {
+  height: 32px;
+
+  color: white;
+  background-color: rgb(134, 135, 185);
+}
+
+.info {
+  margin: 16px;
+  height: 100%;
+}
+
+.gallery, .interface {
+  border-width: 1px;
+  border-color: rgb(96, 97, 156);
+  border-style: none none solid none;
+
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2px 2px 1px rgb(192, 177, 177);
+}
+
+.gallery {
+  min-width: 600px;
+  flex: 1 1 auto;
+  margin-right: 16px;
+}
+
+.interface {
+  flex: 0.4 1 auto;
+  max-width: 500px;
+}
