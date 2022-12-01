@@ -2,14 +2,19 @@
   flex: 0.4 1 auto;
   max-width: 500px;
   text-align: left;
-
-  position: relative;
+  justify-content: space-between;
 }
 
 #interfaceHead {
-  position: absolute;
   padding: 16px;
-  top: 8px;
+}
+
+#styles {
+  margin: 16px;
+  padding: 4px;
+  height: 160px;
+
+  border: 1px solid rgb(207, 207, 207);
 }
 
 #selectSize {

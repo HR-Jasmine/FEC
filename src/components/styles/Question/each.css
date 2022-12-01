@@ -5,12 +5,10 @@
 }
 
 .question-card{
-
   width: 90%;
 }
 
 .question-row{
-
   display: flex;
   justify-content: space-between;
   align-items: center;

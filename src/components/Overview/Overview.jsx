@@ -1,9 +1,12 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import axios from 'axios';
 import OverviewInterface from './OverviewInterface.jsx';
 
-import '../styles/Overview/over.css';
 import '../styles/style.css';
+import '../styles/Overview/over.css';
+
+var headers = {'Authorization': process.env.API_KEY};
 
 const Overview = (props) => {
   var product = props.product;

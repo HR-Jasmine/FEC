@@ -6,6 +6,13 @@
   width: 1280px;
   min-height: 800px;
   text-align: center;
+
+  border-width: 1px;
+  border-color: rgb(177, 177, 177);
+  border-style: none none solid none;
+
+  padding-bottom: 16px;
+  margin-bottom: 32px;
 }
 
 .navbar {

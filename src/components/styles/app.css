@@ -22,3 +22,7 @@ body, .app {
 body {
   box-shadow: 0 0 4px 1px rgb(192, 177, 177);
 }
+
+#footer {
+  height: 150px;
+}

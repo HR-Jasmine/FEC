@@ -63,6 +63,7 @@ button:active {
   box-shadow: 0 2px 2px 1px rgb(192, 177, 177);
 
   padding: 16px;
+  min-height: 150px;
 }
 
 .hover:hover {
