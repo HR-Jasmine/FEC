@@ -41,12 +41,6 @@ input {
   margin-right: 16px;
 }
 
-.interface {
-  flex: 0.4 1 auto;
-  max-width: 500px;
-  text-align: left;
-}
-
 .slogan {
   margin: 8px;
   margin-left: 300px;
