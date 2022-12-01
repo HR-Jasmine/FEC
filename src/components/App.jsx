@@ -24,7 +24,7 @@ const App = () => {
   return (
     <div className="app">
       <Overview />
-      <Reviews productId={productId} />
+      {/* <Reviews productId={productId} /> */}
     </div>
   )
 }

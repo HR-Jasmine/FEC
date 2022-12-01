@@ -1,6 +1,52 @@
 .overview {
-  min-width: 400px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 
-  background-color: rgb(177, 149, 156);
+  min-width: 400px;
+  width: 1080px;
+  height: 800px;
+  text-align: center;
+}
+
+.navbar {
+  border-width: 0px;
+  border-style: none none solid none;
+  border-color: rgb(156, 96, 96);
+
+  background-color: rgb(226, 178, 178);
+}
+
+input {
+  align-self: flex-end;
+  height: 24px;
+  margin: 16px;
+}
+
+.announce {
+  height: 32px;
+
+  background-color: rgb(240, 208, 208);
+}
+
+.info {
+  margin: 16px;
+  height: 100%;
+}
+
+.gallery, .interface {
+  border-width: 1px;
+  border-color: rgb(156, 96, 96);
+  border-style: none none solid none;
+
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2px 2px 1px rgb(192, 177, 177);
+}
+
+.gallery {
+  flex: 1 1 auto;
+  margin-right: 16px;
+}
+
+.interface {
+  flex: 0.4 1 auto;
 }
