@@ -3,12 +3,17 @@ import {useState} from 'react';
 import {format, parseISO} from 'date-fns';
 import Stars from '../Stars.jsx';
 import '../styles/Reviews/individual-review.css';
+import axios from 'axios';
 
 const IndividualReview = ({review}) => {
 
   console.log(review);
 
   const [reviewBody, setReviewBody] = useState(review.body.slice(0, 250));
+  const [isHelpful, setIsHelpful] = useState(review.helpfulness);
+
+  // TODO - find out where not helpful votes are located
+  const [notHelpful, setNotHelpful] = useState(0);
 
   return (
     <div className="review-item">
@@ -31,6 +36,25 @@ const IndividualReview = ({review}) => {
         Response from seller:<br></br>
         {review.response}
       </p>
+      <div className="review-helpful">
+        Was this review helpful?
+        <button className={"helpful-button" + review.review_id} onClick={(e) => {
+          e.preventDefault();
+          document.querySelectorAll(`.helpful-button${review.review_id}`).forEach(button => button.disabled=true);
+          axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review.review_id}/helpful`,
+          {
+            headers: {
+              'Authorization': process.env.API_KEY
+            }
+          })
+          setIsHelpful(isHelpful + 1);
+        }}>Yes ({isHelpful})</button>&nbsp;&nbsp;&nbsp;
+        <button className={"helpful-button" + review.review_id} onClick={(e) => {
+          e.preventDefault();
+          document.querySelectorAll(`.helpful-button${review.review_id}`).forEach(button => button.disabled=true);
+          setNotHelpful(notHelpful + 1);
+        }}>No ({notHelpful})</button>
+      </div>
     </div>
   )
 }
