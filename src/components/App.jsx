@@ -7,7 +7,10 @@ import Overview from './Overview/Overview.jsx';
 import './styles/app.css';
 
 const App = () => {
-  const [productId, setProductId] = useState('1');
+  const [state, setState] = useState({
+    productId: '1',
+    product: null
+  });
 
   useEffect(() => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/',
@@ -17,14 +20,14 @@ const App = () => {
         }
     })
       .then(response => {
-        setProductId(response.data[0].id);
+        setState({productId: response.data[0].id, product: response.data[0]});
       })
   }, [])
 
   return (
     <div className="app">
-      <Overview />
-      {/* <Reviews productId={productId} /> */}
+      <Overview product={state.product} />
+      <Reviews  productId={state.productId} />
     </div>
   )
 }

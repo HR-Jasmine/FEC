@@ -14,9 +14,8 @@ html, body, #root, .app {
 }
 
 body, .app {
-
   min-width: 400px;
-  max-width: 1080px;
+  max-width: 1280px;
   background-color: rgb(255, 255, 255);
 }
 
