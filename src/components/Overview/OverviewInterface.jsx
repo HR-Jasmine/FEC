@@ -1,26 +1,17 @@
 import React from 'react';
 import {useState} from 'react';
+
+import Stars from '../Stars.jsx';
 import '../styles/Overview/over.css';
 import '../styles/style.css';
 
-const OverviewInfo = (props) => {
-  const [product, setProduct] = useState({
-    id: null,
-    category: 'Category',
-    name: 'Name',
-    slogan: 'This is a slogan. You can tell because it has many words. Enjoy!',
-    description: 'This is a description. You can tell because it has even more words than the slogan.',
-    default_price: '3.50'
-  });
-
-  if (props.product && !product.id) {
-    setProduct(props.product);
-  };
+const OverviewInterface = (props) => {
+  var product = props.product;
 
   return (
-    <div className="interface v">
-      <div className="rating">Rating Placeholder</div>
-      {product.category}
+    <div className="interface card v">
+      <Stars rating={'3'}/>
+      <h3>{product.category}</h3>
       <h2>{product.name}</h2>
       {`$${product.default_price}`}
       <div className="styles">Styles Placeholder</div>
@@ -36,4 +27,4 @@ const OverviewInfo = (props) => {
   )
 }
 
-export default OverviewInfo;
+export default OverviewInterface;

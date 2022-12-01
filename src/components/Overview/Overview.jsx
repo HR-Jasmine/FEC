@@ -1,11 +1,13 @@
 import React from 'react';
 import {useState} from 'react';
-import OverviewInfo from './OverviewInfo.jsx';
+import OverviewInterface from './OverviewInterface.jsx';
 
 import '../styles/Overview/over.css';
 import '../styles/style.css';
 
 const Overview = (props) => {
+  var product = props.product;
+
   return (
     <div className="overview v">
       <div className="navbar h">
@@ -16,9 +18,16 @@ const Overview = (props) => {
         <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div>
       </div>
       <div className="info h">
-        <div className="gallery v">IMAGE GALLERY</div>
-        <OverviewInfo product={props.product}/>
+        <div className="gallery card v">IMAGE GALLERY</div>
+        <OverviewInterface product={product}/>
       </div>
+      <br/>
+      <div className="slogan">
+        <h3>{product.slogan}</h3>
+        <br/>
+        {product.description}
+      </div>
+      <br/>
     </div>
   )
 }

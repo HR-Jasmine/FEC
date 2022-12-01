@@ -4,7 +4,7 @@
 
   min-width: 400px;
   width: 1280px;
-  height: 800px;
+  min-height: 800px;
   text-align: center;
 }
 
@@ -31,16 +31,8 @@ input {
 
 .info {
   margin: 16px;
+  min-height: 600px;
   height: 100%;
-}
-
-.gallery, .interface {
-  border-width: 1px;
-  border-color: rgb(96, 97, 156);
-  border-style: none none solid none;
-
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 2px 2px 1px rgb(192, 177, 177);
 }
 
 .gallery {
@@ -52,4 +44,12 @@ input {
 .interface {
   flex: 0.4 1 auto;
   max-width: 500px;
+  text-align: left;
+}
+
+.slogan {
+  margin: 8px;
+  margin-left: 300px;
+  margin-right: 300px;
+  text-align: left;
 }

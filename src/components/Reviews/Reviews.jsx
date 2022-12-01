@@ -32,7 +32,7 @@ const Reviews = ({productId}) => {
       <div className="reviews-panel">
         <div className="review-breakdown">
         </div>
-        <div className="review-list">
+        <div className="review-list v">
           {allReviews.slice(0, numOfRevs).map((review, i) => {
             return <IndividualReview review={review} key={i}/>
           })}

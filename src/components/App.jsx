@@ -11,7 +11,14 @@ var headers = {'Authorization': process.env.API_KEY};
 const App = () => {
   const [state, setState] = useState({
     productId: '1',
-    product: null
+    product: {
+      id: null,
+      category: 'Category',
+      name: 'Name',
+      slogan: 'This is a slogan. You can tell because it has many words. Enjoy!',
+      description: 'This is a description. You can tell because it has even more words than the slogan.',
+      default_price: '3.50'
+    }
   });
 
   var getProducts = function() {
