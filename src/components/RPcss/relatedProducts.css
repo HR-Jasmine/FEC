@@ -1,0 +1,10 @@
+.rp {
+  color: blue;
+}
+.relatedProducts {
+  width: 150px;
+  border: 5px solid green;
+  padding: 25px;
+  margin: 10px;
+  display: inline-flex;
+}
