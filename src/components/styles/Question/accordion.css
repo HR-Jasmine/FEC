@@ -67,3 +67,13 @@
     transform: translateY(-10px);
   }
 }
+
+.answer{
+  margin-bottom: 10px;
+}
+
+.user{
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}

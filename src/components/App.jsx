@@ -23,7 +23,6 @@ const App = () => {
           productId: response.data[0].id,
           product: response.data[0]
         });
-
       })
   };
 

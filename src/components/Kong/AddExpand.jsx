@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/addexpand.css'
+import '../styles/Question/addexpand.css';
 
 
 const AddExpand = () => {
