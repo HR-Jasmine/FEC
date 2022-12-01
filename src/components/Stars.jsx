@@ -14,9 +14,9 @@ const Stars = ({rating}) => {
   };
 
   return(
-    <div class="ratings">
-      <div class="empty-stars"></div>
-      <div class="full-stars" style={styleObj}></div>
+    <div className="ratings">
+      <div className="empty-stars"></div>
+      <div className="full-stars" style={styleObj}></div>
     </div>
   )
 }
