@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import styles from '../RPcss/relatedProducts.css';
+import styles from '../styles/RelatedProducts/relatedProducts.css';
 
 
 const RelatedProducts = ( { productId } ) => {
