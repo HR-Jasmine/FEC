@@ -17,6 +17,7 @@ const App = () => {
     })
       .then(response => {
         setProductId(response.data[0].id);
+
       })
   }, [])
 

@@ -5,22 +5,31 @@
 }
 
 .question-card{
-  border: 2px solid blue;
-  width: 80%;
+
+  width: 90%;
 }
-h4{
-  padding: none;
-}
+
 .question-row{
-  border: 2px solid orangered;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .user{
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.answer{
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid black;
+  padding: 0.25em;
+  border-radius: 5px;
+  cursor: pointer;
 }

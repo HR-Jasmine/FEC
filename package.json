@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/HR-Jasmine/FEC#readme",
   "dependencies": {
+    "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "os-browserify": "^0.3.0",
     "react": "^18.2.0",
