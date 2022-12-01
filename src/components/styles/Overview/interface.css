@@ -1,0 +1,39 @@
+.interface {
+  flex: 0.4 1 auto;
+  max-width: 500px;
+  text-align: left;
+
+  position: relative;
+}
+
+#interfaceHead {
+  position: absolute;
+  padding: 16px;
+  top: 8px;
+}
+
+#selectSize {
+  width: 60%;
+}
+
+#selectQuantity {
+  width: 30%;
+}
+
+#addToCart {
+  flex: 1 1 auto;
+
+  padding: 16px;
+  text-align: left;
+}
+
+#addToFav {
+  position: relative;
+}
+
+.star {
+  position: absolute;
+  bottom: 2px;
+  left: 11px;
+  font-size: 48px;
+}
