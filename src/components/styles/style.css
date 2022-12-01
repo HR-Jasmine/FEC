@@ -1,0 +1,17 @@
+.v {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.h {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 16px;
+  color: white;
+}
