@@ -55,6 +55,7 @@ const Reviews = ({productId}) => {
       setAllReviews(response.data.results);
       setDisplayReviews(response.data.results);
       setNumOfRevs(2);
+      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
     })
   }
 
@@ -105,7 +106,7 @@ const Reviews = ({productId}) => {
           {displayReviews.slice(0, numOfRevs).map((review, i) => {
             return <IndividualReview review={review} key={i}/>
           })}
-          <button className="more-reviews-btn" hidden={numOfRevs >= allReviews.length ? true : false} onClick={(e) => {
+          <button className="more-reviews-btn" hidden={numOfRevs >= displayReviews.length ? true : false} onClick={(e) => {
             e.preventDefault();
             setNumOfRevs(numOfRevs + 2);
           }}>More Reviews</button>
