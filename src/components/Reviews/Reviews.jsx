@@ -89,7 +89,7 @@ const Reviews = ({productId}) => {
     }
   }, [ratingFilters])
 
-  if (!allReviews[0]) {
+  if (!allReviews[0] || !metaData.ratings) {
     return null;
   } else {
     return (

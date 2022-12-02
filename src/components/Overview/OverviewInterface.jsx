@@ -37,12 +37,12 @@ const OverviewInterface = (props) => {
       </div>
       <div id="select-container">
         <div className="selectors h">
-          <select id="selectSize"></select>
-          <select id="selectQuantity"></select>
+          <select className="bigSelect" id="selectSize"></select>
+          <select className="bigSelect" id="selectQuantity"></select>
         </div>
         <div className="productButtons h">
-          <button id="addToCart">Add to Cart</button>
-          <button id="addToFav"><div className='star'>★</div></button>
+          <button className="bigButton" id="addToCart">Add to Cart</button>
+          <button className="bigButton" id="addToFav"><div className='star'>★</div></button>
         </div>
       </div>
     </div>

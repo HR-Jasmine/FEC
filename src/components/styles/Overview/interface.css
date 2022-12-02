@@ -36,6 +36,19 @@
   position: relative;
 }
 
+.bigButton {
+  color: white;
+  background-color: rgb(96, 97, 156);
+
+  font-weight: bold;
+  box-shadow: 0 2px 2px 1px rgb(211, 204, 204);
+}
+
+.bigButton:active {
+  box-shadow: none;
+}
+
+
 .star {
   position: absolute;
   bottom: 2px;

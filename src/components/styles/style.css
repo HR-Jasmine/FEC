@@ -33,7 +33,7 @@ h2, h3 {
   margin: 0px;
 }
 
-select, button {
+.bigSelect, .bigButton {
   border-width: 1px;
   border-style: solid;
 
@@ -42,18 +42,6 @@ select, button {
   min-width: 64px;
 
   font-size: 16px;
-}
-
-button {
-  color: white;
-  background-color: rgb(96, 97, 156);
-
-  font-weight: bold;
-  box-shadow: 0 2px 2px 1px rgb(211, 204, 204);
-}
-
-button:active {
-  box-shadow: none;
 }
 
 .card {
