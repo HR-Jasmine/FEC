@@ -5,52 +5,72 @@ import styles from '../styles/RelatedProducts/relatedProducts.css';
 
 
 const RelatedProducts = ( { productId } ) => {
+  console.log('productId', productId)
 
   const [relatedId, setrelatedId] = useState([]);
-  const [relprods, setrelprods] = useState([]);
+  const [relprods, setrelprods] = useState([37312,37313,37318,37317]);
+  const [promises, setpromises] = useState([])
 
-  useEffect(() => {
+  // get productId through props
+  // set relatedId from result
+  // ^ is array of PID related to input product ex. [37312,37313,37318,37317]
 
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`,
+    const getRelatedProducts = function(productId){
+    return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`,
   {
     headers: {
       'Authorization': process.env.API_KEY
     }
     })
-    .then(data => {
-      // console.log('Example Related Products', data.data)
+    .then(data => setrelatedId(data.data))
+  }
 
-      setrelatedId(data.data);
-    })
-    }, [productId])
+  useEffect(() => {
+  getRelatedProducts(37312)
+  }, [])
+  console.log('relatedId from setState', relatedId)
+
+  // want to get individual product obj with info
+  // add result obj to array in relprods
+    const getProduct = function (sku) {
 
 
-    const getProduct = function (productId) {
-
-      useEffect(() => {
-     return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`,
+     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${sku}`,
       {
         headers: {
           'Authorization': process.env.API_KEY
         }
         })
         .then(response => {
-          setrelprods(relprods => ([...relprods, response.data]))
+          console.log('resonse in get product', response.data)
+          return setrelprods(relprods => ([...relprods, response.data]))
         })
-      }, [productId])
-    }
+      }
 
 
 
-    getProduct(37312)
-    getProduct(37313)
-    getProduct(37318)
-    getProduct(37318)
+  // const allRelatedProducts = Promise.all(relatedId.map(getProduct)).then(
+  //   data=> Promise.all(data.map(getProduct))
+  // ).then(function(data){
+  //   return Promise.all(data.map(getProduct))
+  // }).then(function(data){
+  //   return Promise.all(data.map(getProduct))
+  // });
+
+  // allRelatedProducts.then(function(data){
+  //   console.log('oooga, boooga', data)
+  // });
+
+
+    // getProduct(37312)
+    // getProduct(37313)
+    // getProduct(37318)
+    // getProduct(37318)
 
 
 
-  console.log('relatedId from setState', relatedId)
-  console.log('relprods from state', relprods)
+
+  // console.log('relprods from state', relprods)
 
 
   return (
