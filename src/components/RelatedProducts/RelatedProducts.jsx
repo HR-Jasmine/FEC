@@ -5,9 +5,9 @@ import styles from '../styles/RelatedProducts/relatedProducts.css';
 
 
 const RelatedProducts = ( { productId } ) => {
-  console.log('RP PID from prop', productId)
 
   const [relatedId, setrelatedId] = useState([]);
+  const [relprods, setrelprods] = useState([]);
 
   useEffect(() => {
 
@@ -19,31 +19,58 @@ const RelatedProducts = ( { productId } ) => {
     })
     .then(data => {
       console.log('Example Related Products', data.data)
-      // const array = [];
-      // data.data.map(id => array.push(id) )
+
       setrelatedId(data.data);
-      // console.log('array of RID', relatedId)
-
-
     })
     }, [productId])
 
-    const getRelated = function (productId) {
-     return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`,
+
+    const getProduct = function (productId) {
+
+      useEffect(() => {
+     return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`,
       {
         headers: {
           'Authorization': process.env.API_KEY
         }
         })
+        .then(response => {
+          setrelprods(relprods => ([...relprods, response.data]))
+        })
+      }, [productId])
     }
 
 
-  // console.log(array)
+
+    getProduct(37312)
+    getProduct(37313)
+    getProduct(37318)
+
+
+
+
   console.log('relatedId from setState', relatedId)
+  console.log('relprods from state', relprods)
+
 
   return (
-    <div class='rp'>
-      {relatedId.map((id, i) => <div key={i} class="relatedProducts" > {id} </div>)}
+    <div class='related-products'>
+      Related Products
+      <div class='cards-all'>
+      {/* {relatedId.map((id, i) => <div key={i} class="related-products-card" > {id} </div>)} */}
+      {relprods.map((id, i) => <div key={i} class="related-products-card">
+            <p class="rp-category">{id.category}</p>
+            <p class="rp-name">{id.name}</p>
+            <p class="rp-price">{id.default_price}</p>
+          </div>)}
+      </div>
+      <div class='outfit'>
+          Outfit
+        </div>
+        <div class='outfit-box'>
+            Outfit Box
+          </div>
+
     </div>
   )
 
