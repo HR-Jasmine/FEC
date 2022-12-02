@@ -1,0 +1,13 @@
+.search-container{
+
+  width: 90%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-bar{
+  width: 90%;
+  height: 40px;
+  border-radius: 25px
+}
