@@ -1,3 +1,12 @@
+/* style.css can be used for app-wide styles
+
+  v = vertical flex;
+  h = horizontal flex;
+  card = card styling;
+
+  <div className='interface card v' /> is a card with vertical flex
+
+*/
 .v {
   display: flex;
   flex-direction: column;
@@ -14,4 +23,41 @@ h1 {
   font-size: 24px;
   margin: 16px;
   color: white;
+}
+
+h2 {
+  font-size: 48px;
+}
+
+h2, h3 {
+  margin: 0px;
+}
+
+.bigSelect, .bigButton {
+  border-width: 1px;
+  border-style: solid;
+
+  margin: 16px;
+  height: 64px;
+  min-width: 64px;
+
+  font-size: 16px;
+}
+
+.card {
+  border: 1px solid rgb(96, 97, 156);
+
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2px 2px 1px rgb(192, 177, 177);
+
+  padding: 16px;
+  min-height: 150px;
+}
+
+.hover:hover {
+  box-shadow: 0 4px 6px 2px rgb(192, 177, 177);
+}
+
+.noPad {
+  padding: 0px;
 }

@@ -14,6 +14,8 @@ const Reviews = ({productId}) => {
   const [ratingFilters, setRatingFilters] = useState({1: false, 2: false, 3: false, 4: false, 5: false});
   const [isFiltered, setIsFiltered] = useState(false);
 
+  console.log(productId)
+
   useEffect(() => {
     if (productId === '') {
       return;
@@ -88,7 +90,7 @@ const Reviews = ({productId}) => {
     }
   }, [ratingFilters])
 
-  if (!allReviews[0]) {
+  if (!allReviews[0] || !metaData.ratings) {
     return null;
   } else {
     return (
