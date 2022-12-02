@@ -16,10 +16,6 @@
 }
 
 .navbar {
-  border-width: 0px;
-  border-style: none none solid none;
-  border-color: rgb(156, 96, 96);
-
   background-color: rgb(73, 78, 124);
 }
 
@@ -38,14 +34,16 @@ input {
 
 .info {
   margin: 16px;
-  min-height: 600px;
+  height: 600px;
   height: 100%;
 }
 
 .gallery {
-  min-width: 600px;
+  width: 600px;
   flex: 1 1 auto;
   margin-right: 16px;
+  padding: 0px;
+  justify-content: center;
 }
 
 .slogan {
@@ -53,4 +51,10 @@ input {
   margin-left: 300px;
   margin-right: 300px;
   text-align: left;
+}
+
+img {
+  object-fit: cover;
+  width: 600px;
+  max-height: 600px;
 }
