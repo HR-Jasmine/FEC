@@ -21,8 +21,6 @@ const App = (props) => {
       <RelatedProducts productId={state.productId} />
       <QA/>
       <Reviews productId={state.productId} />
-
-      <div id="footer" />
     </div>
   )
 }

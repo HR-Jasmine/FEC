@@ -50,7 +50,6 @@ const ReviewBreakdown = ({metaData, filterSelector, ratingFilters, isFiltered}) 
         return (
           <div className="breakdown-rating" key={rating} onClick={() => {
             filterSelector(rating + 1);
-            showFilters();
           }}>
             {rating + 1} Star{rating > 0 ? 's': ' '}&nbsp;&nbsp;
             <div className="bar-ratings" key={rating}>
@@ -65,7 +64,10 @@ const ReviewBreakdown = ({metaData, filterSelector, ratingFilters, isFiltered}) 
       {Object.keys(metaData.characteristics).map((char, i) => {
         return (
           <div className="breakdown-characteristic" key={i}>
-            {char} <br></br><Stars rating={metaData.characteristics[char].value} />
+            {char} <br></br>
+            <div class="slidecontainer">
+              <input type="range" min="1" max="100" value={metaData.characteristics[char].value * 20} class="slider" id="myRange"></input>
+            </div>
           </div>
         )
       })}
