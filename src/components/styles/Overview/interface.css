@@ -1,6 +1,7 @@
 .interface {
   flex: 0.4 1 auto;
-  max-width: 500px;
+  max-width: 440px;
+  height: 600px;
   text-align: left;
   justify-content: space-between;
 }
@@ -9,12 +10,46 @@
   padding: 16px;
 }
 
-#styles {
+#styleName {
+  padding-left: 16px;
+}
+
+#productStyles {
   margin: 16px;
+  margin-top: 4px;
+  margin-bottom: 0px;
   padding: 4px;
   height: 160px;
 
+  flex-wrap: wrap;
+  align-content: flex-start;
+
   border: 1px solid rgb(207, 207, 207);
+  border-style: none none none solid;
+}
+
+.productStyle {
+  margin: 7px;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  background-color: rgb(207, 207, 207);
+  box-shadow: 0 2px 2px 1px rgb(192, 177, 177);
+
+  overflow: hidden;
+  position: relative;
+}
+
+.productStyle:active {
+  border: 1px solid rgb(184, 184, 184);
+  box-shadow: none;
+}
+
+.styleThumb {
+  position: absolute;
+  object-fit: cover;
+  width: 60px;
+  height: 60px;
 }
 
 #selectSize {

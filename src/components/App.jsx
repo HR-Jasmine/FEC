@@ -16,14 +16,12 @@ const App = (props) => {
   });
 
   return (
-    <div className="app">
-      <Overview product={state.product} />
-      <RelatedProducts productId={state.productId} />
-      <QA/>
-      <Reviews productId={state.productId} />
-
-      <div id="footer" />
-    </div>
+      <div className="app">
+        <Overview product={state.product} />
+        {/* <RelatedProducts productId={state.productId} /> */}
+        <QA/>
+        <Reviews productId={state.productId} />
+      </div>
   )
 }
 
