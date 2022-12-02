@@ -18,7 +18,7 @@ const RelatedProducts = ( { productId } ) => {
     }
     })
     .then(data => {
-      console.log('Example Related Products', data.data)
+      // console.log('Example Related Products', data.data)
 
       setrelatedId(data.data);
     })
@@ -45,7 +45,7 @@ const RelatedProducts = ( { productId } ) => {
     getProduct(37312)
     getProduct(37313)
     getProduct(37318)
-
+    getProduct(37318)
 
 
 
