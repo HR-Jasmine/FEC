@@ -1,11 +1,12 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import Reviews from './Reviews/Reviews.jsx'
-import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import axios from 'axios';
-import QA from './Kong/Main.jsx'
-// import Reviews from './Reviews/Reviews.jsx';
+
 import Overview from './Overview/Overview.jsx';
+import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
+import QA from './Question/Main.jsx';
+import Reviews from './Reviews/Reviews.jsx';
+
 import './styles/app.css';
 
 var headers = {'Authorization': process.env.API_KEY};
@@ -32,10 +33,10 @@ const App = () => {
 
   return (
     <div className="app">
-      <Overview props={state} />
-      <Reviews productId={state.productId} />
-      <QA/>
+      <Overview props={state.product} />
       <RelatedProducts productId={state.productId} />
+      <QA/>
+      <Reviews productId={state.productId} />
     </div>
   )
 }
