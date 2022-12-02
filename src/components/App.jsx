@@ -1,8 +1,10 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
+import Reviews from './Reviews/Reviews.jsx'
+import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import axios from 'axios';
 import QA from './Kong/Main.jsx'
-import Reviews from './Reviews/Reviews.jsx';
+// import Reviews from './Reviews/Reviews.jsx';
 import Overview from './Overview/Overview.jsx';
 import './styles/app.css';
 
@@ -30,10 +32,10 @@ const App = () => {
 
   return (
     <div className="app">
-
-      <Overview product={state.product} />
+      <Overview props={state} />
+      <Reviews productId={state.productId} />
       <QA/>
-      <Reviews  productId={state.productId} />
+      <RelatedProducts productId={state.productId} />
     </div>
   )
 }
