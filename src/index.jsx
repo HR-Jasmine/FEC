@@ -11,5 +11,3 @@ axios.get(url, {headers})
   .then(response => {
     root.render(<App product={response.data[0]}/>);
   });
-
-

@@ -12,6 +12,8 @@ const Reviews = ({productId}) => {
   const [displayReviews, setDisplayReviews] = useState([]);
   const [metaData, setMetaData] = useState({});
 
+  console.log(productId)
+
   useEffect(() => {
     if (productId === '') {
       return;
@@ -70,13 +72,8 @@ const Reviews = ({productId}) => {
             <option value="newest">Newest</option>
           </select>
         </div>
-<<<<<<< HEAD
-        <div className="review-list v">
-          {allReviews.slice(0, numOfRevs).map((review, i) => {
-=======
         <div className="review-list">
           {displayReviews.slice(0, numOfRevs).map((review, i) => {
->>>>>>> dev
             return <IndividualReview review={review} key={i}/>
           })}
           <button className="more-reviews-btn" hidden={numOfRevs >= allReviews.length ? true : false} onClick={(e) => {

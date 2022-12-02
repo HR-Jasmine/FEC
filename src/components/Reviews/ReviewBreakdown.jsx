@@ -4,6 +4,10 @@ import Stars from '../Stars.jsx';
 import '../styles/Reviews/review-breakdown.css';
 
 const ReviewBreakdown = ({metaData}) => {
+  if (!metaData.product_id === 1) {
+    return null;
+  }
+
   let ratingsArray = Object.values(metaData.ratings);
   let totalRatings = Number(metaData.recommended.false) + Number(metaData.recommended.true);
   let totalStars = 0;
