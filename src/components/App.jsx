@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import Reviews from './Reviews/Reviews.jsx'
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import axios from 'axios';
-
+import QA from './Kong/Main.jsx'
 // import Reviews from './Reviews/Reviews.jsx';
 import Overview from './Overview/Overview.jsx';
 import './styles/app.css';
@@ -32,10 +32,13 @@ const App = () => {
 
   return (
     <div className="app">
+
       <Reviews productId={state.productId} />
+      <QA/>
       <RelatedProducts productId={state.productId} />
     </div>
   )
 }
 
 export default App;
+
