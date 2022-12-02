@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <div className="app">
-
+      <Overview props={state} />
       <Reviews productId={state.productId} />
       <QA/>
       <RelatedProducts productId={state.productId} />
