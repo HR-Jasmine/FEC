@@ -14,15 +14,13 @@ const Reviews = ({productId}) => {
   const [ratingFilters, setRatingFilters] = useState({1: false, 2: false, 3: false, 4: false, 5: false});
   const [isFiltered, setIsFiltered] = useState(false);
 
-  console.log(productId)
-
   useEffect(() => {
     if (productId === '') {
       return;
     }
 
     // Get the reviews
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}`,
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&count=100`,
       {
         headers: {
           'Authorization': process.env.API_KEY
@@ -47,7 +45,7 @@ const Reviews = ({productId}) => {
   }, [productId])
 
   const sortSelector = (param) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&sort=${param}`,
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&sort=${param}&count=100`,
     {
       headers: {
         'Authorization': process.env.API_KEY

@@ -36,8 +36,8 @@
 }
 
 .slidecontainer {
-  width: 80%;
-  align-items: center;
+  width: 90%;
+  float: center;
 }
 
 .slider {
@@ -50,6 +50,7 @@
   opacity: 0.7;
   -webkit-transition: .2s;
   transition: opacity .2s;
+  align-self: center;
 }
 
 .slider::-webkit-slider-thumb {
@@ -59,6 +60,7 @@
   height: 15px;
   border-radius: 50%;
   background: #aa049f;
+  align-self: center;
 }
 
 .slider::-moz-range-thumb {
@@ -66,9 +68,12 @@
   height: 25px;
   border-radius: 50%;
   background: #aa049f;
+  align-self: center;
 }
 
 .breakdown-characteristic {
+  width: 100%;
   align-items: center;
   text-align: center;
+  border: solid 1px purple;
 }

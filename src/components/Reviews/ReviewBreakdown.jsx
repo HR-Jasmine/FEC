@@ -65,8 +65,9 @@ const ReviewBreakdown = ({metaData, filterSelector, ratingFilters, isFiltered}) 
         return (
           <div className="breakdown-characteristic" key={i}>
             {char} <br></br>
-            <div class="slidecontainer">
-              <input type="range" min="1" max="100" value={metaData.characteristics[char].value * 20} class="slider" id="myRange"></input>
+            <div className="slidecontainer">
+              <input type="range" min="1" max="100" value={metaData.characteristics[char].value * 20} className="slider" readOnly={true}>
+              </input>
             </div>
           </div>
         )
