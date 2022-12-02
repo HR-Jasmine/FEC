@@ -11,6 +11,8 @@ const Reviews = ({productId}) => {
   const [numOfRevs, setNumOfRevs] = useState(2);
   const [displayReviews, setDisplayReviews] = useState([]);
   const [metaData, setMetaData] = useState({});
+  const [ratingFilters, setRatingFilters] = useState({1: false, 2: false, 3: false, 4: false, 5: false});
+  const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
     if (productId === '') {
@@ -56,12 +58,41 @@ const Reviews = ({productId}) => {
     })
   }
 
+  const filterSelector = (num) => {
+    if (num === 'clear') {
+      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
+      return;
+    }
+    let newFilters = {...ratingFilters};
+    newFilters[num] = !newFilters[num];
+    setRatingFilters(newFilters);
+  }
+
+  useEffect(() => {
+    let allFilters = Object.values(ratingFilters);
+
+
+    if (allFilters.indexOf(true) === -1) {
+      setIsFiltered(false);
+      setDisplayReviews(allReviews);
+    } else {
+      setIsFiltered(true);
+      let compiledReviews = [];
+      allReviews.forEach(review => {
+        if (ratingFilters[review.rating]) {
+          compiledReviews.push(review);
+        }
+      })
+      setDisplayReviews(compiledReviews);
+    }
+  }, [ratingFilters])
+
   if (!allReviews[0]) {
     return null;
   } else {
     return (
       <div className="reviews-panel">
-        <ReviewBreakdown metaData={metaData} />
+        <ReviewBreakdown metaData={metaData} filterSelector={filterSelector} ratingFilters={ratingFilters} isFiltered={isFiltered}/>
         <div className="review-nav">
           Sort by: &nbsp;&nbsp;
           <select className="sort-menu" onChange={(e) => {sortSelector(e.target.value)}}>
