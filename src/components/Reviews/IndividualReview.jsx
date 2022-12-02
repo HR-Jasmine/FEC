@@ -7,7 +7,6 @@ import axios from 'axios';
 
 const IndividualReview = ({review}) => {
 
-  console.log(review);
 
   const [reviewBody, setReviewBody] = useState(review.body.slice(0, 250));
   const [isHelpful, setIsHelpful] = useState(review.helpfulness);
@@ -41,7 +40,7 @@ const IndividualReview = ({review}) => {
         <button className={"helpful-button" + review.review_id} onClick={(e) => {
           e.preventDefault();
           document.querySelectorAll(`.helpful-button${review.review_id}`).forEach(button => button.disabled=true);
-          axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review.review_id}/helpful`,
+          axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review.review_id}/helpful/`,
           {
             headers: {
               'Authorization': process.env.API_KEY

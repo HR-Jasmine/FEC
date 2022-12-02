@@ -1,0 +1,36 @@
+.bar-ratings {
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+  color: #b1b1b1;
+  overflow: hidden;
+}
+.full-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: green;
+}
+.empty-bar:before, .full-bar:before {
+  content:"\2501\2501\2501\2501\2501\2501\2501\2501\2501\2501";
+  font-size: 14pt;
+}
+.empty-bar:before {
+  -webkit-text-stroke: 1px #848484;
+}
+.full-bar:before {
+  -webkit-text-stroke: 1px rgb(10, 194, 127);
+}
+
+.breakdown-rating {
+  font-family: monospace;
+  font-size: 16px;
+}
+
+@-moz-document url-prefix() {
+  .full-stars {
+      color: #ECBE24;
+  }
+}

@@ -21,6 +21,7 @@
   "homepage": "https://github.com/HR-Jasmine/FEC#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
+    "eslint": "^8.28.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

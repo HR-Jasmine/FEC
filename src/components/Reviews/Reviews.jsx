@@ -2,7 +2,7 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import IndividualReview from './IndividualReview.jsx';
-import Stars from '../Stars.jsx';
+import ReviewBreakdown from './ReviewBreakdown.jsx';
 import '../styles/Reviews/reviews.css';
 
 const Reviews = ({productId}) => {
@@ -10,7 +10,7 @@ const Reviews = ({productId}) => {
   const [allReviews, setAllReviews] = useState([]);
   const [numOfRevs, setNumOfRevs] = useState(2);
   const [displayReviews, setDisplayReviews] = useState([]);
-  const [averageRating, setAverageRating] = useState(0);
+  const [metaData, setMetaData] = useState({});
 
   useEffect(() => {
     if (productId === '') {
@@ -37,16 +37,7 @@ const Reviews = ({productId}) => {
       }
   })
     .then(response => {
-      let reviewAgg = response.data.ratings;
-      let numOfRatings = 0;
-      let totalStars = 0;
-
-      for (var key in reviewAgg) {
-        numOfRatings += Number(reviewAgg[key]);
-        totalStars += reviewAgg[key] * key;
-      }
-
-      setAverageRating(totalStars / numOfRatings);
+      setMetaData(response.data);
     })
 
   }, [productId])
@@ -70,10 +61,7 @@ const Reviews = ({productId}) => {
   } else {
     return (
       <div className="reviews-panel">
-        <div className="review-breakdown">
-          <p className="average-rating-text">Average rating: {Math.floor(averageRating * 100) / 100} stars</p>
-          <Stars rating={averageRating} />
-        </div>
+        <ReviewBreakdown metaData={metaData} />
         <div className="review-nav">
           Sort by: &nbsp;&nbsp;
           <select className="sort-menu" onChange={(e) => {sortSelector(e.target.value)}}>
