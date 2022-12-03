@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import QA from './Kong/Main.jsx'
+import QA from './Question/Main.jsx'
 import Reviews from './Reviews/Reviews.jsx';
 import Overview from './Overview/Overview.jsx';
 import './styles/app.css';
@@ -32,7 +32,7 @@ const App = () => {
     <div className="app">
 
       <Overview product={state.product} />
-      <QA/>
+      <QA product={state.productId}/>
       <Reviews  productId={state.productId} />
     </div>
   )

@@ -1,0 +1,36 @@
+
+.modal{
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: bisque;
+  z-index: 1000;
+  padding: 25px;
+}
+
+.close-modal{
+  position: absolute;
+  top: 3px;
+  right: 5px
+}
+
+.answer-form{
+  width: 90%;
+  padding: 0;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.answer-inputs{
+  width: 80%;
+}
+.answer-modal-extra-details{
+  display: block;
+  font-size: 0.75rem;
+}
+.answer-modal-title{
+  text-align: center;
+}
