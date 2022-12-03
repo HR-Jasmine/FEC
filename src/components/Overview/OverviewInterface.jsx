@@ -4,36 +4,106 @@ import axios from 'axios';
 
 import Stars from '../Stars.jsx';
 
-
 import '../styles/style.css';
 import '../styles/Overview/over.css';
 import '../styles/Overview/interface.css';
 
 const OverviewInterface = (props) => {
-  const product = props.product;
-  const styles = props.styles;
-  const [activeStyle, setStyle] = useState(null);
+  const [state, setState] = [props.state, props.setState];
+  const product = state.product;
+  const styles = state.styles;
+  const activeStyle = state.activeStyle;
+  const [sku, setSku] = useState({
+    quantity: 0,
+    size: 'Select Size'
+  });
 
   var price = product.default_price;
+
+  if (activeStyle) {
+    price = activeStyle.original_price;
+  }
 
   var renderStyles = function() {
     let rendered = [];
 
     if (styles) {
-      styles.map(function(style) {
-        rendered.push(
-          <div key={style.style_id} className="productStyle hover">
-            <img className="styleThumb" src={style.photos[0].thumbnail_url} />
-          </div>)
-      })
+      for (var i = 0; i < styles.length; i++) {
+        var style = styles[i];
 
-      if (!activeStyle) {
-        setStyle(styles[0]);
-        price = styles[0].original_price;
+        rendered.push(
+          <img
+            key={style.style_id}
+            id={i + '_' + style.style_id}
+            className={function() {
+                var active = '';
+                if (activeStyle.style_id === style.style_id) {
+                  active = ' activeStyle';
+                }
+                return "productStyle" + active;
+              }()}
+            src={style.photos[0].thumbnail_url}
+            onClick={styleClick} />
+        )
       }
     }
 
     return rendered;
+  }
+
+  var optionSet = function(option) {
+    var options = [];
+
+    if (activeStyle) {
+      if (option === 'quantity') {
+        if (sku.size === 'Select Size') {
+          options.push(<option key="-" value="-">-</option>);
+        } else {
+          for (var i = 1; i <= sku.quantity && i <= 15; i++) {
+            options.push(<option key={"q" + i} value={i}>{i}</option>)
+          }
+        }
+      } else {
+        if (sku.size === 'Select Size') {
+          options.push(<option key='selectSize' value="Select Size">Select Size</option>)
+        }
+
+        for (var i in activeStyle.skus) {
+          var entry = activeStyle.skus[i];
+
+          options.push(<option key={i} value={entry[option]}>{entry[option]}</option>)
+        }
+      }
+    }
+
+    return options;
+  }
+
+  var sizeChange = function(e) {
+    if (activeStyle) {
+      var size = 'M';
+
+      if (e) {
+        size = e.target.value;
+      }
+
+      for (var i in activeStyle['skus']) {
+        var sku = activeStyle['skus'][i];
+
+        if (sku.size === size) {
+          setSku(sku);
+        }
+      }
+    }
+  }
+
+  var styleClick = function(e) {
+    var index = e.target.id.slice(0, e.target.id.indexOf('_'))
+
+    setState({
+      ...state,
+      activeStyle: styles[index]
+    })
   }
 
   return (
@@ -44,14 +114,18 @@ const OverviewInterface = (props) => {
         <h2>{product.name}</h2>
         <b>{`$${price}`}</b>
       </div>
-      <div id="styleName"><b>STYLE - </b>{function() {if (styles) {return styles[0].name} else {return 'STYLE'}}()}</div>
+      <div id="styleName"><b>STYLE - </b>{function() {if (activeStyle) {return activeStyle.name} else {return 'STYLE'}}()}</div>
       <div className="v" id="productStyles">
         {renderStyles()}
       </div>
       <div id="select-container">
         <div className="selectors h">
-          <select className="bigSelect" id="selectSize"></select>
-          <select className="bigSelect" id="selectQuantity"></select>
+          <select className="bigSelect" id="selectSize" value={sku.size} onChange={sizeChange}>
+            {optionSet('size')}
+          </select>
+          <select className="bigSelect" id="selectQuantity">
+            {optionSet('quantity')}
+          </select>
         </div>
         <div className="productButtons h">
           <button className="bigButton" id="addToCart">Add to Cart</button>

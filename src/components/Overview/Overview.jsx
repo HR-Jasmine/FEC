@@ -13,30 +13,15 @@ const headers = {'Authorization': process.env.API_KEY};
 const Overview = (props) => {
   const [state, setState] = useState({
     product: props.product,
-    styles: null
+    styles: null,
+    activeStyle: null
   })
 
-  var getProductStyles = function() {
-    var url = process.env.URL + `/products/${state.product.id}/styles`;
-
-    axios.get(url, {headers})
-      .then(response => {
-        setState({
-          ...state,
-          styles: response.data.results
-        })
-      });
+  var getStyles = function() {
+    helper.getProductStyles(state.product.id, state, setState);
   };
 
-  var getImageURL = function() {
-    // if (state.styles) {
-    //   return state.styles[0].photos[0].url;
-    // }
-
-    return "https://www.petalrepublic.com/wp-content/uploads/2021/04/Ultimate-Guide-to-Jasmine-Flower-Meaning-Types-and-Uses.jpeg";
-  }
-
-  useEffect(getProductStyles, [state.product]);
+  useEffect(getStyles, [state.product]);
 
   return (
       <div className="overview v">
@@ -48,8 +33,8 @@ const Overview = (props) => {
           <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div>
         </div>
         <div className="info h">
-          <div className="gallery h"><img className="card noPad" src={getImageURL()}></img></div>
-          <OverviewInterface product={state.product} styles={state.styles}/>
+          <div className="gallery h"><img className="card noPad" src={helper.getImageURL(state)}></img></div>
+          <OverviewInterface state={state} setState={setState} />
         </div>
         <br/>
         <div className="slogan">

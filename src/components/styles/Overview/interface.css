@@ -29,34 +29,30 @@
 }
 
 .productStyle {
-  margin: 7px;
+  margin: 8px;
   width: 60px;
   height: 60px;
   border-radius: 60px;
   background-color: rgb(207, 207, 207);
   box-shadow: 0 2px 2px 1px rgb(192, 177, 177);
+  box-sizing: content-box;
 
   overflow: hidden;
   position: relative;
 }
 
-.productStyle:active {
-  border: 1px solid rgb(184, 184, 184);
-  box-shadow: none;
-}
-
-.styleThumb {
-  position: absolute;
-  object-fit: cover;
-  width: 60px;
-  height: 60px;
+.activeStyle {
+  border: 4px solid rgb(47, 48, 88);
+  margin: 4px;
 }
 
 #selectSize {
+  outline: 0px;
   width: 60%;
 }
 
 #selectQuantity {
+  outline: 0px;
   width: 30%;
 }
 
@@ -82,7 +78,6 @@
 .bigButton:active {
   box-shadow: none;
 }
-
 
 .star {
   position: absolute;
