@@ -7,6 +7,7 @@ import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import QA from './Question/Main.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 
+import './styles/style.css';
 import './styles/app.css';
 
 const App = (props) => {
@@ -16,7 +17,7 @@ const App = (props) => {
   });
 
   return (
-      <div className="app">
+      <div className="app t1">
         <Overview product={state.product} />
         {/* <RelatedProducts productId={state.productId} /> */}
         <QA/>

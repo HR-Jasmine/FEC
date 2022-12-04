@@ -99,13 +99,12 @@ const OverviewInterface = (props) => {
 
     setState({
       ...state,
-      activeStyle: styles[index],
-      selectedPhoto: 0
+      activeStyle: styles[index]
     })
   }
 
   return (
-    <div className="interface card v">
+    <div className="interface card v t0a">
       <div id="interfaceHead">
         <Stars rating={product.rating}/>
         <h3>{product.category}</h3>
@@ -118,16 +117,16 @@ const OverviewInterface = (props) => {
       </div>
       <div id="select-container">
         <div className="selectors h">
-          <select className="bigSelect" id="selectSize" value={sku.size} onChange={sizeChange}>
+          <select className="bigSelect t0a" id="selectSize" value={sku.size} onChange={sizeChange}>
             {optionSet('size')}
           </select>
-          <select className="bigSelect" id="selectQuantity">
+          <select className="bigSelect t0a" id="selectQuantity">
             {optionSet('quantity')}
           </select>
         </div>
         <div className="productButtons h">
-          <button className="bigButton" id="addToCart">Add to Cart</button>
-          <button className="bigButton" id="addToFav"><div className='star'>★</div></button>
+          <button className="bigButton t4a" id="addToCart">Add to Cart</button>
+          <button className="bigButton t4a" id="addToFav"><div className='star'>★</div></button>
         </div>
       </div>
     </div>

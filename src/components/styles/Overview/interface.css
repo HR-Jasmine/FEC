@@ -1,6 +1,7 @@
 .interface {
   flex: 0.4 1 auto;
-  max-width: 440px;
+  margin-right: 60px;
+  width: 400px;
   height: 600px;
   text-align: left;
   justify-content: space-between;
@@ -24,8 +25,9 @@
   flex-wrap: wrap;
   align-content: flex-start;
 
-  border: 1px solid rgb(207, 207, 207);
+  border: 1px solid;
   border-style: none none none solid;
+  background-color: none;
 }
 
 .productStyle {
@@ -42,7 +44,7 @@
 }
 
 .activeStyle {
-  border: 4px solid rgb(47, 48, 88);
+  border: 4px solid;
   margin: 4px;
 }
 
@@ -69,7 +71,6 @@
 
 .bigButton {
   color: white;
-  background-color: rgb(96, 97, 156);
 
   font-weight: bold;
   box-shadow: 0 2px 2px 1px rgb(211, 204, 204);
