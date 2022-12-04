@@ -13,10 +13,7 @@ const OverviewInterface = (props) => {
   const product = state.product;
   const styles = state.styles;
   const activeStyle = state.activeStyle;
-  const [sku, setSku] = useState({
-    quantity: 0,
-    size: 'Select Size'
-  });
+  const sku = state.sku;
 
   var price = product.default_price;
 
@@ -81,17 +78,16 @@ const OverviewInterface = (props) => {
 
   var sizeChange = function(e) {
     if (activeStyle) {
-      var size = 'M';
-
-      if (e) {
-        size = e.target.value;
-      }
+      var size = e.target.value;
 
       for (var i in activeStyle['skus']) {
         var sku = activeStyle['skus'][i];
 
         if (sku.size === size) {
-          setSku(sku);
+          setState({
+            ...state,
+            sku: sku
+          });
         }
       }
     }

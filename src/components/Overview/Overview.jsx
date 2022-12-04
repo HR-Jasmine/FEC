@@ -1,7 +1,7 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
-import axios from 'axios';
+import {useState, useEffect, createContext} from 'react';
 
+import Gallery from './Gallery.jsx';
 import OverviewInterface from './OverviewInterface.jsx';
 import helper from './helpers.jsx';
 
@@ -14,8 +14,13 @@ const Overview = (props) => {
   const [state, setState] = useState({
     product: props.product,
     styles: null,
-    activeStyle: null
-  })
+    activeStyle: null,
+    sku: {
+      quantity: 0,
+      size: 'Select Size'
+    },
+    selectedPhoto: 0
+  });
 
   var getStyles = function() {
     helper.getProductStyles(state.product.id, state, setState);
@@ -30,10 +35,11 @@ const Overview = (props) => {
           <input type="text" placeholder="Search for a product..."></input>
         </div>
         <div className="announce v">
-          <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div>
+          {JSON.stringify(state.selectedPhoto)}
+          {/* <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div> */}
         </div>
         <div className="info h">
-          <div className="gallery h"><img className="card noPad" src={helper.getImageURL(state)}></img></div>
+          {/* <Gallery /> */}
           <OverviewInterface state={state} setState={setState} />
         </div>
         <br/>
@@ -44,6 +50,7 @@ const Overview = (props) => {
         </div>
         <br/>
       </div>
+
   )
 }
 
