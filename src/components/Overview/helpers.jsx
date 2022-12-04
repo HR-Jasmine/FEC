@@ -20,7 +20,9 @@ var getProductStyles = function(id, state, setState) {
 
 var getImageURL = function(state) {
   if (state.activeStyle) {
-    return state.activeStyle.photos[0].url;
+    var photos = state.activeStyle.photos;
+    var i = state.selectedPhoto;
+    return photos[i].url;
   }
 
   return "https://www.petalrepublic.com/wp-content/uploads/2021/04/Ultimate-Guide-to-Jasmine-Flower-Meaning-Types-and-Uses.jpeg";

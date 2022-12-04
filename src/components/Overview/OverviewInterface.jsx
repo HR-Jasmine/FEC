@@ -27,18 +27,19 @@ const OverviewInterface = (props) => {
     if (styles) {
       for (var i = 0; i < styles.length; i++) {
         var style = styles[i];
+        var styleClass = function() {
+          var active = '';
+          if (activeStyle.style_id === style.style_id) {
+            active = ' activeStyle';
+          }
+          return "productStyle" + active;
+        }();
 
         rendered.push(
           <img
             key={style.style_id}
             id={i + '_' + style.style_id}
-            className={function() {
-                var active = '';
-                if (activeStyle.style_id === style.style_id) {
-                  active = ' activeStyle';
-                }
-                return "productStyle" + active;
-              }()}
+            className={styleClass}
             src={style.photos[0].thumbnail_url}
             onClick={styleClick} />
         )
@@ -98,7 +99,8 @@ const OverviewInterface = (props) => {
 
     setState({
       ...state,
-      activeStyle: styles[index]
+      activeStyle: styles[index],
+      selectedPhoto: 0
     })
   }
 

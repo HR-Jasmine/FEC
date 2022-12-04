@@ -35,11 +35,10 @@ const Overview = (props) => {
           <input type="text" placeholder="Search for a product..."></input>
         </div>
         <div className="announce v">
-          {JSON.stringify(state.selectedPhoto)}
-          {/* <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div> */}
+          <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div>
         </div>
         <div className="info h">
-          {/* <Gallery /> */}
+          <Gallery state={state} setState={setState} />
           <OverviewInterface state={state} setState={setState} />
         </div>
         <br/>
