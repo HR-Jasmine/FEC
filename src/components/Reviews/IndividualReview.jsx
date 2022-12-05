@@ -2,6 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import {format, parseISO} from 'date-fns';
 import Stars from '../Stars.jsx';
+import ReviewImgModal from './ReviewImgModal.jsx';
 import '../styles/Reviews/individual-review.css';
 import axios from 'axios';
 
@@ -23,7 +24,9 @@ const IndividualReview = ({review}) => {
       <p className="review-body">
         {reviewBody}<br></br>
         {review.photos.map((photo, i) => {
-          return <img className="review-image" src={photo.url} key={i}></img>
+          const [showModal, setShowModal] = useState(false);
+          return (<div><img className="review-image" src={photo.url} key={i} onClick={() => {setShowModal(true)}}></img>
+          <ReviewImgModal show={showModal} img={photo.url} onClose={() => {setShowModal(false)}} /></div>)
         })}<br></br>
         <button hidden={review.body.length >= 250 ? false : true} onClick={(e) => {
           e.target.hidden=true;
