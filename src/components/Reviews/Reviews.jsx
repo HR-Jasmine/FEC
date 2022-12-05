@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import IndividualReview from './IndividualReview.jsx';
 import ReviewBreakdown from './ReviewBreakdown.jsx';
+import ReviewForm from './ReviewForm.jsx';
 import '../styles/Reviews/reviews.css';
 
 const Reviews = ({productId}) => {
@@ -13,6 +14,7 @@ const Reviews = ({productId}) => {
   const [metaData, setMetaData] = useState({});
   const [ratingFilters, setRatingFilters] = useState({1: false, 2: false, 3: false, 4: false, 5: false});
   const [isFiltered, setIsFiltered] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     if (productId === '') {
@@ -109,8 +111,12 @@ const Reviews = ({productId}) => {
           <button className="more-reviews-btn" hidden={numOfRevs >= displayReviews.length ? true : false} onClick={(e) => {
             e.preventDefault();
             setNumOfRevs(numOfRevs + 2);
-          }}>More Reviews</button>
+          }}>More Reviews</button>&nbsp;&nbsp;
+          <button onClick={() => {setShowForm(true)}}>Add Review</button><br></br>
+
+          <ReviewForm showForm={showForm} onClose={() => {setShowForm(false)}}/>
         </div>
+        <div id="modal-holder"></div>
       </div>
     );
   }

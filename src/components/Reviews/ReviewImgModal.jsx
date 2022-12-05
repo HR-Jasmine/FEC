@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import '../styles/Reviews/review-img-modal.css';
 
 const ReviewImgModal = ({show, img, onClose}) => {
@@ -7,7 +8,7 @@ const ReviewImgModal = ({show, img, onClose}) => {
     return null;
   }
 
-  return (
+  return ReactDOM.createPortal(
     <div className="review-img-modal">
       <div className="review-img-modal-content">
         <div className="review-img-modal-body">
@@ -17,8 +18,9 @@ const ReviewImgModal = ({show, img, onClose}) => {
           <button className="review-img-modal-close" onClick={onClose}>Close</button>
         </div>
       </div>
-    </div>
-  )
+    </div>,
+    document.getElementById('modal-holder')
+  );
 };
 
 export default ReviewImgModal;
