@@ -25,11 +25,11 @@ const IndividualReview = ({review}) => {
         {review.photos.map((photo, i) => {
           return <img className="review-image" src={photo.url} key={i}></img>
         })}<br></br>
-        {review.recommend ? <a>I recommend this product &#x2713;</a> : null}
         <button hidden={review.body.length >= 250 ? false : true} onClick={(e) => {
-          e.target.preventDefault();
+          e.target.hidden=true;
           setReviewBody(review.body);
-        }}>See More</button>
+        }}>See More</button><br></br>
+        {review.recommend ? <a>I recommend this product &#x2713;</a> : null}
       </p>
       <p className="review-response" hidden={review.response === null ? true : false}>
         Response from seller:<br></br>
