@@ -6,6 +6,7 @@ import Search from './Search.jsx'
 import AddExpand from './AddExpand.jsx'
 import Accordion from './Accordion.jsx'
 import { useState, useEffect } from 'react';
+import Form from './Form.jsx';
 
 const QA = ({productId}) => {
   //State Management
@@ -38,6 +39,7 @@ const QA = ({productId}) => {
   return (
     <div className="main-container">
       <h2 className="section-name">Question & Answer</h2>
+      <Form />
       <Search />
       <QuestionList listOfQuestions={listOfQuestions} />
       <AddExpand listOfQuestions={listOfQuestions} setNumOfQuestionsRendered={setNumOfQuestionsRendered}/>

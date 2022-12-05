@@ -3,6 +3,7 @@ import { useState } from 'react';
 import '../styles/Question/accordion.css';
 import {format} from 'date-fns'
 import AnswerModal from './AnswerModal.jsx'
+import QuestModal from './QuestModal.jsx'
 
 
 const Accordion = ({question}) => {
@@ -29,6 +30,7 @@ const Accordion = ({question}) => {
     e.preventDefault();
     setIsOpen(false)
   }
+
 
   const changeToCollapse = (e) => {
     e.preventDefault();

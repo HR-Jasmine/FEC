@@ -1,0 +1,21 @@
+.quest-modal{
+  position: fixed;
+  width: 600px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: bisque;
+  z-index: 1000;
+  padding: 25px;
+}
+.close-quest-modal-btn{
+  position: absolute;
+  top: 3px;
+  right: 5px
+}
+
+.question-form{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

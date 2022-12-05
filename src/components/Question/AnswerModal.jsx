@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import '../styles/Question/modal.css'
+import '../styles/Question/answermodal.css'
 
 
 
@@ -38,7 +38,7 @@ const AnswerModal = ({isOpen, closeModal, question}) => {
       <form className="answer-form">
         <div>
           <h4>Answer:</h4>
-          <textarea type="text" maxLength={1000} placeholder="The answer to your question is that..."  cols="48" rows="8"></textarea>
+          <textarea type="text" maxLength={1000} placeholder="The answer to your question is that..."  cols="48" rows="8" required></textarea>
         </div>
         <div>
           <label >Nickname:
@@ -46,7 +46,7 @@ const AnswerModal = ({isOpen, closeModal, question}) => {
           </label>
           <span className="answer-modal-extra-details">For privacy reasons, do not use your full name or email address</span>
           <label >Email:
-            <input type="email" id="email" placeholder="Example: Jack@gmail.com" maxLength={60} />
+            <input type="email" id="email" placeholder="Example: Jack@gmail.com" maxLength={60} required />
           </label>
           <span className="answer-modal-extra-details">For authentication reasons, you will not be emailed</span>
         </div>

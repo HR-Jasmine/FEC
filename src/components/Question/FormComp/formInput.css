@@ -1,0 +1,11 @@
+.error-msg{
+  color: red;
+  display: none;
+}
+
+.inputs:invalid[focused="true"] ~ .error-msg{
+  display: block;
+}
+.inputs:invalid[focused="true"] {
+  border: 1px solid red
+}
