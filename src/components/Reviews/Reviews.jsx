@@ -114,7 +114,7 @@ const Reviews = ({productId}) => {
           }}>More Reviews</button>&nbsp;&nbsp;
           <button onClick={() => {setShowForm(true)}}>Add Review</button><br></br>
 
-          <ReviewForm showForm={showForm} onClose={() => {setShowForm(false)}}/>
+          <ReviewForm showForm={showForm} metaData={metaData} onClose={() => {setShowForm(false)}}/>
         </div>
         <div id="modal-holder"></div>
       </div>
