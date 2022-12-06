@@ -9,43 +9,43 @@ const RelatedProducts = ( { productId } ) => {
   const [relatedId, setrelatedId] = useState([]);
   const [relprods, setrelprods] = useState([]);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`,
-  {
-    headers: {
-      'Authorization': process.env.API_KEY
-    }
-    })
-    .then(data => {
-      // console.log('Example Related Products', data.data)
+  //   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`,
+  // {
+  //   headers: {
+  //     'Authorization': process.env.API_KEY
+  //   }
+  //   })
+  //   .then(data => {
+  //     // console.log('Example Related Products', data.data)
 
-      setrelatedId(data.data);
-    })
-    }, [productId])
-
-
-    const getProduct = function (productId) {
-
-      useEffect(() => {
-     return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`,
-      {
-        headers: {
-          'Authorization': process.env.API_KEY
-        }
-        })
-        .then(response => {
-          setrelprods(relprods => ([...relprods, response.data]))
-        })
-      }, [productId])
-    }
+  //     setrelatedId(data.data);
+  //   })
+  //   }, [productId])
 
 
+    // const getProduct = function (productId) {
 
-    getProduct(37312)
-    getProduct(37313)
-    getProduct(37318)
-    getProduct(37318)
+    //   useEffect(() => {
+    //  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`,
+    //   {
+    //     headers: {
+    //       'Authorization': process.env.API_KEY
+    //     }
+    //     })
+    //     .then(response => {
+    //       setrelprods(relprods => ([...relprods, response.data]))
+    //     })
+    //   }, [productId])
+    // }
+
+
+
+    // getProduct(37312)
+    // getProduct(37313)
+    // getProduct(37318)
+    // getProduct(37318)
 
 
 

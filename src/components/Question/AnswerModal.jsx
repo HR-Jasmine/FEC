@@ -6,7 +6,7 @@ import AnswerForm from './AnswerForm.jsx'
 
 
 
-const AnswerModal = ({isOpen, closeModal, question}) => {
+const AnswerModal = ({isOpen, closeModal, question, product}) => {
   const [answerValue, setAnswerValue] = useState('')
   const [nickNameValue, setNickNameValue] = useState('')
   const [email, setEmailValue] = useState('')
@@ -29,9 +29,9 @@ const AnswerModal = ({isOpen, closeModal, question}) => {
 
   return (
     <div className="modal">
-      <h1>Submit Your Answer</h1>
-      <h3>Product: placeholder</h3>
-      <h3>Question: {question.question_body}</h3>
+      <h1 className="modal-title">Submit Your Answer</h1>
+      <h3 className="modal-product">Product: {product.name}</h3>
+      <h3 className="modal-product">Question: {question.question_body}</h3>
       <AnswerForm/>
       <button className="close-modal" onClick={closeModal}>X</button>
     </div>
