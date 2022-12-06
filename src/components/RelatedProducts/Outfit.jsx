@@ -6,7 +6,7 @@ import styles from '../styles/RelatedProducts/relatedProducts.css';
 
 const Outfit = ( { productId } ) => {
 
-  const [outfitIds, setOutfitIds] = setState([])
+  const [outfitIds, setOutfitIds] = useState([])
 
   const addToFit = function (id) {
     setOutfitIds(ouitfitIds => [...outfitIds, id])
@@ -18,15 +18,24 @@ const Outfit = ( { productId } ) => {
 
   if  (outfitIds.length === 0) {
     return (
-  <div class='outfit-box'>
-  Add to your outfit!
+  <div class='outfit-container product-card'>
+  <h3 class="outfit-center-text">Add to your outfit!</h3>
    </div>
     )
 
   return (
-    <div class="outfit">
-      Outfit
-    </div>
+    <div>
+    <h2 class="product-category">Your Outfit</h2>
+    <section class="product">
+      <button  class="pre-btn" >&#8592;</button>
+      <button  class="nxt-btn">&#8594;</button>
+      <div class="product-container">
+          {/* {relprods.map((card, i) => {
+          return <SingleProduct card={card} key={i} styles={styles} />
+          })} */}
+      </div>
+   </section>
+   </div>
   )
 }
 }

@@ -101,17 +101,32 @@ const RelatedProducts = ( { productId } ) => {
            })
           }),[productId]}
 
-    const nextClick = function () {
-      // item.scrollLeft += containerWidth;
-      document.querySelector('.product-card').scrollLeft += document.querySelector('.product-card').getBoundingClientRect().width
-      console.log('onlickkdafsd')
-    }
+    // const nextClick = function () {
+    //   // item.scrollLeft += containerWidth;
+    //   document.querySelector('.product-card').scrollLeft += document.querySelector('.product-card').getBoundingClientRect().width
+    //   console.log('onlickkdafsd')
+    // }
 
-      const backClick = function () {
-        document.querySelector('.product-card').scrollLeft -= document.querySelector('.product-card').getBoundingClientRect().width
-        console.log('yabababa')
-      }
+    //   const backClick = function () {
+    //     document.querySelector('.product-card').scrollLeft -= document.querySelector('.product-card').getBoundingClientRect().width
+    //     console.log('yabababa')
+    //   }
+      const productContainers = [...document.querySelectorAll('.product-container')];
+      const nxtBtn = [...document.querySelectorAll('.nxt-btn')];
+      const preBtn = [...document.querySelectorAll('.pre-btn')];
 
+      productContainers.forEach((item, i) => {
+          let containerDimensions = item.getBoundingClientRect();
+          let containerWidth = containerDimensions.width;
+
+          nxtBtn[i].addEventListener('click', () => {
+              item.scrollLeft += containerWidth;
+          })
+
+          preBtn[i].addEventListener('click', () => {
+              item.scrollLeft -= containerWidth;
+          })
+      })
 
 
 
@@ -121,8 +136,8 @@ const RelatedProducts = ( { productId } ) => {
       <Modal /> */}
       <h2 class="product-category">Related Products </h2>
     <section class="product">
-      <button onClick={ () => {backClick()}} class="pre-btn" >&#8592;</button>
-      <button onClick={ () => {nextClick()}} class="nxt-btn">&#8594;</button>
+      <button  class="pre-btn" >&#8592;</button>
+      <button  class="nxt-btn">&#8594;</button>
       <div class="product-container">
           {relprods.map((card, i) => {
           return <SingleProduct card={card} key={i} styles={styles} />

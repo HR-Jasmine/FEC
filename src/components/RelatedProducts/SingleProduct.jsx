@@ -19,7 +19,7 @@ const SingleProduct = ( { card, styles } ) => {
      </div>
         <div class='product-info'>
             <p class="rp-category">{card.category}</p>
-            <h2 class="product-brand">{card.name}</h2>
+            <p class="product-brand">{card.name}</p>
             <span class="price">{card.default_price}</span>
             <Stars class="stars" />
        </div>
