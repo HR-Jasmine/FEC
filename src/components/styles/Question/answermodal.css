@@ -17,10 +17,11 @@
   right: 5px
 }
 
-h1, h3{
+h1, .modal-title, .modal-product{
   text-align: center;
   color: white;
 }
+
 h3{
   margin-bottom: 1rem;
 }

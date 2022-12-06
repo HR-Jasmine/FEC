@@ -14,7 +14,7 @@ const Reviews = ({productId}) => {
   const [ratingFilters, setRatingFilters] = useState({1: false, 2: false, 3: false, 4: false, 5: false});
   const [isFiltered, setIsFiltered] = useState(false);
 
-  console.log(productId)
+  // console.log(productId)
 
   useEffect(() => {
     if (productId === '') {

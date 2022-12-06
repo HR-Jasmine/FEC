@@ -1,12 +1,11 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import QA from './Kong/Main.jsx'
 import Reviews from './Reviews/Reviews.jsx';
 import Overview from './Overview/Overview.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import QA from './Question/Main.jsx';
-import Reviews from './Reviews/Reviews.jsx';
+
 
 import './styles/app.css';
 
@@ -19,7 +18,7 @@ const App = (props) => {
   return (
     <div className="app">
       <Overview product={state.product} />
-      <QA/>
+      <QA productId={state.productId} product={state.product}/>
       <Reviews  productId={state.productId} />
     </div>
   )

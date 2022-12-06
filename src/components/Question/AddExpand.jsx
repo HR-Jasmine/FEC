@@ -6,17 +6,12 @@ import { useState } from 'react';
 
 
 
-const AddExpand = ({setNumOfQuestionsRendered, productId}) => {
+const AddExpand = ({setNumOfQuestionsRendered, productId, product, listOfQuestions}) => {
   const [questIsOpen, setQuestIsOpen] = useState(false)
-
-  const test = (e) => {
-    e.preventDefault();
-    console.log("Add Question Clicked");
-  }
 
   const moreQuestions = (e) => {
     e.preventDefault();
-    setNumOfQuestionsRendered((prev) => prev + 2)
+    setNumOfQuestionsRendered(2)
   }
   const openQuestModal = (e) => {
     e.preventDefault();
@@ -30,7 +25,8 @@ const AddExpand = ({setNumOfQuestionsRendered, productId}) => {
 
   return (
     <div className="button-container">
-      <QuestModal questIsOpen={questIsOpen} productId={productId} closeQuestModal={closeQuestModal}/>
+      <QuestModal questIsOpen={questIsOpen} productId={productId} closeQuestModal={closeQuestModal} product={product}/>
+      {/* {listOfQuestions.length > 2 ? <button className="more" onClick={moreQuestions}> More Questions</button> : <span></span>} */}
       <button className="more" onClick={moreQuestions}> More Questions</button>
       <button className="add" onClick={openQuestModal} > Add a question </button>
     </div>

@@ -6,14 +6,16 @@ import AnswerModal from './AnswerModal.jsx'
 import QuestModal from './QuestModal.jsx'
 
 
-const Accordion = ({question}) => {
+const Accordion = ({question, product}) => {
   const { question_body, answers, question_helpfulness } = question
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
   const [questionHelpfulness, setQuestionHelpfulness] = useState(question_helpfulness)
   const [answerHelpfulness, setAnswerHelpfulness] = useState(0);
+  const [numOfAnswersRendered, setNumOfAnswersRendered] = useState(2)
   // const newDate = format(new Date (date), 'MMMM d, yyyy')
-  const sortedAnswersId = Object.keys(answers).sort((a, b) => {
+  const numOfAnswers = Object.keys(answers).length
+  const sortedAnswersId = Object.keys(answers).slice(0,numOfAnswersRendered).sort((a, b) => {
     return answers[b].helpfulness - answers[a].helpfulness
   })
 
@@ -36,9 +38,12 @@ const Accordion = ({question}) => {
     e.preventDefault();
     if(e.target.innerText === "See more") {
       e.target.innerText = "Collapse"
+      setNumOfAnswersRendered((prev) => prev + 4)
     } else {
       e.target.innerText = "See more"
+      setNumOfAnswersRendered(2)
     }
+
   }
 
   const helpfulIncrement = (e) => {
@@ -53,11 +58,13 @@ const Accordion = ({question}) => {
       <div className="accordion-item">
         <div className="accordion-title" >
           <div className="question-row">
-            <AnswerModal isOpen={isOpen} closeModal={closeModal} question={question}/>
-            <h4>Q:{question_body}  </h4>
-            <div>
-              <button onClick={helpfulIncrement}> Helpful ?</button>
-              <span className="yes">Yes ({questionHelpfulness})</span>
+            <AnswerModal isOpen={isOpen} closeModal={closeModal} question={question} product={product}/>
+            <div className="q-div">
+              <h4>Q: {question_body} </h4>
+              <div className="quest-help-div">
+                <button className="accord-btn" onClick={helpfulIncrement}> Helpful ?</button>
+                <span className="yes">Yes ({questionHelpfulness})</span>
+              </div>
             </div>
             <div className="arrow bounce" onClick={() => setIsActive(!isActive)}></div>
           </div>
@@ -70,18 +77,18 @@ const Accordion = ({question}) => {
                   <div key={i}>
                     <h4 className="answer">A: {answers[answerId].body} </h4>
                     <div className="user">
-                      <p>By: {answers[answerId].answerer_name} </p>
-                      <button> Helpful ?</button>
-                      <span className="yes">Yes ({answers[answerId].helpfulness})</span>
-                      <button onClick={openModal}>Add Answer</button>
-                      <button>Report</button>
+                      <p className="username">By: {answers[answerId].answerer_name} </p>
+                      <button className="accord-btn"> Helpful ?</button>
+                      <span className="yes">Yes({answers[answerId].helpfulness})</span>
+                      <button className="accord-btn"onClick={openModal}>Add Answer</button>
+                      <button className="accord-btn">Report</button>
                     </div>
                   </div>
                 )
               })
             }
             {
-              sortedAnswersId.length === 1 ? <button onClick={changeToCollapse}> See more </button> : <span></span>
+              numOfAnswers > 2 ? <button className="see-more-btn" onClick={changeToCollapse}> See more </button> : <span></span>
             }
           </div>
         }
