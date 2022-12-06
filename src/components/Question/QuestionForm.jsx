@@ -2,28 +2,30 @@ import React from 'react';
 import FormInput from './FormComp/FormInput.jsx'
 import FormTextArea from './FormComp/FormTextArea.jsx'
 import { useState } from 'react';
-const Form = () => {
+
+const QuestionForm = () => {
   const [values, setValues] = useState({
     Nickname: "",
     Email:"",
-    TextArea: ""
+    Question: ""
   })
 
   const inputs = [
     {
       name: 'Nickname',
       type: 'text',
-      placeholder: 'Nickname',
-      label: "Nickname",
+      placeholder: 'Example: jackson11!',
+      label: "Nickname:",
       extramessage: "For privacy reasons, do not use your full name or email address",
-      errormessage: "Nickname should be no more than 60 characters",
+      errormessage: "Nickname should be between 5-60 characters with no special characters",
+      pattern: "^[A-Za-z0-9]{5,60}$",
       required: true
     },
     {
       name: 'Email',
       type: 'email',
-      placeholder: 'Email',
-      label: "Email",
+      placeholder: 'Example: jack@email.com',
+      label: "Email:",
       extramessage: "For authentication reasons, you will not be emailed",
       errormessage:"Email should be a valid email address",
       required: true
@@ -31,10 +33,10 @@ const Form = () => {
   ]
 
   const textObj= [{
-    name: 'TextArea',
+  name: 'Question',
     type: 'text',
-    placeholder: 'TextArea',
-    label: "TextArea"
+    placeholder: 'The question that I have about this product is...',
+    label: "Question:"
   }]
 
   const handleSubmit = (e) => {
@@ -64,10 +66,10 @@ const Form = () => {
             })
           }
         </div>
-        <button>Submit</button>
+        <button className="submit-btn" type="submit">Submit</button>
       </form>
     </div>
   )
 }
 
-export default Form;
+export default QuestionForm;

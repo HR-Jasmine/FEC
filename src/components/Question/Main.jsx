@@ -6,7 +6,8 @@ import Search from './Search.jsx'
 import AddExpand from './AddExpand.jsx'
 import Accordion from './Accordion.jsx'
 import { useState, useEffect } from 'react';
-import Form from './Form.jsx';
+import AnswerForm from './AnswerForm.jsx';
+import QuestionForm from './QuestionForm.jsx'
 
 const QA = ({productId}) => {
   //State Management
@@ -16,10 +17,12 @@ const QA = ({productId}) => {
   // API calls
   const headers = {'Authorization': process.env.API_KEY};
 
-  const getQuestions = function() {
+  const getQuestions = () => {
     const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions';
     const params = {
-      product_id: 66642
+      product_id: 66642,
+      page: 1,
+      count: 5
     }
     axios.get(url, {params, headers})
       .then((response) => {
@@ -32,17 +35,31 @@ const QA = ({productId}) => {
       })
   };
 
+
   useEffect(getQuestions, [])
+
+  const getAnswers = () => {
+    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/:question_id/answers';
+    const params = {
+      question_id: 66627
+    }
+    axios.get(url,{params,headers})
+      .then((response) => {
+        console.log(response)
+      })
+  }
+
+  useEffect(getAnswers, [])
+
 
 
 
   return (
     <div className="main-container">
       <h2 className="section-name">Question & Answer</h2>
-      <Form />
       <Search />
       <QuestionList listOfQuestions={listOfQuestions} />
-      <AddExpand listOfQuestions={listOfQuestions} setNumOfQuestionsRendered={setNumOfQuestionsRendered}/>
+      <AddExpand  productId={productId} setNumOfQuestionsRendered={setNumOfQuestionsRendered}/>
     </div>
   )
 }

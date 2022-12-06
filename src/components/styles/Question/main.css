@@ -1,17 +1,9 @@
 /* Full page layout **/
-.app{
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-}
-
 .main-container{
-  width: 80%;
-  height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 50px;
+  border: 1px solid magenta;
 }

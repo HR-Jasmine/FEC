@@ -2,11 +2,11 @@
 .modal{
   position: fixed;
   width: 600px;
-  height: 600px;
+  height: 640px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: bisque;
+  background-color: grey;
   z-index: 1000;
   padding: 25px;
 }
@@ -17,20 +17,10 @@
   right: 5px
 }
 
-.answer-form{
-  width: 90%;
-  padding: 0;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.answer-inputs{
-  width: 80%;
-}
-.answer-modal-extra-details{
-  display: block;
-  font-size: 0.75rem;
-}
-.answer-modal-title{
+h1, h3{
   text-align: center;
+  color: white;
+}
+h3{
+  margin-bottom: 1rem;
 }

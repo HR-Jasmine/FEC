@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 
 
-const AddExpand = ({setNumOfQuestionsRendered}) => {
+const AddExpand = ({setNumOfQuestionsRendered, productId}) => {
   const [questIsOpen, setQuestIsOpen] = useState(false)
 
   const test = (e) => {
@@ -30,7 +30,7 @@ const AddExpand = ({setNumOfQuestionsRendered}) => {
 
   return (
     <div className="button-container">
-      <QuestModal questIsOpen={questIsOpen}  closeQuestModal={closeQuestModal}/>
+      <QuestModal questIsOpen={questIsOpen} productId={productId} closeQuestModal={closeQuestModal}/>
       <button className="more" onClick={moreQuestions}> More Questions</button>
       <button className="add" onClick={openQuestModal} > Add a question </button>
     </div>

@@ -33,7 +33,7 @@ const App = () => {
 
       <Overview product={state.product} />
       <QA product={state.productId}/>
-      <Reviews  productId={state.productId} />
+      {/* <Reviews  productId={state.productId} /> */}
     </div>
   )
 }
