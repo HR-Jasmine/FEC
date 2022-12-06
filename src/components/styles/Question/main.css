@@ -1,9 +1,13 @@
 /* Full page layout **/
 .main-container{
-  border: 0px solid;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 25px;
+  border: 1px solid magenta;
+}
+
+.section-name{
+  font-size: 2rem;
 }
