@@ -1,28 +1,40 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import axios from 'axios';
-
-import Overview from './Overview/Overview.jsx';
+import Reviews from './Reviews/Reviews.jsx'
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
-import QA from './Question/Main.jsx';
-import Reviews from './Reviews/Reviews.jsx';
-
+import axios from 'axios';
+import QA from './Kong/Main.jsx'
+import Overview from './Overview/Overview.jsx';
 import './styles/app.css';
 
-const App = (props) => {
+var headers = {'Authorization': process.env.API_KEY};
+
+const App = () => {
   const [state, setState] = useState({
-    productId: props.product.id,
-    product: props.product
+    productId: '1',
+    product: null
   });
+
+  var getProducts = function() {
+    var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/';
+
+    axios.get(url, {headers})
+      .then(response => {
+        setState({
+          productId: response.data[0].id,
+          product: response.data[0]
+        });
+      })
+  };
+
+  useEffect(getProducts, [])
 
   return (
     <div className="app">
-      <Overview product={state.product} />
-      <RelatedProducts productId={state.productId} />
-      <QA/>
-      <Reviews productId={state.productId} />
 
-      <div id="footer" />
+      <Reviews productId={state.productId} />
+      <QA/>
+      <RelatedProducts productId={state.productId} />
     </div>
   )
 }

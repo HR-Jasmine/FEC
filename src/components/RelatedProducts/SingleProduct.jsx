@@ -21,7 +21,7 @@ const SingleProduct = ( { card, styles } ) => {
             <p class="rp-category">{card.category}</p>
             <h2 class="product-brand">{card.name}</h2>
             <span class="price">{card.default_price}</span>
-            <Stars />
+            <Stars class="stars" />
        </div>
     </div>
   )
