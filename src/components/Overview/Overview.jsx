@@ -51,7 +51,7 @@ const Overview = (props) => {
         <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div>
       </div>
       <div className="info h">
-        <div className="gallery h"><img className="card noPad" src={getImageURL()}></img></div>
+        <div className="gallery h"><img className="galleryImg card noPad" src={getImageURL()}></img></div>
         <OverviewInterface product={state.product} styles={state.styles}/>
       </div>
       <br/>
