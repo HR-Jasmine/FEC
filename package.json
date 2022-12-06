@@ -38,7 +38,11 @@
     "path-browserify": "^1.0.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
+<<<<<<< HEAD
     "webpack-cli": "^5.0.0",
+=======
+    "webpack-cli": "^5.0.1",
+>>>>>>> 36c2e6902afe85bb587418f19b30d6e883ebf65d
     "webpack-dev-server": "^4.11.1"
   }
 }

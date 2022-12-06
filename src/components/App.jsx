@@ -1,7 +1,6 @@
 import React from 'react';
 import {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
-
 import Overview from './Overview/Overview.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import QA from './Question/Main.jsx';
