@@ -11,16 +11,20 @@ html, body, #root, .app {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   margin: auto;
-  height: 100%;
+  min-height: 100%;
   min-width: 400px;
 }
 
 body, .app {
   min-width: 400px;
   max-width: 1280px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(243, 243, 243);
 }
 
 body {
   box-shadow: 0 0 4px 1px rgb(192, 177, 177);
+}
+
+#footer {
+  height: 150px;
 }
