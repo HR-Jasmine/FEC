@@ -5,6 +5,7 @@ import styles from '../styles/RelatedProducts/relatedProducts.css';
 import Outfit from './Outfit.jsx'
 import SingleProduct from './SingleProduct.jsx'
 
+
 const RelatedProducts = ( { productId } ) => {
   // console.log('productId', productId)
 
@@ -53,6 +54,10 @@ const RelatedProducts = ( { productId } ) => {
         const cool = []
         cool.push(getProduct(37312))
         cool.push(getProduct(37313))
+        cool.push(getProduct(37312))
+        cool.push(getProduct(37313))
+        cool.push(getProduct(37312))
+        cool.push(getProduct(37313))
         // console.log(cool)
 
         }, [])
@@ -97,28 +102,33 @@ const RelatedProducts = ( { productId } ) => {
     // getProduct(37313)
     // getProduct(37318)
     // getProduct(37318)
+    const nextClick = function () {
+      // item.scrollLeft += containerWidth;
+      document.querySelector('.product-card').scrollLeft += document.querySelector('.product-card').getBoundingClientRect().width
+      console.log('onlickkdafsd')
+    }
 
-
+      const backClick = function () {
+        document.querySelector('.product-card').scrollLeft -= document.querySelector('.product-card').getBoundingClientRect().width
+        console.log('yabababa')
+      }
 
 
 
 
   return (
-    <div class='related-products'>
-      Related Products
-      <div class='cards-all'>
-      {/* {relatedId.map((id, i) => <div key={i} class="related-products-card" > {id} </div>)} */}
-      {/* {relprods.map((id, i) => <div key={i} class="related-products-card">
-            <p class="rp-category">{id.category}</p>
-            <p class="rp-name">{id.name}</p>
-            <p class="rp-price">{id.default_price}</p>
-          </div>)} */}
+    <div>
+      <h2 class="product-category">Related Products </h2>
+    <section class="product">
+      <button onClick={ () => {backClick()}} class="pre-btn" >&#8592;</button>
+      <button onClick={ () => {nextClick()}} class="nxt-btn">&#8594;</button>
+      <div class="product-container">
           {relprods.map((card, i) => {
-          return <SingleProduct card={card} key={i} styles={styles}/>
+          return <SingleProduct card={card} key={i} styles={styles} />
           })}
       </div>
-
-   <Outfit />
+      <Outfit />
+   </section>
    </div>
   )
 
