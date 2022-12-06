@@ -55,7 +55,6 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
   }
 
   const scaleChange = (e) => {
-    console.log(e.target.name, e.target.value);
     let currChars = {...formState.characteristics};
     currChars[e.target.name] = e.target.value;
     setFormState({...formState, characteristics: currChars});
