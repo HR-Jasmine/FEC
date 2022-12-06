@@ -8,7 +8,7 @@ import SingleProduct from './SingleProduct.jsx'
 
 
 const RelatedProducts = ( { productId } ) => {
-  console.log('productId', productId)
+  // console.log('productId', productId)
 
   const [relatedId, setrelatedId] = useState([]);
   const [relprods, setrelprods] = useState([]);
@@ -32,7 +32,7 @@ const RelatedProducts = ( { productId } ) => {
   useEffect(() => {
   getRelatedProducts(37312)
   }, [])
-  console.log('relatedId from setState', relatedId)
+  // console.log('relatedId from setState', relatedId)
 
   // want to get individual product obj with info
   // add result obj to array in relprods
