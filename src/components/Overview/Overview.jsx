@@ -19,7 +19,7 @@ const Overview = (props) => {
       return;
     }
 
-    var url = process.env.URL + `/products/${state.product.id}/styles`;
+    var url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${state.product.id}/styles`;
 
     axios.get(url, {headers})
       .then(response => {
