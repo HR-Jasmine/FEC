@@ -33,19 +33,7 @@ const Overview = (props) => {
     helper.getProductStyles(state.product.id, state, setState);
   };
 
-<<<<<<< HEAD
   useEffect(getStyles, [state.product]);
-=======
-  var getImageURL = function() {
-    if (state.styles) {
-      return state.styles[0].photos[0].url;
-    }
-
-    return "https://www.petalrepublic.com/wp-content/uploads/2021/04/Ultimate-Guide-to-Jasmine-Flower-Meaning-Types-and-Uses.jpeg";
-  }
-
-  // useEffect(getProductStyles, []);
->>>>>>> dev
 
   return (
       <div className={`overview v ${themes['t1'][state.theme]}`}>
