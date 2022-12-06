@@ -1,0 +1,57 @@
+.interface {
+  flex: 0.4 1 auto;
+  max-width: 500px;
+  text-align: left;
+  justify-content: space-between;
+}
+
+#interfaceHead {
+  padding: 16px;
+}
+
+#styles {
+  margin: 16px;
+  padding: 4px;
+  height: 160px;
+
+  border: 1px solid rgb(207, 207, 207);
+}
+
+#selectSize {
+  width: 60%;
+}
+
+#selectQuantity {
+  width: 30%;
+}
+
+#addToCart {
+  flex: 1 1 auto;
+
+  padding: 16px;
+  text-align: left;
+}
+
+#addToFav {
+  position: relative;
+}
+
+.bigButton {
+  color: white;
+  background-color: rgb(96, 97, 156);
+
+  font-weight: bold;
+  box-shadow: 0 2px 2px 1px rgb(211, 204, 204);
+}
+
+.bigButton:active {
+  box-shadow: none;
+}
+
+
+.star {
+  position: absolute;
+  bottom: 2px;
+  left: 11px;
+  font-size: 48px;
+}
