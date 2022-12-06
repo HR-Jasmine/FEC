@@ -11,11 +11,27 @@ import QA from './Question/Main.jsx';
 import './styles/style.css';
 import './styles/app.css';
 
-const App = (props) => {
+var headers = {'Authorization': process.env.API_KEY};
+
+const App = () => {
   const [state, setState] = useState({
-    productId: props.product.id,
-    product: props.product
+    productId: '1',
+    product: null
   });
+
+  var getProducts = function() {
+    var url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/';
+
+    axios.get(url, {headers})
+      .then(response => {
+        setState({
+          productId: response.data[0].id,
+          product: response.data[0]
+        });
+      })
+  };
+
+  useEffect(getProducts, [])
 
   return (
       <div className="app">
