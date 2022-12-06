@@ -1,17 +1,18 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import styles from '../styles/RelatedProducts/relatedProducts.css';
+import '../styles/RelatedProducts/relatedProducts.css';
 import Outfit from './Outfit.jsx'
 import SingleProduct from './SingleProduct.jsx'
+// import Modal from './Modal.jsx'
 
 
 const RelatedProducts = ( { productId } ) => {
-  // console.log('productId', productId)
+  console.log('productId', productId)
 
   const [relatedId, setrelatedId] = useState([]);
   const [relprods, setrelprods] = useState([]);
-  const [promises, setpromises] = useState([])
+  const [ratings, setRatings] = useState(null)
   const [styles, setstyles] = useState([])
 
   // get productId through props
@@ -31,7 +32,7 @@ const RelatedProducts = ( { productId } ) => {
   useEffect(() => {
   getRelatedProducts(37312)
   }, [])
-  // console.log('relatedId from setState', relatedId)
+  console.log('relatedId from setState', relatedId)
 
   // want to get individual product obj with info
   // add result obj to array in relprods
@@ -51,20 +52,20 @@ const RelatedProducts = ( { productId } ) => {
       }
 
       useEffect(() => {
-        const cool = []
-        cool.push(getProduct(37312))
-        cool.push(getProduct(37313))
-        cool.push(getProduct(37312))
-        cool.push(getProduct(37313))
-        cool.push(getProduct(37312))
-        cool.push(getProduct(37313))
-        // console.log(cool)
+        const test = []
+        test.push(getProduct(37312))
+        test.push(getProduct(37313))
+        test.push(getProduct(37312))
+        test.push(getProduct(37313))
+        test.push(getProduct(37312))
+        test.push(getProduct(37313))
+        // console.log(test)
 
         }, [])
 
         // console.log('relprods from state', relprods)
 
-
+        // Gets style info (price/sales price, photos, )
         const getStylesInfo = function (PID) {
 
           useEffect(() => {
@@ -85,23 +86,21 @@ const RelatedProducts = ( { productId } ) => {
 
            getStylesInfo(37318)
 
-  // const allRelatedProducts = Promise.all(relatedId.map(getProduct)).then(
-  //   data=> Promise.all(data.map(getProduct))
-  // ).then(function(data){
-  //   return Promise.all(data.map(getProduct))
-  // }).then(function(data){
-  //   return Promise.all(data.map(getProduct))
-  // });
+           // gets review ratings for product
+        const getReviews = function (id) {
 
-  // allRelatedProducts.then(function(data){
-  //   console.log('oooga, boooga', data)
-  // });
+          useEffect(() => {
+          axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${id}`,
+           {
+             headers: {
+               'Authorization': process.env.API_KEY
+             }
+         })
+           .then(response => {
+             setRating(response.data);
+           })
+          }),[productId]}
 
-
-    // getProduct(37312)
-    // getProduct(37313)
-    // getProduct(37318)
-    // getProduct(37318)
     const nextClick = function () {
       // item.scrollLeft += containerWidth;
       document.querySelector('.product-card').scrollLeft += document.querySelector('.product-card').getBoundingClientRect().width
@@ -118,6 +117,8 @@ const RelatedProducts = ( { productId } ) => {
 
   return (
     <div>
+      {/* <button>Show Modal</button>
+      <Modal /> */}
       <h2 class="product-category">Related Products </h2>
     <section class="product">
       <button onClick={ () => {backClick()}} class="pre-btn" >&#8592;</button>
