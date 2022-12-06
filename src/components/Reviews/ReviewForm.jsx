@@ -25,7 +25,7 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
     Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
     Comfort: ['Uncomfortable', 'Slightly uncomfortable', 'OK', 'Comfortable', 'Perfect'],
     Quality: ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'],
-    Length: ['Runs short', 'Rus slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
+    Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long']
   };
 
@@ -46,6 +46,13 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
     }
   }
 
+  const scaleChange = (e) => {
+    console.log(e.target.name, e.target.value);
+    let currChars = {...formState.characteristics};
+    currChars[e.target.name] = e.target.value;
+    setFormState({...formState, characteristics: currChars});
+  }
+
   return (
     <div className="review-form-modal">
       <div className="review-form-modal-content">
@@ -64,7 +71,7 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
               e.preventDefault();
               let updatedForm = {...formState, reviewBody: e.target.value};
               setFormState(updatedForm);
-            }}></textarea>
+            }}></textarea><br></br>
             <input type="text" className="review-nickname" value={formState.nickname} placeholder="Username*" onChange={(e) => {
               e.preventDefault();
               let updatedForm = {...formState, nickname: e.target.value};
@@ -75,6 +82,18 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
               let updatedForm = {...formState, email: e.target.value};
               setFormState(updatedForm);
             }}></input>
+            {Object.keys(metaData.characteristics).map(char => {
+              return (
+                <div>
+                  <p>{char}</p><br></br>
+                  <input type="radio" name={metaData.characteristics[char].id} value={1} onClick={scaleChange}></input>&nbsp; {scales[char][0]}<br></br>
+                  <input type="radio" name={metaData.characteristics[char].id} value={2} onClick={scaleChange}></input>&nbsp; {scales[char][1]}<br></br>
+                  <input type="radio" name={metaData.characteristics[char].id} value={3} onClick={scaleChange}></input>&nbsp; {scales[char][2]}<br></br>
+                  <input type="radio" name={metaData.characteristics[char].id} value={4} onClick={scaleChange}></input>&nbsp; {scales[char][3]}<br></br>
+                  <input type="radio" name={metaData.characteristics[char].id} value={5} onClick={scaleChange}></input>&nbsp; {scales[char][4]}<br></br>
+                </div>
+              )
+            })}
           </form>
         </div>
         <div className="review-form-modal-footer">
