@@ -7,6 +7,8 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
     return null;
   }
 
+  console.log(metaData);
+
   const blankFormState = {
     rating: 1,
     recommend: false,
@@ -17,6 +19,16 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
     nickname: '',
     email: ''
   }
+
+  const scales = {
+    Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'],
+    Width: ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
+    Comfort: ['Uncomfortable', 'Slightly uncomfortable', 'OK', 'Comfortable', 'Perfect'],
+    Quality: ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'],
+    Length: ['Runs short', 'Rus slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
+    Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long']
+  };
+
 
   const [formState, setFormState] = useState(blankFormState);
 

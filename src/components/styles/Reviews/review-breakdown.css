@@ -77,3 +77,12 @@
   text-align: center;
   border: solid 1px purple;
 }
+
+
+.polar-left {
+  float: left
+}
+
+.polar-right {
+  float: right;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import {format, parseISO} from 'date-fns';
 import Stars from '../Stars.jsx';
-import ReviewImgModal from './ReviewImgModal.jsx';
+import ReviewImgThumbnail from './ReviewImgThumbnail.jsx';
 import '../styles/Reviews/individual-review.css';
 import axios from 'axios';
 
@@ -21,21 +21,21 @@ const IndividualReview = ({review}) => {
       <Stars rating={review.rating} />
       <h6 className="review-username">Review by: {review.reviewer_name}</h6>
       <h5 className="review-date">{format(parseISO(review.date), 'MMMM dd, yyyy')}</h5>
-      <p className="review-body">
+      <div className="review-body">
         {reviewBody}<br></br>
+        <div className="review-image-holder">
+          <span>
         {review.photos.map((photo, i) => {
-          const [showModal, setShowModal] = useState(false);
-          return (<div className="review-image-holder"><img className="review-image" src={photo.url} key={i} onClick={() => {
-            setShowModal(true)
-          }}></img>
-          <ReviewImgModal show={showModal} img={photo.url} onClose={() => {setShowModal(false)}} /></div>)
-        })}<br></br>
+          return (<ReviewImgThumbnail photo={photo} key={i} />);
+        })}
+          </span>
+        </div><br></br>
         <button hidden={review.body.length >= 250 ? false : true} onClick={(e) => {
           e.target.hidden=true;
           setReviewBody(review.body);
         }}>See More</button><br></br>
         {review.recommend ? <a>I recommend this product &#x2713;</a> : null}
-      </p>
+      </div>
       <p className="review-response" hidden={review.response === null ? true : false}>
         Response from seller:<br></br>
         {review.response}

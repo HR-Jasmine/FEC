@@ -46,30 +46,6 @@ const Reviews = ({productId}) => {
 
   }, [productId])
 
-  const sortSelector = (param) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&sort=${param}&count=100`,
-    {
-      headers: {
-        'Authorization': process.env.API_KEY
-      }
-    })
-    .then(response => {
-      setAllReviews(response.data.results);
-      setDisplayReviews(response.data.results);
-      setNumOfRevs(2);
-      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
-    })
-  }
-
-  const filterSelector = (num) => {
-    if (num === 'clear') {
-      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
-      return;
-    }
-    let newFilters = {...ratingFilters};
-    newFilters[num] = !newFilters[num];
-    setRatingFilters(newFilters);
-  }
 
   useEffect(() => {
     let allFilters = Object.values(ratingFilters);
@@ -88,7 +64,34 @@ const Reviews = ({productId}) => {
       })
       setDisplayReviews(compiledReviews);
     }
-  }, [ratingFilters])
+  }, [ratingFilters]);
+
+  const sortSelector = (param) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&sort=${param}&count=100`,
+    {
+      headers: {
+        'Authorization': process.env.API_KEY
+      }
+    })
+    .then(response => {
+      setAllReviews(response.data.results);
+      setDisplayReviews(response.data.results);
+      setNumOfRevs(2);
+      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
+    })
+  }
+
+  const filterSelector = (num) => {
+    console.log('in filter selector');
+    if (num === 'clear') {
+      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
+      return;
+    }
+    let newFilters = {...ratingFilters};
+    newFilters[num] = !newFilters[num];
+    setRatingFilters(newFilters);
+  }
+
 
   if (!allReviews[0] || !metaData.ratings) {
     return null;

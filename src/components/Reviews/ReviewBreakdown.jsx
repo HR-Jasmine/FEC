@@ -4,11 +4,19 @@ import Stars from '../Stars.jsx';
 import '../styles/Reviews/review-breakdown.css';
 
 const ReviewBreakdown = ({metaData, filterSelector, ratingFilters, isFiltered}) => {
-  console.log(metaData);
   const [filterString, setFilterString] = useState('');
   let ratingsArray = Object.values(metaData.ratings);
   let totalRatings = Number(metaData.recommended.false) + Number(metaData.recommended.true);
   let totalStars = 0;
+
+  const polars = {
+    Size: ['Too small', 'Too wide'],
+    Width: ['Too narrow', 'Too wide'],
+    Comfort: ['Uncomfortable', 'Perfect'],
+    Quality: ['Poor', 'Perfect'],
+    Length: ['Runs short', 'Runs long'],
+    Fit: ['Runs tight', 'Runs long']
+  };
 
   useEffect(() => {
     let appliedFilters = [];
@@ -67,8 +75,9 @@ const ReviewBreakdown = ({metaData, filterSelector, ratingFilters, isFiltered}) 
             {char} <br></br>
             <div className="slidecontainer">
               <input type="range" min="1" max="100" value={metaData.characteristics[char].value * 20} className="slider" readOnly={true}>
-              </input>
+              </input><br></br>
             </div>
+            <a className="polar-left">{polars[char][0]}</a><a className="polar-right">{polars[char][1]}</a><br></br>
           </div>
         )
       })}
