@@ -19,11 +19,11 @@
   background-color: rgb(73, 78, 124);
 }
 
-input {
+/* input {
   align-self: flex-end;
   height: 24px;
   margin: 16px;
-}
+} */
 
 .announce {
   height: 32px;
