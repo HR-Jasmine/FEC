@@ -10,7 +10,7 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
   console.log(metaData);
 
   const blankFormState = {
-    rating: 1,
+    rating: 0,
     recommend: false,
     characteristics: {},
     reviewSummary: '',
@@ -46,6 +46,14 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
     }
   }
 
+  const ratingMeaning = {
+    1: 'Poor',
+    2: 'Fair',
+    3: 'Average',
+    4: 'Good',
+    5: 'Great'
+  }
+
   const scaleChange = (e) => {
     console.log(e.target.name, e.target.value);
     let currChars = {...formState.characteristics};
@@ -62,6 +70,15 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
         </div>
         <div className="review-form-modal-body">
           <form>
+            <label class="review-star-rating">
+              <strong>Rating: {formState.rating === 0 ? null : ratingMeaning[formState.rating]}</strong>
+              <input className="review-rating" max="100" onChange={(e) => {
+                let updatedFormState = {...formState, rating: Math.ceil(e.target.value / 20)};
+                setFormState(updatedFormState);
+                e.target.style.setProperty('--value', Math.ceil(e.target.value / 20));
+                console.log(e.target.value);
+              }} step="1" type="range" value={formState.rating}></input><br></br>
+            </label>&nbsp;&nbsp;
             <input type="text" className="review-summary" value={formState.reviewSummary} placeholder="Title*" onChange={(e) => {
               e.preventDefault();
               let updatedForm = {...formState, reviewSummary: e.target.value};
@@ -84,7 +101,7 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
             }}></input>
             {Object.keys(metaData.characteristics).map(char => {
               return (
-                <div>
+                <div className="char-holder">
                   <p>{char}</p><br></br>
                   <input type="radio" name={metaData.characteristics[char].id} value={1} onClick={scaleChange}></input>&nbsp; {scales[char][0]}<br></br>
                   <input type="radio" name={metaData.characteristics[char].id} value={2} onClick={scaleChange}></input>&nbsp; {scales[char][1]}<br></br>
