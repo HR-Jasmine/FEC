@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
-import ReviewImgModal from './ReviewimgModal.jsx';
+import ReviewImgModal from './ReviewImgModal.jsx';
 
 const ReviewImgThumbnail = ({photo}) => {
   const [showModal, setShowModal] = useState(false);
