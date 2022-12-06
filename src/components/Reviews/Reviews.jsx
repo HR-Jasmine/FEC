@@ -91,7 +91,7 @@ const Reviews = ({productId}) => {
     return null;
   } else {
     return (
-      <div className="reviews-panel">
+      <div className="reviews-panel" id="reviews">
         <ReviewBreakdown metaData={metaData} filterSelector={filterSelector} ratingFilters={ratingFilters} isFiltered={isFiltered}/>
         <div className="review-nav">
           Sort by: &nbsp;&nbsp;
