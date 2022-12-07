@@ -30,29 +30,8 @@ const Overview = (props) => {
 
   var themes = {};
 
-<<<<<<< HEAD
-    var url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${state.product.id}/styles`;
-
-    axios.get(url, {headers})
-      .then(response => {
-        console.log(response.data.results)
-        setState({
-          ...state,
-          styles: response.data.results
-        })
-      });
-  };
-
-  var getImageURL = function() {
-    if (state.styles) {
-      return state.styles[0].photos[0].url;
-    }
-
-    return "https://www.petalrepublic.com/wp-content/uploads/2021/04/Ultimate-Guide-to-Jasmine-Flower-Meaning-Types-and-Uses.jpeg";
-=======
   for (var i = 0; i < 5; i++) {
     themes['t' + i] = {a: `t${i}a`, b: `t${i}b`};
->>>>>>> old-state
   }
 
   var getStyles = function() {
@@ -62,23 +41,6 @@ const Overview = (props) => {
   useEffect(getStyles, [state.product]);
 
   return (
-<<<<<<< HEAD
-    <div className="overview v">
-      <div className="navbar h">
-        <h1>jasmine</h1>
-        <input type="text" placeholder="Search for a product..."></input>
-      </div>
-      <div className="announce v">
-        <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div>
-      </div>
-      <div className="info h">
-        <div className="gallery h"><img className="galleryImg card noPad" src={getImageURL()}></img></div>
-        <OverviewInterface product={state.product} styles={state.styles}/>
-      </div>
-      <br/>
-      <div className="slogan">
-        <h3>{state.product.slogan}</h3>
-=======
       <div className={`overview v ${themes['t1'][state.theme]}`}>
         {JSON.stringify(state.themes)}
         <div className={`navbar h ${themes['t4'][state.theme]}`}>
@@ -98,7 +60,6 @@ const Overview = (props) => {
           <br/>
           {state.product.description}
         </div>
->>>>>>> old-state
         <br/>
       </div>
 
