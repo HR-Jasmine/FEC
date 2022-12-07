@@ -14,7 +14,7 @@
   margin-bottom: 32px;
 }
 
-.overInput {
+input {
   align-self: flex-end;
   height: 24px;
   margin: 16px;
@@ -41,15 +41,4 @@
   object-fit: cover;
   width: 600px;
   max-height: 600px;
-}
-
-.ratingsDiv {
-  position: relative;
-}
-
-.reviewLink {
-  position: absolute;
-  min-width: 100px;
-  top: 6px;
-  left: 82px;
 }

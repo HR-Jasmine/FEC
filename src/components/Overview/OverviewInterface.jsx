@@ -69,16 +69,7 @@ const OverviewInterface = (props) => {
         for (var i in activeStyle.skus) {
           var entry = activeStyle.skus[i];
 
-          var selectText = {
-            XS: 'Extra Small',
-            S: 'Small',
-            M: 'Medium',
-            L: 'Large',
-            XL: 'Extra Large',
-            XXL: 'XX Large'
-          }
-
-          options.push(<option key={i} value={entry[option]}>{selectText[entry[option]]}</option>)
+          options.push(<option key={i} value={entry[option]}>{entry[option]}</option>)
         }
       }
     }
@@ -110,28 +101,12 @@ const OverviewInterface = (props) => {
       ...state,
       activeStyle: styles[index]
     })
-  };
-
-  var scrollToReviews = function(e) {
-    e.preventDefault();
-    document.getElementById("reviews").scrollIntoView();
-  };
+  }
 
   return (
-    <div className={`interface card v ${props.themes['t0'][state.theme]}`}>
+    <div className="interface card v t0a">
       <div id="interfaceHead">
-        <div className="social h">
-          <div className="ratingsDiv" >
-            <Stars rating={product.rating}/>
-            <small className="reviewLink"><a href="" onClick={scrollToReviews}>Read all reviews.</a></small>
-          </div>
-          <div>
-            <button className={props.themes['t4'][state.theme]}>FB</button>
-            <button className={props.themes['t4'][state.theme]}>Tw</button>
-            <button className={props.themes['t4'][state.theme]}>Pin</button>
-          </div>
-        </div>
-
+        <Stars rating={product.rating}/>
         <h3>{product.category}</h3>
         <h2>{product.name}</h2>
         <b>{`$${price}`}</b>
@@ -142,16 +117,16 @@ const OverviewInterface = (props) => {
       </div>
       <div id="select-container">
         <div className="selectors h">
-          <select className={`bigSelect ${props.themes['t1'][state.theme]}`} id="selectSize" value={sku.size} onChange={sizeChange}>
+          <select className="bigSelect t0a" id="selectSize" value={sku.size} onChange={sizeChange}>
             {optionSet('size')}
           </select>
-          <select className={`bigSelect ${props.themes['t1'][state.theme]}`} id="selectQuantity">
+          <select className="bigSelect t0a" id="selectQuantity">
             {optionSet('quantity')}
           </select>
         </div>
         <div className="productButtons h">
-          <button className={`bigButton ${props.themes['t4'][state.theme]}`}id="addToCart">Add to Cart</button>
-          <button className={`bigButton ${props.themes['t4'][state.theme]}`}id="addToFav"><div className='star'>★</div></button>
+          <button className="bigButton t4a" id="addToCart">Add to Cart</button>
+          <button className="bigButton t4a" id="addToFav"><div className='star'>★</div></button>
         </div>
       </div>
     </div>

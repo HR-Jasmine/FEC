@@ -20,7 +20,7 @@ const Overview = (props) => {
       size: 'Select Size'
     },
     selectedPhoto: 0,
-    theme: 'b'
+    theme: 'a'
   });
 
   var themes = {};
@@ -40,14 +40,14 @@ const Overview = (props) => {
         {JSON.stringify(state.themes)}
         <div className={`navbar h ${themes['t4'][state.theme]}`}>
           <h1>jasmine</h1>
-          <input className="overInput" type="text" placeholder="Search for a product..."></input>
+          <input type="text" placeholder="Search for a product..."></input>
         </div>
         <div className={`announce v ${themes['t3'][state.theme]}`}>
           <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div>
         </div>
         <div className="info h">
-          <Gallery state={state} setState={setState} themes={themes} />
-          <OverviewInterface state={state} setState={setState} themes={themes} />
+          <Gallery state={state} setState={setState} />
+          <OverviewInterface state={state} setState={setState} />
         </div>
         <br/>
         <div className="slogan">

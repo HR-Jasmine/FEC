@@ -20,7 +20,7 @@ const Gallery = (props) => {
           if (i === state.selectedPhoto) {
             selected = ' selected';
           }
-          return "imageThumb noPad hover " + props.themes['t1'][state.theme] + ' ' + selected;
+          return "imageThumb noPad hover t1a" + selected;
         }();
 
         thumbs.push(
@@ -53,7 +53,7 @@ const Gallery = (props) => {
         {renderThumbs()}
       </div>
       <div className="gallery h">
-        <img className={`card noPad ${props.themes['t1'][state.theme]}`} src={helper.getImageURL(state)}></img>
+        <img className="card noPad t1a" src={helper.getImageURL(state)}></img>
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 import Overview from './Overview/Overview.jsx';
@@ -19,9 +19,9 @@ const App = (props) => {
   return (
       <div className="app">
         <Overview product={state.product} />
-        <RelatedProducts productId={state.productId} />
+        {/* <RelatedProducts productId={state.productId} />
         <QA productId={state.productId} product={state.product}/>
-        <Reviews productId={state.productId} />
+        <Reviews productId={state.productId} /> */}
       </div>
   )
 }
