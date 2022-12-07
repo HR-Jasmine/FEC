@@ -34,8 +34,9 @@ const App = () => {
   return (
     <div className="app">
       <Overview product={state.product} />
+      <RelatedProducts product={state.product} />
       <QA productId={state.productId} product={state.product}/>
-      <Reviews  productId={state.productId} />
+      <Reviews productId={state.productId} />
     </div>
   )
 }

@@ -44,7 +44,7 @@ const Overview = (props) => {
     return "https://www.petalrepublic.com/wp-content/uploads/2021/04/Ultimate-Guide-to-Jasmine-Flower-Meaning-Types-and-Uses.jpeg";
   }
 
-  // useEffect(getProductStyles, []);
+  useEffect(getProductStyles, []);
 
   return (
     <div className="overview v">
