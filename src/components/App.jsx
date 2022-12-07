@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <Overview product={state.product} />
+      {/* <Overview product={state.product} /> */}
       <QA productId={state.productId} product={state.product}/>
       <Reviews  productId={state.productId} />
       <RelatedProducts productId={state.productId} />
