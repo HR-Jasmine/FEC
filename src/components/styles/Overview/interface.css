@@ -1,0 +1,88 @@
+.interface {
+  flex: 0.4 1 auto;
+  margin-right: 60px;
+  width: 400px;
+  height: 600px;
+  text-align: left;
+  justify-content: space-between;
+}
+
+#interfaceHead {
+  padding: 16px;
+}
+
+#styleName {
+  padding-left: 16px;
+}
+
+#productStyles {
+  margin: 16px;
+  margin-top: 4px;
+  margin-bottom: 0px;
+  padding: 4px;
+  height: 160px;
+
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  border: 1px solid;
+  border-style: none none none solid;
+  background-color: none;
+}
+
+.productStyle {
+  margin: 8px;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  background-color: rgb(207, 207, 207);
+  box-shadow: 0 2px 2px 1px rgb(192, 177, 177);
+  box-sizing: content-box;
+
+  overflow: hidden;
+  position: relative;
+}
+
+.activeStyle {
+  border: 4px solid;
+  margin: 4px;
+}
+
+#selectSize {
+  outline: 0px;
+  width: 60%;
+}
+
+#selectQuantity {
+  outline: 0px;
+  width: 30%;
+}
+
+#addToCart {
+  flex: 1 1 auto;
+
+  padding: 16px;
+  text-align: left;
+}
+
+#addToFav {
+  position: relative;
+}
+
+.bigButton {
+  color: white;
+
+  font-weight: bold;
+  box-shadow: 0 2px 2px 1px rgb(211, 204, 204);
+}
+
+.bigButton:active {
+  box-shadow: none;
+}
+
+.star {
+  position: absolute;
+  bottom: 2px;
+  left: 11px;
+  font-size: 48px;
+}

@@ -1,14 +1,29 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect, useRef} from 'react';
+import axios from 'axios';
 
-const App = () => {
+import Overview from './Overview/Overview.jsx';
+import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
+import QA from './Question/Main.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 
-  const [productId, setProductId] = useState('1');
+import './styles/style.css';
+import './styles/style.css';
+import './styles/app.css';
+
+const App = (props) => {
+  const [state, setState] = useState({
+    productId: props.product.id,
+    product: props.product
+  });
 
   return (
-    <div className="app">
-      {process.env.TEST}
-    </div>
+      <div className="app">
+        <Overview product={state.product} />
+        <RelatedProducts productId={state.productId} />
+        <QA productId={state.productId} product={state.product}/>
+        <Reviews productId={state.productId} />
+      </div>
   )
 }
 

@@ -1,0 +1,55 @@
+.overview {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 400px;
+  width: 1280px;
+  min-height: 800px;
+  text-align: center;
+
+  border-width: 1px;
+  border-style: none none solid none;
+
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+}
+
+.overInput {
+  align-self: flex-end;
+  height: 24px;
+  margin: 16px;
+} */
+
+.announce {
+  height: 32px;
+}
+
+.info {
+  margin: 16px;
+  height: 600px;
+  height: 100%;
+}
+
+.slogan {
+  margin: 8px;
+  margin-left: 300px;
+  margin-right: 300px;
+  text-align: left;
+}
+
+.galleryImg {
+  object-fit: cover;
+  width: 600px;
+  max-height: 600px;
+}
+
+.ratingsDiv {
+  position: relative;
+}
+
+.reviewLink {
+  position: absolute;
+  min-width: 100px;
+  top: 6px;
+  left: 82px;
+}

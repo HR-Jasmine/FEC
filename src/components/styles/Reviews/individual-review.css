@@ -1,0 +1,14 @@
+.review-item {
+  border: 2px solid black;
+  margin: 15px;
+  width: 85%;
+}
+
+.review-image {
+  width: 150px;
+  display: inline-block;
+}
+
+.review-image-holder {
+  display: inline-block;
+}
