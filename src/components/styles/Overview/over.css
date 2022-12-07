@@ -8,18 +8,21 @@
   text-align: center;
 
   border-width: 1px;
-  border-color: rgb(177, 177, 177);
   border-style: none none solid none;
 
   padding-bottom: 16px;
   margin-bottom: 32px;
 }
 
+<<<<<<< HEAD
 .navbar {
   background-color: rgb(73, 78, 124);
 }
 
 /* input {
+=======
+.overInput {
+>>>>>>> old-state
   align-self: flex-end;
   height: 24px;
   margin: 16px;
@@ -27,23 +30,12 @@
 
 .announce {
   height: 32px;
-
-  color: white;
-  background-color: rgb(134, 135, 185);
 }
 
 .info {
   margin: 16px;
   height: 600px;
   height: 100%;
-}
-
-.gallery {
-  width: 600px;
-  flex: 1 1 auto;
-  margin-right: 16px;
-  padding: 0px;
-  justify-content: center;
 }
 
 .slogan {
@@ -57,4 +49,15 @@
   object-fit: cover;
   width: 600px;
   max-height: 600px;
+}
+
+.ratingsDiv {
+  position: relative;
+}
+
+.reviewLink {
+  position: absolute;
+  min-width: 100px;
+  top: 6px;
+  left: 82px;
 }
