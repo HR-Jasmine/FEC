@@ -53,7 +53,7 @@ const Gallery = (props) => {
         {renderThumbs()}
       </div>
       <div className="gallery h">
-        <img className={`card noPad ${props.themes['t1'][state.theme]}`} src={helper.getImageURL(state)}></img>
+        <img className={`galleryImg card noPad ${props.themes['t1'][state.theme]}`} src={helper.getImageURL(state)}></img>
       </div>
     </div>
   )
