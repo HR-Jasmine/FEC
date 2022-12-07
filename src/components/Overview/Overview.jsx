@@ -12,10 +12,6 @@ const headers = {'Authorization': process.env.API_KEY};
 
 const Overview = (props) => {
 
-  if (!props.product) {
-    return null;
-  }
-
   const [state, setState] = useState({
     product: props.product,
     styles: null,
