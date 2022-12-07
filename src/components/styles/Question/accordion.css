@@ -9,7 +9,7 @@
   justify-content: space-between;
   cursor: pointer;
   background-color: none;
-  width: 600px;
+  width: 630px;
   border: 1px solid black;
 }
 
@@ -76,4 +76,46 @@
   display: flex;
   gap: 15px;
   margin-bottom: 20px;
+}
+
+.q-div{
+  display: flex;
+  flex-direction: column;
+}
+.quest-help-div{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.yes{
+  font-size: 0.75rem;
+  font-style: italic;
+}
+.accord-btn{
+  font-style: italic;
+  font-size: 0.75rem;
+  border: none;
+  border-bottom: 2px solid plum;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.see-more-btn{
+  width: 20%;
+  padding: 0.25em;
+  background-color: transparent;
+  border: 2px solid plum;
+  font-weight: 600;
+}
+.see-more-btn:hover{
+  background-color: white;
+  color: black;
+  font-weight: 600;
+}
+
+.username{
+  font-size: 0.9rem;
+  font-weight: 500;
 }

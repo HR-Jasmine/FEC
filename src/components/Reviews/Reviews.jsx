@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import IndividualReview from './IndividualReview.jsx';
 import ReviewBreakdown from './ReviewBreakdown.jsx';
+import ReviewForm from './ReviewForm.jsx';
 import '../styles/Reviews/reviews.css';
 
 const Reviews = ({productId}) => {
@@ -13,8 +14,7 @@ const Reviews = ({productId}) => {
   const [metaData, setMetaData] = useState({});
   const [ratingFilters, setRatingFilters] = useState({1: false, 2: false, 3: false, 4: false, 5: false});
   const [isFiltered, setIsFiltered] = useState(false);
-
-  console.log(productId)
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     if (productId === '') {
@@ -22,7 +22,7 @@ const Reviews = ({productId}) => {
     }
 
     // Get the reviews
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}`,
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&count=100`,
       {
         headers: {
           'Authorization': process.env.API_KEY
@@ -46,29 +46,6 @@ const Reviews = ({productId}) => {
 
   }, [productId])
 
-  const sortSelector = (param) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&sort=${param}`,
-    {
-      headers: {
-        'Authorization': process.env.API_KEY
-      }
-    })
-    .then(response => {
-      setAllReviews(response.data.results);
-      setDisplayReviews(response.data.results);
-      setNumOfRevs(2);
-    })
-  }
-
-  const filterSelector = (num) => {
-    if (num === 'clear') {
-      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
-      return;
-    }
-    let newFilters = {...ratingFilters};
-    newFilters[num] = !newFilters[num];
-    setRatingFilters(newFilters);
-  }
 
   useEffect(() => {
     let allFilters = Object.values(ratingFilters);
@@ -87,7 +64,34 @@ const Reviews = ({productId}) => {
       })
       setDisplayReviews(compiledReviews);
     }
-  }, [ratingFilters])
+  }, [ratingFilters]);
+
+  const sortSelector = (param) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&sort=${param}&count=100`,
+    {
+      headers: {
+        'Authorization': process.env.API_KEY
+      }
+    })
+    .then(response => {
+      setAllReviews(response.data.results);
+      setDisplayReviews(response.data.results);
+      setNumOfRevs(2);
+      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
+    })
+  }
+
+  const filterSelector = (num) => {
+    console.log('in filter selector');
+    if (num === 'clear') {
+      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
+      return;
+    }
+    let newFilters = {...ratingFilters};
+    newFilters[num] = !newFilters[num];
+    setRatingFilters(newFilters);
+  }
+
 
   if (!allReviews[0] || !metaData.ratings) {
     return null;
@@ -107,11 +111,15 @@ const Reviews = ({productId}) => {
           {displayReviews.slice(0, numOfRevs).map((review, i) => {
             return <IndividualReview review={review} key={i}/>
           })}
-          <button className="more-reviews-btn" hidden={numOfRevs >= allReviews.length ? true : false} onClick={(e) => {
+          <button className="more-reviews-btn" hidden={numOfRevs >= displayReviews.length ? true : false} onClick={(e) => {
             e.preventDefault();
             setNumOfRevs(numOfRevs + 2);
-          }}>More Reviews</button>
+          }}>More Reviews</button>&nbsp;&nbsp;
+          <button onClick={() => {setShowForm(true)}}>Add Review</button><br></br>
+
+          <ReviewForm showForm={showForm} metaData={metaData} onClose={() => {setShowForm(false)}}/>
         </div>
+        <div id="modal-holder"></div>
       </div>
     );
   }

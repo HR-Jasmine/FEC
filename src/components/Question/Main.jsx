@@ -5,70 +5,69 @@ import QuestionList from './QuestionList.jsx'
 import Search from './Search.jsx'
 import AddExpand from './AddExpand.jsx'
 import Accordion from './Accordion.jsx'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import AnswerForm from './AnswerForm.jsx';
+import QuestionForm from './QuestionForm.jsx'
 
-const QA = () => {
+const QA = ({productId, product}) => {
 
-  const test = [
-    {
-      "product_id": "5",
-      "results": [{
-            "question_id": 37,
-            "question_body": "Why is this product cheaper here than other sites?",
-            "question_date": "2018-10-18T00:00:00.000Z",
-            "asker_name": "williamsmith",
-            "question_helpfulness": 4,
-            "reported": false,
-            "answers": {
-              68: {
-                "id": 68,
-                "body": "We are selling it here without any markup from the middleman!",
-                "date": "2018-08-18T00:00:00.000Z",
-                "answerer_name": "Seller",
-                "helpfulness": 4,
-                "photos": []
-                // ...
-              }
-            }
-          },
-          {
-            "question_id": 38,
-            "question_body": "How long does it last?",
-            "question_date": "2019-06-28T00:00:00.000Z",
-            "asker_name": "funnygirl",
-            "question_helpfulness": 2,
-            "reported": false,
-            "answers": {
-              70: {
-                "id": 70,
-                "body": "Some of the seams started splitting the first time I wore it!",
-                "date": "2019-11-28T00:00:00.000Z",
-                "answerer_name": "sillyguy",
-                "helpfulness": 6,
-                "photos": [],
-              },
-              78: {
-                "id": 78,
-                "body": "9 lives",
-                "date": "2019-11-12T00:00:00.000Z",
-                "answerer_name": "iluvdogz",
-                "helpfulness": 31,
-                "photos": [],
-              }
-            }
-          },
-      ]
+  if (!product) {
+    return null;
+  }
+
+  //State Management
+  const [listOfQuestions, setListOfQuestions] = useState([])
+  const [numOfQuestionsRendered, setNumOfQuestionsRendered] = useState(1)
+
+  // API calls
+  const headers = {'Authorization': process.env.API_KEY};
+
+  const getQuestions = () => {
+    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions';
+    const params = {
+      product_id: productId,
+      page: 1,
+      count: 5
     }
-  ]
+    axios.get(url, {params, headers})
+      .then((response) => {
+        console.log(typeof response.data.results[0].question_helpfulness)
+        const sortedList = response.data.results.sort((a, b) => {
+          console.log(response.data.results)
+          return b.question_helpfulness - a.question_helpfulness
+        })
+        setListOfQuestions(sortedList.slice(0,numOfQuestionsRendered))
+        // setListOfQuestions(response.data.results.sort((a, b) => {
+        //   return response.data.results[b].question_helpfulness - response.data.results[a].question_helpfulness
+        // }).slice(0, numOfQuestionsRendered))
+      })
+  };
 
-  const [listOfQuestions, setListOfQuestions] = useState(test)
+
+  useEffect(getQuestions,[numOfQuestionsRendered])
+
+  // const getAnswers = () => {
+  //   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/:question_id/answers';
+  //   const params = {
+  //     question_id: 66627
+  //   }
+  //   axios.get(url,{params,headers})
+  //     .then((response) => {
+  //       console.log(response)
+  //     })
+  // }
+
+  // useEffect(getAnswers, [])
+
+
+
 
   return (
     <div className="main-container">
       <h2 className="section-name">Question & Answer</h2>
       <Search />
-      <QuestionList listOfQuestions={listOfQuestions}/>
-      <AddExpand />
+      <QuestionList listOfQuestions={listOfQuestions} product={product}/>
+      <AddExpand  listOfQuestions={listOfQuestions} productId={productId} setNumOfQuestionsRendered={setNumOfQuestionsRendered} product={product}/>
     </div>
   )
 }

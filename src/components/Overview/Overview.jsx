@@ -9,6 +9,11 @@ import '../styles/Overview/over.css';
 const headers = {'Authorization': process.env.API_KEY};
 
 const Overview = (props) => {
+
+  if (!props.product) {
+    return null;
+  }
+
   const [state, setState] = useState({
     product: props.product,
     styles: null
@@ -19,7 +24,7 @@ const Overview = (props) => {
       return;
     }
 
-    var url = process.env.URL + `/products/${state.product.id}/styles`;
+    var url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${state.product.id}/styles`;
 
     axios.get(url, {headers})
       .then(response => {
@@ -51,7 +56,7 @@ const Overview = (props) => {
         <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div>
       </div>
       <div className="info h">
-        <div className="gallery h"><img className="card noPad" src={getImageURL()}></img></div>
+        <div className="gallery h"><img className="galleryImg card noPad" src={getImageURL()}></img></div>
         <OverviewInterface product={state.product} styles={state.styles}/>
       </div>
       <br/>
