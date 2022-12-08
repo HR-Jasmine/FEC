@@ -12,7 +12,7 @@ const ReviewImgModal = ({show, img, onClose}) => {
     <div className="review-img-modal">
       <div className="review-img-modal-content">
         <div className="review-img-modal-body">
-          <img src={img} height="100%" width="100%"></img>
+          <img src={img} className="review-modal-image" height="100%" width="100%"></img>
         </div>
         <div className="review-img-modal-footer">
           <button className="review-img-modal-close" onClick={onClose}>Close</button>

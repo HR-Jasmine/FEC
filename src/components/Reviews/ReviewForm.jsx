@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
+import axios from 'axios';
 import '../styles/Reviews/review-form.css';
 
 const ReviewForm = ({showForm, onClose, metaData}) => {
@@ -34,7 +35,7 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
 
   const formVerify = () => {
     const submitData = {
-      product_id: metaData.product_id,
+      product_id: Number(metaData.product_id),
       rating: formState.rating,
       summary: formState.reviewSummary,
       body: formState.reviewBody,
@@ -43,6 +44,42 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
       email: formState.email,
       photos: formState.photos,
       characteristics: formState.characteristics
+    }
+
+    let alertMsg = '';
+
+    if (submitData.rating === 0) {
+      alertMsg += 'You must give the product a star rating\n';
+    }
+
+    if (Object.keys(submitData.characteristics).length !== Object.keys(metaData.characteristics).length) {
+      alertMsg += 'You must rate every characteristic of the product\n';
+    }
+
+    if (submitData.body.length < 51) {
+      alertMsg += 'You must have a review over 50 characters long\n'
+    }
+
+    if (submitData.name === '') {
+      alertMsg += 'You must give a username\n';
+    }
+
+    if (submitData.email === '') {
+      alertMsg += 'You must provide an email address';
+    }
+
+    if (alertMsg !== '') {
+      alert(alertMsg);
+    } else {
+      console.log(submitData);
+      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/`, submitData,
+      {
+        headers: {
+          'Authorization': process.env.API_KEY,
+        }
+      })
+        .then(response => {console.log(response)});
+      return true;
     }
   }
 
@@ -56,7 +93,7 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
 
   const scaleChange = (e) => {
     let currChars = {...formState.characteristics};
-    currChars[e.target.name] = e.target.value;
+    currChars[e.target.name] = Number(e.target.value);
     setFormState({...formState, characteristics: currChars});
   }
 
@@ -78,7 +115,14 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
                 console.log(e.target.value);
               }} step="1" type="range" value={formState.rating}></input><br></br>
             </label>&nbsp;&nbsp;
-            <input type="text" className="review-summary" value={formState.reviewSummary} placeholder="Title*" onChange={(e) => {
+            <div className="review-form-checkbox">
+              Do you recommend this product?
+              <input type="checkbox" value={formState.recommend} onChange={(e) => {
+                let updatedForm = {...formState, recommend: !formState.recommend};
+                setFormState(updatedForm);
+              }}></input>
+            </div>
+              <input type="text" className="review-summary" value={formState.reviewSummary} placeholder="Title*" onChange={(e) => {
               e.preventDefault();
               let updatedForm = {...formState, reviewSummary: e.target.value};
               setFormState(updatedForm);
@@ -115,9 +159,10 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
         <div className="review-form-modal-footer">
           <button onClick={(e) => {
             e.preventDefault();
-            console.log(formState);
-            formVerify();
-            onClose();
+            let verified = formVerify();
+             if (verified) {
+              onClose();
+             }
           }}>Submit</button>&nbsp;&nbsp;
           <button onClick={onClose}>Close</button>
         </div>
