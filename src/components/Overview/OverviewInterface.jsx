@@ -119,16 +119,11 @@ const OverviewInterface = (props) => {
 
   return (
     <div className={`interface card v ${props.themes['t0'][state.theme]}`}>
-      <div id="interfaceHead">
+      <div className="interfaceHead v">
         <div className="social h">
           <div className="ratingsDiv" >
             <Stars rating={product.rating}/>
             <small className="reviewLink"><a href="" onClick={scrollToReviews}>Read all reviews.</a></small>
-          </div>
-          <div>
-            <button className={props.themes['t4'][state.theme]}>FB</button>
-            <button className={props.themes['t4'][state.theme]}>Tw</button>
-            <button className={props.themes['t4'][state.theme]}>Pin</button>
           </div>
         </div>
 
@@ -150,8 +145,8 @@ const OverviewInterface = (props) => {
           </select>
         </div>
         <div className="productButtons h">
-          <button className={`bigButton ${props.themes['t4'][state.theme]}`}id="addToCart">Add to Cart</button>
-          <button className={`bigButton ${props.themes['t4'][state.theme]}`}id="addToFav"><div className='star'>★</div></button>
+          <button className={`bigButton hover ${props.themes['t4'][state.theme]}`}id="addToCart">Add to Cart</button>
+          <button className={`bigButton hover ${props.themes['t4'][state.theme]}`}id="addToFav"><div className='star'>★</div></button>
         </div>
       </div>
     </div>

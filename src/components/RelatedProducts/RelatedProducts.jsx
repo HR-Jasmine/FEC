@@ -134,11 +134,11 @@ const RelatedProducts = ( { productId } ) => {
     <div>
       {/* <button>Show Modal</button>
       <Modal /> */}
-      <h2 class="product-category">Related Products </h2>
-    <section class="product">
-      <button  class="pre-btn" >&#8592;</button>
-      <button  class="nxt-btn">&#8594;</button>
-      <div class="product-container">
+      <h2 className="product-category">Related Products </h2>
+    <section className="product">
+      <button  className="pre-btn" >&#8592;</button>
+      <button  className="nxt-btn">&#8594;</button>
+      <div className="product-container">
           {relprods.map((card, i) => {
           return <SingleProduct card={card} key={i} styles={styles} />
           })}

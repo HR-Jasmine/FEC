@@ -2,16 +2,16 @@ import React from 'react';
 
 const Modal = props => {
   return (
-    <div class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Title</h4>
+    <div className="modal">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h4 className="modal-title">Modal Title</h4>
         </div>
-        <div class="modal-body">
+        <div className="modal-body">
           This is modal content
         </div>
-        <div class="modal-footer">
-          <button class="button">Close</button>
+        <div className="modal-footer">
+          <button className="button">Close</button>
         </div>
       </div>
     </div>
