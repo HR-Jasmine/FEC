@@ -2,11 +2,13 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../styles/RelatedProducts/relatedProducts.css';
+import SingleOutfit from './SingleProduct.jsx'
 
 
 const Outfit = ( { productId } ) => {
 
   const [outfitIds, setOutfitIds] = useState([])
+
 
   const addToFit = function (id) {
     setOutfitIds(ouitfitIds => [...outfitIds, id])
@@ -30,9 +32,9 @@ const Outfit = ( { productId } ) => {
       <button  class="pre-btn" >&#8592;</button>
       <button  class="nxt-btn">&#8594;</button>
       <div class="product-container">
-          {/* {relprods.map((card, i) => {
-          return <SingleProduct card={card} key={i} styles={styles} />
-          })} */}
+          {ouitfitIds.map((card, i) => {
+          return <SingleOutfit card={card} key={i} styles={styles} />
+          })}
       </div>
    </section>
    </div>

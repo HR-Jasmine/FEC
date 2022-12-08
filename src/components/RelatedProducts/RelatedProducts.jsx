@@ -7,13 +7,22 @@ import SingleProduct from './SingleProduct.jsx'
 // import Modal from './Modal.jsx'
 
 
-const RelatedProducts = ( { productId } ) => {
+const RelatedProducts = ( { productId, product,} ) => {
   // console.log('productId', productId)
+  // console.log('this is product', product)
 
+  if (!product) {
+    return null;
+  }
+
+  //list of all related id numbers
   const [relatedId, setrelatedId] = useState([]);
+  //list of all related products info
   const [relprods, setrelprods] = useState([]);
-  const [ratings, setRatings] = useState(null)
+  //list of styles info from related products
   const [styles, setstyles] = useState([])
+  //list of all
+  const [ratings, setratings] = useState([])
 
   // get productId through props
   // set relatedId from result
@@ -30,15 +39,13 @@ const RelatedProducts = ( { productId } ) => {
   }
 
   useEffect(() => {
-  getRelatedProducts(37312)
-  }, [])
-  // console.log('relatedId from setState', relatedId)
+    getRelatedProducts(productId)
+  }, [productId])
+
 
   // want to get individual product obj with info
   // add result obj to array in relprods
     const getProduct = function (sku) {
-
-
      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${sku}`,
       {
         headers: {
@@ -52,25 +59,11 @@ const RelatedProducts = ( { productId } ) => {
       }
 
       useEffect(() => {
-        const test = []
-        test.push(getProduct(37312))
-        test.push(getProduct(37313))
-        test.push(getProduct(37312))
-        test.push(getProduct(37313))
-        test.push(getProduct(37312))
-        test.push(getProduct(37313))
-        // console.log(test)
-
-        }, [])
-
-        // console.log('relprods from state', relprods)
+        relatedId.forEach(id => getProduct(id))
+      }, [relatedId])
 
         // Gets style info (price/sales price, photos, )
         const getStylesInfo = function (PID) {
-
-          useEffect(() => {
-
-
           axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${PID}/styles`,
            {
              headers: {
@@ -79,17 +72,18 @@ const RelatedProducts = ( { productId } ) => {
              })
              .then(response => {
               //  console.log('image', response.data)
-               setstyles(response.data)
+               return setstyles(styles => ([...styles, response.data]))
              })
-           },[]
-          )}
+           }
 
-           getStylesInfo(37318)
+          //  getStylesInfo(37318)
+           useEffect(() => {
+            relatedId.forEach(id => getStylesInfo(id))
+          }, [relatedId])
 
            // gets review ratings for product
         const getReviews = function (id) {
 
-          useEffect(() => {
           axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/meta?product_id=${id}`,
            {
              headers: {
@@ -97,20 +91,15 @@ const RelatedProducts = ( { productId } ) => {
              }
          })
            .then(response => {
-             setRating(response.data);
-           })
-          }),[productId]}
+             return setratings(ratings => ([...ratings, response.data]));
+           })}
 
-    // const nextClick = function () {
-    //   // item.scrollLeft += containerWidth;
-    //   document.querySelector('.product-card').scrollLeft += document.querySelector('.product-card').getBoundingClientRect().width
-    //   console.log('onlickkdafsd')
-    // }
+           useEffect(() => {
+            relatedId.forEach(id => getReviews(id))
+          }, [relatedId])
 
-    //   const backClick = function () {
-    //     document.querySelector('.product-card').scrollLeft -= document.querySelector('.product-card').getBoundingClientRect().width
-    //     console.log('yabababa')
-    //   }
+
+
       const productContainers = [...document.querySelectorAll('.product-container')];
       const nxtBtn = [...document.querySelectorAll('.nxt-btn')];
       const preBtn = [...document.querySelectorAll('.pre-btn')];
@@ -140,10 +129,10 @@ const RelatedProducts = ( { productId } ) => {
       <button  class="nxt-btn">&#8594;</button>
       <div class="product-container">
           {relprods.map((card, i) => {
-          return <SingleProduct card={card} key={i} styles={styles} />
+          return <SingleProduct card={card} key={i} styles={styles[i]} ratings={ratings[i]}/>
           })}
       </div>
-      <Outfit />
+      {/* <Outfit /> */}
    </section>
    </div>
   )

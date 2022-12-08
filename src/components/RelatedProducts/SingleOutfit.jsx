@@ -6,7 +6,7 @@ import Stars from '../Stars.jsx';
 
 
 
-const SingleProduct = ( { card, styles, ratings } ) => {
+const SingleOutfit = ( { card, styles, ratings } ) => {
 
   if (!styles) {
     return null;
@@ -51,4 +51,4 @@ const SingleProduct = ( { card, styles, ratings } ) => {
   )
 }
 
-export default SingleProduct;
+export default SingleOutfit;
