@@ -6,7 +6,7 @@ import ReviewBreakdown from './ReviewBreakdown.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import '../styles/Reviews/reviews.css';
 
-const Reviews = ({productId}) => {
+const Reviews = ({productId, product}) => {
 
   const [allReviews, setAllReviews] = useState([]);
   const [numOfRevs, setNumOfRevs] = useState(2);
@@ -128,7 +128,7 @@ const Reviews = ({productId}) => {
           }}>More Reviews</button>&nbsp;&nbsp;
           <button onClick={() => {setShowForm(true)}}>Add Review</button><br></br>
 
-          <ReviewForm showForm={showForm} metaData={metaData} onClose={() => {setShowForm(false)}}/>
+          <ReviewForm showForm={showForm} metaData={metaData} product={product} onClose={() => {setShowForm(false)}}/>
         </div>
         <div id="modal-holder"></div>
       </div>
