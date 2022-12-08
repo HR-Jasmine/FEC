@@ -45,6 +45,10 @@ h2, h3 {
   padding-left: 8px;
 }
 
+.bigSelect {
+  margin-bottom: 4px;
+}
+
 .card {
   border: 1px solid;
 

@@ -18,18 +18,18 @@ const Outfit = ( { productId } ) => {
 
   if  (outfitIds.length === 0) {
     return (
-  <div class='outfit-container product-card'>
-  <h3 class="outfit-center-text">Add to your outfit!</h3>
+  <div className='outfit-container product-card'>
+  <h3 className="outfit-center-text">Add to your outfit!</h3>
    </div>
     )
 
   return (
     <div>
-    <h2 class="product-category">Your Outfit</h2>
-    <section class="product">
-      <button  class="pre-btn" >&#8592;</button>
-      <button  class="nxt-btn">&#8594;</button>
-      <div class="product-container">
+    <h2 className="product-category">Your Outfit</h2>
+    <section className="product">
+      <button  className="pre-btn" >&#8592;</button>
+      <button  className="nxt-btn">&#8594;</button>
+      <div className="product-container">
           {/* {relprods.map((card, i) => {
           return <SingleProduct card={card} key={i} styles={styles} />
           })} */}

@@ -7,6 +7,7 @@ import '../styles/Overview/gallery.css';
 
 const Gallery = (props) => {
   const [state, setState] = [props.state, props.setState];
+  const [zoomOn, zoomToggle] = useState(false);
 
   var renderThumbs = function() {
     let thumbs = [];
@@ -47,13 +48,20 @@ const Gallery = (props) => {
 
   };
 
+  var handleClick = function() {
+    zoomToggle(!zoomOn);
+  };
+
   return (
     <div className="galleryContainer h">
+      <div className={"zoomView " + function() {if (!zoomOn) {return 'hidden'}}()}>
+      <img className="zoomImg" src={helper.getImageURL(state)} onClick={handleClick}></img>
+      </div>
       <div className="gallerySelect v">
         {renderThumbs()}
       </div>
       <div className="gallery h">
-        <img className={`galleryImg card noPad ${props.themes['t1'][state.theme]}`} src={helper.getImageURL(state)}></img>
+        <img className={`galleryImg card noPad hover ${props.themes['t1'][state.theme]}`} src={helper.getImageURL(state)} onClick={handleClick}></img>
       </div>
     </div>
   )

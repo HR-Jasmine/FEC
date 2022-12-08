@@ -11,7 +11,6 @@ import '../styles/Overview/over.css';
 const headers = {'Authorization': process.env.API_KEY};
 
 const Overview = (props) => {
-
   const [state, setState] = useState({
     product: props.product,
     styles: null,
@@ -30,14 +29,33 @@ const Overview = (props) => {
     themes['t' + i] = {a: `t${i}a`, b: `t${i}b`};
   }
 
+  var toggleTheme = function() {
+    if (state.theme === 'a') {
+      setState({
+        ...state,
+        theme: 'b'
+      });
+    } else {
+      setState({
+        ...state,
+        theme: 'a'
+      });
+    }
+  }
+
   var getStyles = function() {
     helper.getProductStyles(state.product.id, state, setState);
   };
 
   useEffect(getStyles, [state.product]);
 
+  if (!state.styles) {
+    return;
+  }
+
   return (
       <div className={`overview v ${themes['t1'][state.theme]}`}>
+        <div className={`themeToggle ${themes['t4'][state.theme]}`} onClick={toggleTheme}></div>
         {JSON.stringify(state.themes)}
         <div className={`navbar h ${themes['t4'][state.theme]}`}>
           <h1>jasmine</h1>
@@ -57,6 +75,17 @@ const Overview = (props) => {
           {state.product.description}
         </div>
         <br/>
+        <div className={'shareContainer ' + themes['t1'][state.theme]}>
+          <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
+              target="_blank"
+              className={'shareButton card hover ' + themes['t3'][state.theme]}>FaceBook</a>
+          <a href={`https://twitter.com/share?ref_src=${window.location.href}`}
+              target="_blank"
+              className={'shareButton card hover ' + themes['t3'][state.theme]}>Twitter</a>
+          <a href={`http://pinterest.com/pin/create/link/?url=${window.location.href}`}
+              target="_blank"
+              className={'shareButton card hover ' + themes['t3'][state.theme]}>Pinterest</a>
+        </div>
       </div>
 
   )

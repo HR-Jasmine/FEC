@@ -7,8 +7,16 @@
   justify-content: space-between;
 }
 
-#interfaceHead {
+.interfaceHead {
   padding: 16px;
+  flex: 1 1 auto;
+}
+
+.star {
+  position: absolute;
+  bottom: 2px;
+  left: 11px;
+  font-size: 48px;
 }
 
 #styleName {
@@ -38,6 +46,8 @@
   background-color: rgb(207, 207, 207);
   box-shadow: 0 2px 2px 1px rgb(192, 177, 177);
   box-sizing: content-box;
+
+  object-fit: cover;
 
   overflow: hidden;
   position: relative;
@@ -78,11 +88,4 @@
 
 .bigButton:active {
   box-shadow: none;
-}
-
-.star {
-  position: absolute;
-  bottom: 2px;
-  left: 11px;
-  font-size: 48px;
 }
