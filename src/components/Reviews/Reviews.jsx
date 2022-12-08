@@ -46,6 +46,8 @@ const Reviews = ({productId}) => {
       setMetaData(response.data);
     })
 
+    setNumOfRevs(0);
+    setRenderCount(renderCount + 1);
   }, [productId])
 
 

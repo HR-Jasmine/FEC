@@ -7,8 +7,12 @@ import SingleProduct from './SingleProduct.jsx'
 // import Modal from './Modal.jsx'
 
 
-const RelatedProducts = ( { productId } ) => {
+const RelatedProducts = ( { productId, changeId } ) => {
   // console.log('productId', productId)
+
+  if (!productId) {
+    return null;
+  }
 
   const [relatedId, setrelatedId] = useState([]);
   const [relprods, setrelprods] = useState([]);
@@ -19,19 +23,22 @@ const RelatedProducts = ( { productId } ) => {
   // set relatedId from result
   // ^ is array of PID related to input product ex. [37312,37313,37318,37317]
 
-    const getRelatedProducts = function(productId){
+  const getRelatedProducts = function(productId){
     return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/related`,
-  {
+    {
     headers: {
       'Authorization': process.env.API_KEY
     }
     })
-    .then(data => setrelatedId(data.data))
+    .then(data => {
+      console.log(data.data);
+      setrelatedId(data.data);
+    })
   }
 
   useEffect(() => {
-  getRelatedProducts(37312)
-  }, [])
+  getRelatedProducts(productId);
+  }, [productId])
   // console.log('relatedId from setState', relatedId)
 
   // want to get individual product obj with info
@@ -39,29 +46,32 @@ const RelatedProducts = ( { productId } ) => {
     const getProduct = function (sku) {
 
 
-     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${sku}`,
+     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`,
       {
         headers: {
           'Authorization': process.env.API_KEY
         }
         })
         .then(response => {
-          // console.log('resonse in get product', response.data)
+          console.log('resonse in get product', response.data)
           return setrelprods(relprods => ([...relprods, response.data]))
         })
       }
 
       useEffect(() => {
         const test = []
-        test.push(getProduct(37312))
+        // relatedId.forEach(id => {
+        //   console.log(id);
+        //   test.push(getProduct(id));
+        // })
+        test.push(getProduct(37318))
         test.push(getProduct(37313))
         test.push(getProduct(37312))
         test.push(getProduct(37313))
         test.push(getProduct(37312))
-        test.push(getProduct(37313))
         // console.log(test)
 
-        }, [])
+        }, [productId])
 
         // console.log('relprods from state', relprods)
 
@@ -129,24 +139,39 @@ const RelatedProducts = ( { productId } ) => {
       })
 
 
-
-  return (
-    <div>
-      {/* <button>Show Modal</button>
-      <Modal /> */}
-      <h2 className="product-category">Related Products </h2>
-    <section className="product">
-      <button  className="pre-btn" >&#8592;</button>
-      <button  className="nxt-btn">&#8594;</button>
-      <div className="product-container">
-          {relprods.map((card, i) => {
-          return <SingleProduct card={card} key={i} styles={styles} />
+      return (
+        <div className="related-products-buttons">
+          {relatedId.map(id => {
+            return (
+              <div classname="related-button">
+                <button onClick={(e) => {
+                  e.preventDefault();
+                  changeId(id);
+                }}>
+                  {id}
+                </button>
+              </div>
+            );
           })}
-      </div>
-      <Outfit />
-   </section>
-   </div>
-  )
+        </div>
+        );
+
+  // return (
+  //   <div>
+  //     {/* <button>Show Modal</button>
+  //     <Modal /> */}
+  //     <h2 className="product-category">Related Products </h2>
+  //   <section className="product">
+  //     <button  className="pre-btn" >&#8592;</button>
+  //     <button  className="nxt-btn">&#8594;</button>
+  //     <div className="product-container">
+  //         {relprods.map((card, i) => {
+  //         return <SingleProduct card={card} key={i} styles={styles} />
+  //         })}
+  //     </div>
+  //  </section>
+  //  </div>
+  // )
 
 }
 
