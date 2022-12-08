@@ -5,7 +5,7 @@ import '../styles/Reviews/review-form.css';
 import ReviewImgThumbnail from './ReviewImgThumbnail.jsx';
 
 
-const ReviewForm = ({showForm, onClose, metaData}) => {
+const ReviewForm = ({showForm, onClose, product, metaData}) => {
   if (!showForm) {
     return null;
   }
@@ -138,7 +138,7 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
       <div className="review-form-modal-content">
         <div className="review-form-modal-header">
           <h4 className="review-form-modal-title">Write your review</h4>
-          <h6>About the {document.querySelector('#interfaceHead > h2').innerText}</h6>
+          <h6>About the {product.name}</h6>
         </div>
         <div className="review-form-modal-body">
           <form>

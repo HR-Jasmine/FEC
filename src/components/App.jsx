@@ -35,7 +35,7 @@ const App = (props) => {
         <Overview product={state.product} />
         <RelatedProducts productId={state.productId} changeId={changeId}/>
         <QA productId={state.productId} product={state.product}/>
-        <Reviews productId={state.productId} />
+        <Reviews productId={state.productId} product={state.product} />
       </div>
   )
 }
