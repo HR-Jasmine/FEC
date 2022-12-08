@@ -66,6 +66,8 @@ const Reviews = ({productId}) => {
       })
       setDisplayReviews(compiledReviews);
     }
+    setNumOfRevs(0);
+    setRenderCount(renderCount + 1);
   }, [ratingFilters]);
 
   useEffect(() => {
