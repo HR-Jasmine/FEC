@@ -6,12 +6,15 @@ import { useState } from 'react';
 
 
 
-const AddExpand = ({setNumOfQuestionsRendered, productId, product, listOfQuestions}) => {
+const AddExpand = ({setNumOfQuestionsRendered, productId, product, listOfQuestions, numOfQuestionsRendered, originalLength}) => {
   const [questIsOpen, setQuestIsOpen] = useState(false)
 
   const moreQuestions = (e) => {
     e.preventDefault();
-    setNumOfQuestionsRendered(2)
+    setNumOfQuestionsRendered((prev) => prev + 2)
+    if(numOfQuestionsRendered > originalLength) {
+      e.target.disabled = true
+    }
   }
   const openQuestModal = (e) => {
     e.preventDefault();
@@ -24,11 +27,15 @@ const AddExpand = ({setNumOfQuestionsRendered, productId, product, listOfQuestio
 
 
   return (
+
     <div className="button-container">
-      <QuestModal questIsOpen={questIsOpen} productId={productId} closeQuestModal={closeQuestModal} product={product}/>
-      {/* {listOfQuestions.length > 2 ? <button className="more" onClick={moreQuestions}> More Questions</button> : <span></span>} */}
-      <button className="more" onClick={moreQuestions}> More Questions</button>
-      <button className="add" onClick={openQuestModal} > Add a question </button>
+      {
+      originalLength === 2 ? <div className="add-expand-btn-container">
+        <button className="more" onClick={moreQuestions}> More Questions</button>
+        <button className="add" onClick={openQuestModal} > Add a question </button>
+      </div>: <button className="add" onClick={openQuestModal} > Add a question </button>
+      }
+      <QuestModal questIsOpen={questIsOpen} productId={productId} closeQuestModal={closeQuestModal} product={product} />
     </div>
   )
 }

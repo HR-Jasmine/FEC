@@ -2,8 +2,10 @@ import React from 'react';
 import FormInput from './FormComp/FormInput.jsx'
 import FormTextArea from './FormComp/FormTextArea.jsx'
 import { useState } from 'react';
+import axios from 'axios'
 
-const QuestionForm = () => {
+const headers = {'Authorization': process.env.API_KEY};
+const QuestionForm = ({productId}) => {
   const [values, setValues] = useState({
     Nickname: "",
     Email:"",
@@ -39,19 +41,33 @@ const QuestionForm = () => {
     label: "Question:"
   }]
 
-  const handleSubmit = (e) => {
+  const handleQuestionSubmit = (e) => {
+    const formData = JSON.stringify(values)
+    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions';
+    const params = {
+      body: formData.Question,
+      name: formData.Nickname,
+      email: formData.Email,
+      product_id: productId,
+    }
     e.preventDefault();
-
+    axios.post(url, params, headers)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((error) => {
+        res.send("cannot post")
+      })
   }
   const handleChange = (e) => {
     e.preventDefault();
     setValues({...values, [e.target.name]: e.target.value})
   }
-  console.log(values)
+
 
   return (
     <div className="form-app">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleQuestionSubmit}>
         <div className="input-div">
           {
             inputs.map((input, i) => {
