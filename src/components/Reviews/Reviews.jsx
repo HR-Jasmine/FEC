@@ -15,6 +15,8 @@ const Reviews = ({productId}) => {
   const [ratingFilters, setRatingFilters] = useState({1: false, 2: false, 3: false, 4: false, 5: false});
   const [isFiltered, setIsFiltered] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [beenClicked, setBeenClicked] = useState({});
+  const [renderCount, setRenderCount] = useState(0);
 
   useEffect(() => {
     if (productId === '') {
@@ -22,7 +24,7 @@ const Reviews = ({productId}) => {
     }
 
     // Get the reviews
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&count=100`,
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&count=1000`,
       {
         headers: {
           'Authorization': process.env.API_KEY
@@ -64,10 +66,16 @@ const Reviews = ({productId}) => {
       })
       setDisplayReviews(compiledReviews);
     }
+    setNumOfRevs(0);
+    setRenderCount(renderCount + 1);
   }, [ratingFilters]);
 
+  useEffect(() => {
+    setNumOfRevs(2);
+  }, [renderCount]);
+
   const sortSelector = (param) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&sort=${param}&count=100`,
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&sort=${param}&count=1000`,
     {
       headers: {
         'Authorization': process.env.API_KEY
@@ -76,7 +84,8 @@ const Reviews = ({productId}) => {
     .then(response => {
       setAllReviews(response.data.results);
       setDisplayReviews(response.data.results);
-      setNumOfRevs(2);
+      setNumOfRevs(0);
+      setRenderCount(renderCount + 1);
       setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
     })
   }
@@ -109,7 +118,7 @@ const Reviews = ({productId}) => {
         </div>
         <div className="review-list">
           {displayReviews.slice(0, numOfRevs).map((review, i) => {
-            return <IndividualReview review={review} key={i}/>
+            return <IndividualReview review={review} beenClicked={beenClicked} setBeenClicked={setBeenClicked} key={i}/>
           })}
           <button className="more-reviews-btn" hidden={numOfRevs >= displayReviews.length ? true : false} onClick={(e) => {
             e.preventDefault();

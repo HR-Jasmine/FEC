@@ -6,7 +6,7 @@ import ReviewImgThumbnail from './ReviewImgThumbnail.jsx';
 import '../styles/Reviews/individual-review.css';
 import axios from 'axios';
 
-const IndividualReview = ({review}) => {
+const IndividualReview = ({review, beenClicked, setBeenClicked}) => {
 
 
   const [reviewBody, setReviewBody] = useState(review.body.slice(0, 250));
@@ -42,9 +42,11 @@ const IndividualReview = ({review}) => {
       </p>
       <div className="review-helpful">
         Was this review helpful?
-        <button className={"helpful-button" + review.review_id} onClick={(e) => {
+        <button className={"helpful-button" + review.review_id} disabled={beenClicked[review.review_id] === true ? true : false} onClick={(e) => {
           e.preventDefault();
-          document.querySelectorAll(`.helpful-button${review.review_id}`).forEach(button => button.disabled=true);
+          let copyOfBeenClicked = {...beenClicked};
+          copyOfBeenClicked[review.review_id] = true;
+          setBeenClicked(copyOfBeenClicked);
           axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review.review_id}/helpful/`, {},
           {
             headers: {
@@ -53,9 +55,17 @@ const IndividualReview = ({review}) => {
           })
           setIsHelpful(isHelpful + 1);
         }}>Yes ({isHelpful})</button>&nbsp;&nbsp;&nbsp;
-        <button className={"helpful-button" + review.review_id} onClick={(e) => {
+        <button className={"helpful-button" + review.review_id} disabled={beenClicked[review.review_id] === true ? true : false} onClick={(e) => {
           e.preventDefault();
-          document.querySelectorAll(`.helpful-button${review.review_id}`).forEach(button => button.disabled=true);
+          let copyOfBeenClicked = {...beenClicked};
+          copyOfBeenClicked[review.review_id] = true;
+          setBeenClicked(copyOfBeenClicked);
+          axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review.review_id}/report/`, {},
+          {
+            headers: {
+              'Authorization': process.env.API_KEY
+            }
+          })
           setNotHelpful(notHelpful + 1);
         }}>No ({notHelpful})</button>
       </div>

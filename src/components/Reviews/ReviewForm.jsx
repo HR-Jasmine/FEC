@@ -1,13 +1,26 @@
 import React from 'react';
 import {useState} from 'react';
+import axios from 'axios';
 import '../styles/Reviews/review-form.css';
+import ReviewImgThumbnail from './ReviewImgThumbnail.jsx';
+
 
 const ReviewForm = ({showForm, onClose, metaData}) => {
   if (!showForm) {
     return null;
   }
 
-  console.log(metaData);
+
+
+
+  const imgStyle = {
+    "max-height": "150px",
+    "max-width": "150px",
+    "height": "auto",
+    "width": "auto",
+}
+
+
 
   const blankFormState = {
     rating: 0,
@@ -34,7 +47,7 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
 
   const formVerify = () => {
     const submitData = {
-      product_id: metaData.product_id,
+      product_id: Number(metaData.product_id),
       rating: formState.rating,
       summary: formState.reviewSummary,
       body: formState.reviewBody,
@@ -43,6 +56,40 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
       email: formState.email,
       photos: formState.photos,
       characteristics: formState.characteristics
+    }
+
+    let alertMsg = '';
+
+    if (submitData.rating === 0) {
+      alertMsg += 'You must give the product a star rating\n';
+    }
+
+    if (Object.keys(submitData.characteristics).length !== Object.keys(metaData.characteristics).length) {
+      alertMsg += 'You must rate every characteristic of the product\n';
+    }
+
+    if (submitData.body.length < 51) {
+      alertMsg += 'You must have a review over 50 characters long\n'
+    }
+
+    if (submitData.name === '') {
+      alertMsg += 'You must give a username\n';
+    }
+
+    if (submitData.email === '') {
+      alertMsg += 'You must provide an email address';
+    }
+
+    if (alertMsg !== '') {
+      alert(alertMsg);
+    } else {
+      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/`, submitData,
+      {
+        headers: {
+          'Authorization': process.env.API_KEY,
+        }
+      });
+      return true;
     }
   }
 
@@ -56,9 +103,35 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
 
   const scaleChange = (e) => {
     let currChars = {...formState.characteristics};
-    currChars[e.target.name] = e.target.value;
+    currChars[e.target.name] = Number(e.target.value);
     setFormState({...formState, characteristics: currChars});
   }
+
+  var myWidget = window.cloudinary.createUploadWidget(
+    {
+      cloudName: "dhjvvkko0",
+      uploadPreset: 'jasmine',
+      // inlineContainer: document.getElementById('imageUploaderContainer'),
+      // cropping: true, //add a cropping step
+      // showAdvancedOptions: true,  //add advanced options (public_id and tag)
+      sources: [ "local"], // restrict the upload sources to URL and local files
+      multiple: false,  //restrict upload to a single file
+      // folder: "user_images", //upload files to the specified folder
+      // tags: ["users", "profile"], //add the given tags to the uploaded files
+      // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
+      // clientAllowedFormats: ["images"], //restrict uploading to image files only
+      // maxImageFileSize: 2000000,  //restrict file size to less than 2MB
+      // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
+      theme: "purple" //change to a purple theme
+    },
+    (error, result) => {
+      if (!error && result && result.event === "success") {
+        let copyOfFormState = {...formState};
+        copyOfFormState.photos.push(result.info.secure_url);
+        setFormState(copyOfFormState);
+      }
+    }
+  );
 
   return (
     <div className="review-form-modal">
@@ -75,10 +148,16 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
                 let updatedFormState = {...formState, rating: Math.ceil(e.target.value / 20)};
                 setFormState(updatedFormState);
                 e.target.style.setProperty('--value', Math.ceil(e.target.value / 20));
-                console.log(e.target.value);
               }} step="1" type="range" value={formState.rating}></input><br></br>
             </label>&nbsp;&nbsp;
-            <input type="text" className="review-summary" value={formState.reviewSummary} placeholder="Title*" onChange={(e) => {
+            <div className="review-form-checkbox">
+              Do you recommend this product?
+              <input type="checkbox" value={formState.recommend} onChange={(e) => {
+                let updatedForm = {...formState, recommend: !formState.recommend};
+                setFormState(updatedForm);
+              }}></input>
+            </div>
+              <input type="text" className="review-summary" value={formState.reviewSummary} placeholder="Title*" onChange={(e) => {
               e.preventDefault();
               let updatedForm = {...formState, reviewSummary: e.target.value};
               setFormState(updatedForm);
@@ -88,6 +167,19 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
               let updatedForm = {...formState, reviewBody: e.target.value};
               setFormState(updatedForm);
             }}></textarea><br></br>
+            <div className="review-chars-left">
+              {formState.reviewBody.length > 49 ? "Minimum reached" : "Minimum required chars left:" + (50 - formState.reviewBody.length)}
+            </div>
+            <div className="review-uploaded-image-holder">
+              {formState.photos.map((photo, i) => {
+                console.log('displaying', photo);
+                return (<img className="review-img" style={imgStyle} src={photo} key={i}></img>);
+              })}
+            </div>
+            <button className="upload-image-button" hidden={formState.photos.length === 5} onClick={(e) => {
+              e.preventDefault();
+              myWidget.open();
+            }}>Add image (up to 5)</button><br></br>
             <input type="text" className="review-nickname" value={formState.nickname} placeholder="Username*" onChange={(e) => {
               e.preventDefault();
               let updatedForm = {...formState, nickname: e.target.value};
@@ -98,9 +190,9 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
               let updatedForm = {...formState, email: e.target.value};
               setFormState(updatedForm);
             }}></input>
-            {Object.keys(metaData.characteristics).map(char => {
+            {Object.keys(metaData.characteristics).map((char, i) => {
               return (
-                <div className="char-holder">
+                <div className="char-holder" key={i}>
                   <p>{char}</p><br></br>
                   <input type="radio" name={metaData.characteristics[char].id} value={1} onClick={scaleChange}></input>&nbsp; {scales[char][0]}<br></br>
                   <input type="radio" name={metaData.characteristics[char].id} value={2} onClick={scaleChange}></input>&nbsp; {scales[char][1]}<br></br>
@@ -111,17 +203,20 @@ const ReviewForm = ({showForm, onClose, metaData}) => {
               )
             })}
           </form>
+
         </div>
         <div className="review-form-modal-footer">
           <button onClick={(e) => {
             e.preventDefault();
-            console.log(formState);
-            formVerify();
-            onClose();
+            let verified = formVerify();
+             if (verified) {
+              onClose();
+             }
           }}>Submit</button>&nbsp;&nbsp;
           <button onClick={onClose}>Close</button>
         </div>
       </div>
+      <div id="imageUploaderContainer"></div>
     </div>
   )
 }

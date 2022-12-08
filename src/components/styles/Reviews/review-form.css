@@ -113,3 +113,9 @@
 .rating-meaning {
   display: inline-block;
 }
+
+.review-image {
+  max-height: 150px;
+  max-width: 150px;
+  display: inline-block;
+}
