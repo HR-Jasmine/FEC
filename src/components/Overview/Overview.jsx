@@ -24,14 +24,16 @@ const Overview = (props) => {
     selectedPhoto: 0,
     theme: 'b',
 
-    cart: JSON.parse(document.cookie.replace('cart=', ''))
+    cart: function() {
+      if (document.cookie) {
+        return JSON.parse(document.cookie.replace('cart=', ''));
+      } else {
+        return [];
+      }
+    }(  )
   });
 
-  var themes = {};
-
-  for (var i = 0; i < 5; i++) {
-    themes['t' + i] = {a: `t${i}a`, b: `t${i}b`};
-  }
+  var themes = props.themes;
 
   var toggleTheme = function() {
     if (state.theme === 'a') {
