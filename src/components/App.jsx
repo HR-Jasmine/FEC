@@ -17,18 +17,18 @@ const App = (props) => {
     product: props.product
   });
 
-  // const changeId = (id) => {
-  //   const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`;
-  //   const headers = {'Authorization': process.env.API_KEY};
+  const changeId = (id) => {
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`;
+    const headers = {'Authorization': process.env.API_KEY};
 
-  //   axios.get(url, {headers})
-  //     .then(response => {
-  //       setState({
-  //         productId: response.data.id,
-  //         product: response.data
-  //       });
-  //     });
-  // }
+    axios.get(url, {headers})
+      .then(response => {
+        setState({
+          productId: response.data.id,
+          product: response.data
+        });
+      });
+  }
 
   return (
       <div className="app">
