@@ -60,19 +60,12 @@ h2, h3 {
 }
 
 .hover:hover {
-  box-shadow: 0 3px 6px 2px rgb(192, 177, 177);
+  box-shadow: 0 3px 6px 2px rgb(163, 135, 135);
 }
 
 .noPad {
   padding: 0px;
 }
-
-
-
-
-
-
-
 
 /* theme colors */
 .t0a {
