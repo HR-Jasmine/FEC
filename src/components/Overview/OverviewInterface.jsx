@@ -153,6 +153,11 @@ const OverviewInterface = (props) => {
     })
   }
 
+  var scrollToReviews = function(e) {
+    e.preventDefault();
+    document.getElementById("reviews").scrollIntoView();
+  };
+
   return (
     <div className={`interface card v ${props.themes['t0'][state.theme]}`}>
       <div className="interfaceHead v">
