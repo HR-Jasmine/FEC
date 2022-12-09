@@ -28,13 +28,19 @@ const App = (props) => {
           product: response.data
         });
       });
-  }
+  };
+
+  var themes = {};
+
+  for (var i = 0; i < 5; i++) {
+    themes['t' + i] = {a: `t${i}a`, b: `t${i}b`};
+  };
 
   return (
       <div className="app">
-        <Overview product={state.product} />
-        <RelatedProducts productId={state.productId} changeId={changeId}/>
-        <QA productId={state.productId} product={state.product}/>
+        <Overview product={state.product} themes={themes} />
+        {/* <RelatedProducts productId={state.productId} changeId={changeId}/>
+        <QA productId={state.productId} product={state.product}/> */}
         <Reviews productId={state.productId} product={state.product} />
       </div>
   )
