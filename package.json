@@ -47,6 +47,7 @@
     "jest-environment-jsdom": "^29.3.1",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
+    "react-icons": "^4.7.1",
     "react-test-renderer": "^18.2.0",
     "style-loader": "^3.3.1",
     "ts-jest": "^29.0.3",

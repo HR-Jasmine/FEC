@@ -23,6 +23,7 @@ body {
   box-shadow: 0 0 4px 1px rgb(179, 155, 155);
   border: 1px solid rgb(112, 46, 73);
   border-style: none solid none solid;
+  box-sizing: content-box;
 }
 
 #footer {
