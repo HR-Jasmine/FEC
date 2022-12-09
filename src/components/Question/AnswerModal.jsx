@@ -32,7 +32,7 @@ const AnswerModal = ({isOpen, closeModal, question, product}) => {
       <h1 className="modal-title">Submit Your Answer</h1>
       <h3 className="modal-product">Product: {product.name}</h3>
       <h3 className="modal-product">Question: {question.question_body}</h3>
-      <AnswerForm/>
+      <AnswerForm question={question}/>
       <button className="close-modal" onClick={closeModal}>X</button>
     </div>
   )

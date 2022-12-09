@@ -1,9 +1,10 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/Question/accordion.css';
 import {format} from 'date-fns'
 import AnswerModal from './AnswerModal.jsx'
 import QuestModal from './QuestModal.jsx'
+import axios from 'axios'
 
 
 const Accordion = ({question, product}) => {
@@ -13,12 +14,28 @@ const Accordion = ({question, product}) => {
   const [questionHelpfulness, setQuestionHelpfulness] = useState(question_helpfulness)
   const [answerHelpfulness, setAnswerHelpfulness] = useState(0);
   const [numOfAnswersRendered, setNumOfAnswersRendered] = useState(2)
-  // const newDate = format(new Date (date), 'MMMM d, yyyy')
+
   const numOfAnswers = Object.keys(answers).length
   const sortedAnswersId = Object.keys(answers).slice(0,numOfAnswersRendered).sort((a, b) => {
     return answers[b].helpfulness - answers[a].helpfulness
   })
 
+  // const headers = {'Authorization': process.env.API_KEY};
+  // let id = question.question_id
+  // const getAnswers = (id) => {
+  //   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/:question_id/answers';
+  //   const params = {
+  //     question_id: id,
+  //     page: 1,
+  //     count: 100
+  //   }
+  //   axios.get(url,{params, headers})
+  //     .then((res) => {
+  //       console.log(res)
+  //     })
+  // }
+
+  // useEffect(getAnswers(id),[])
   // const helpCountChange = (e) => {
   //   e.preventDefault();
   //   setHelpfulness((prev) => prev + 1)
@@ -38,7 +55,7 @@ const Accordion = ({question, product}) => {
     e.preventDefault();
     if(e.target.innerText === "See more") {
       e.target.innerText = "Collapse"
-      setNumOfAnswersRendered((prev) => prev + 4)
+      setNumOfAnswersRendered((prev) => prev + 1000)
     } else {
       e.target.innerText = "See more"
       setNumOfAnswersRendered(2)
@@ -73,15 +90,23 @@ const Accordion = ({question, product}) => {
           <div className="answer-container accordion-content">
             {
              sortedAnswersId.map((answerId, i) => {
+                const date = answers[answerId].date
+                const newDate = format(new Date (date), 'MMMM d, yyyy')
                 return (
                   <div key={i}>
                     <h4 className="answer">A: {answers[answerId].body} </h4>
                     <div className="user">
-                      <p className="username">By: {answers[answerId].answerer_name} </p>
+                      {
+                        answers[answerId].answerer_name === 'Seller' ? <p className="seller">Seller</p> : <p className="username">By: {answers[answerId].answerer_name} </p>
+                      }
+                      <span className="answer-date">{newDate}</span>
                       <button className="accord-btn"> Helpful ?</button>
                       <span className="yes">Yes({answers[answerId].helpfulness})</span>
                       <button className="accord-btn"onClick={openModal}>Add Answer</button>
-                      <button className="accord-btn">Report</button>
+                      <button className="accord-btn" onClick={(e) => {
+                        e.target.innerText = "Reported"
+                        e.target.disabled = true;
+                      }}>Report</button>
                     </div>
                   </div>
                 )

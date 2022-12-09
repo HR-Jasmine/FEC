@@ -8,7 +8,7 @@ const QuestModal = ({questIsOpen, closeQuestModal, productId, product}) => {
     <div className="quest-modal">
       <h1 className="modal-title">Ask Your Question</h1>
       <h3 className="modal-product">Product: {product.name}</h3>
-      <QuestionForm />
+      <QuestionForm productId={productId} closeQuestModal={closeQuestModal}/>
       <button className="close-quest-modal-btn" onClick={closeQuestModal}> X </button>
     </div>
   )
