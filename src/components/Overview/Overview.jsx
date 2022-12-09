@@ -53,9 +53,9 @@ const Overview = (props) => {
 
   useEffect(getStyles, [state.product]);
 
-  if (!state.styles) {
-    return;
-  }
+  // if (!state.styles) {
+  //   return;
+  // }
 
   return (
       <div className={`overview v ${themes['t1'][state.theme]}`}>

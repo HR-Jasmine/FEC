@@ -17,7 +17,9 @@ const QA = ({productId, product}) => {
 
   //State Management
   const [listOfQuestions, setListOfQuestions] = useState([])
-  const [numOfQuestionsRendered, setNumOfQuestionsRendered] = useState(1)
+  const [filteredQuestions, setFilteredQuestions] = useState([])
+  const [numOfQuestionsRendered, setNumOfQuestionsRendered] = useState(4)
+  const [originalLength, setOriginalLength] = useState(0)
 
   // API calls
   const headers = {'Authorization': process.env.API_KEY};
@@ -34,9 +36,12 @@ const QA = ({productId, product}) => {
         console.log(typeof response.data.results[0].question_helpfulness)
         const sortedList = response.data.results.sort((a, b) => {
           console.log(response.data.results)
+          console.log(productId)
           return b.question_helpfulness - a.question_helpfulness
         })
+        setOriginalLength(sortedList.length)
         setListOfQuestions(sortedList.slice(0,numOfQuestionsRendered))
+        setFilteredQuestions(sortedList.slice(0,numOfQuestionsRendered))
         // setListOfQuestions(response.data.results.sort((a, b) => {
         //   return response.data.results[b].question_helpfulness - response.data.results[a].question_helpfulness
         // }).slice(0, numOfQuestionsRendered))
@@ -44,30 +49,27 @@ const QA = ({productId, product}) => {
   };
 
 
-  useEffect(getQuestions,[numOfQuestionsRendered])
+  useEffect(getQuestions,[numOfQuestionsRendered, productId])
 
-  // const getAnswers = () => {
-  //   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/:question_id/answers';
-  //   const params = {
-  //     question_id: 66627
-  //   }
-  //   axios.get(url,{params,headers})
-  //     .then((response) => {
-  //       console.log(response)
+  // const handleSearchChange = (value) => {
+  //   console.log(value.length)
+  //   if(value.length >= 3){
+  //     let filteredQuestionsList = listOfQuestions.filter((question) => {
+  //       return question.question_body.toLowerCase().includes(value.toLowerCase())
   //     })
+
+  //    return setFilteredQuestions(filteredQuestionsList)
+  //   }
+
+  //   return setFilteredQuestions(listOfQuestions)
   // }
-
-  // useEffect(getAnswers, [])
-
-
-
 
   return (
     <div className="main-container">
       <h2 className="section-name">Question & Answer</h2>
-      <Search />
-      <QuestionList listOfQuestions={listOfQuestions} product={product}/>
-      <AddExpand  listOfQuestions={listOfQuestions} productId={productId} setNumOfQuestionsRendered={setNumOfQuestionsRendered} product={product}/>
+      <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} listOfQuestions={listOfQuestions}/>
+      <QuestionList listOfQuestions={filteredQuestions} product={product}/>
+      <AddExpand  listOfQuestions={listOfQuestions} productId={productId} setNumOfQuestionsRendered={setNumOfQuestionsRendered} product={product} numOfQuestionsRendered={numOfQuestionsRendered} originalLength={originalLength} productId={productId}/>
     </div>
   )
 }
