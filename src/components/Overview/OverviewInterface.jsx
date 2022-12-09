@@ -54,6 +54,7 @@ const OverviewInterface = (props) => {
 
     if (activeStyle) {
       if (option === 'quantity') {
+        console.log(sku)
         if (sku.size === 'Select Size') {
           options.push(<option key="-" value="-">-</option>);
         } else {
@@ -78,7 +79,9 @@ const OverviewInterface = (props) => {
             XXL: 'XX Large'
           }
 
-          options.push(<option key={i} value={entry[option]}>{selectText[entry[option]]}</option>)
+          if (entry.quantity > 0) {
+            options.push(<option key={i} value={entry[option]}>{selectText[entry[option]]}</option>)
+          }
         }
       }
     }
@@ -117,6 +120,44 @@ const OverviewInterface = (props) => {
     document.getElementById("reviews").scrollIntoView();
   };
 
+  var getPrice = function() {
+    var price = state.activeStyle.original_price;
+
+    if (state.activeStyle.sale_price) {
+      var oldPrice = price;
+
+      price = state.activeStyle.sale_price;
+      return (
+        `ON SALE! $${price}`
+      )
+    }
+
+    return `$${price}`;
+  };
+
+  var addToCart = function() {
+    var p = state.activeStyle;
+    var cart = state.cart;
+
+    var purchase = {
+      id:       state.product.id,
+      style_id: p.style_id,
+      name:     p.name,
+      price:    p.sale_price || p.original_price,
+      photo:    p.photos[0].url,
+      size:     sku.size,
+      quantity: document.getElementById('selectQuantity').value
+    }
+
+    cart.push(purchase);
+    document.cookie = `cart=${JSON.stringify(cart)};`;
+
+    setState({
+      ...state,
+      cart: cart
+    })
+  }
+
   return (
     <div className={`interface card v ${props.themes['t0'][state.theme]}`}>
       <div className="interfaceHead v">
@@ -129,7 +170,7 @@ const OverviewInterface = (props) => {
 
         <h3>{product.category}</h3>
         <h2>{product.name}</h2>
-        <b>{`$${price}`}</b>
+        <b>{getPrice()}</b>
       </div>
       <div id="styleName"><b>STYLE - </b>{function() {if (activeStyle) {return activeStyle.name} else {return 'STYLE'}}()}</div>
       <div className="v" id="productStyles">
@@ -145,8 +186,8 @@ const OverviewInterface = (props) => {
           </select>
         </div>
         <div className="productButtons h">
-          <button className={`bigButton hover ${props.themes['t4'][state.theme]}`}id="addToCart">Add to Cart</button>
-          <button className={`bigButton hover ${props.themes['t4'][state.theme]}`}id="addToFav"><div className='star'>★</div></button>
+          <button className={`bigButton hover ${props.themes['t4'][state.theme]}`} id="addToCart" onClick={addToCart}>Add to Cart</button>
+          <button className={`bigButton hover ${props.themes['t4'][state.theme]}`} id="addToFav"><div className='star'>★</div></button>
         </div>
       </div>
     </div>

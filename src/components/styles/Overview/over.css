@@ -17,9 +17,25 @@
 }
 
 .overInput {
-  align-self: flex-end;
-  height: 24px;
-  margin: 16px;
+  height: 36px;
+  margin: 4px;
+}
+
+.navright {
+  display: flex;
+  align-items: center;
+}
+
+.cart {
+  position: relative;
+  margin: 6px;
+}
+
+.cartNum {
+  position: absolute;
+  right: 24px;
+  margin-bottom: 6px;
+  user-select: none;
 }
 
 .announce {

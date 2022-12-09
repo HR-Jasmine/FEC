@@ -29,7 +29,7 @@ const Gallery = (props) => {
             key={"img" + i}
             index={i}
             className={thumbClass}
-            src={photo.thumbnail_url}
+            src={photo.url}
             onClick={thumbSet} />
         )
       }

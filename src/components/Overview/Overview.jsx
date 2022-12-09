@@ -1,6 +1,8 @@
 import React from 'react';
 import {useState, useEffect, createContext} from 'react';
 
+import {BsCart} from 'react-icons/bs';
+
 import Gallery from './Gallery.jsx';
 import OverviewInterface from './OverviewInterface.jsx';
 import helper from './helpers.jsx';
@@ -20,7 +22,9 @@ const Overview = (props) => {
       size: 'Select Size'
     },
     selectedPhoto: 0,
-    theme: 'b'
+    theme: 'b',
+
+    cart: JSON.parse(document.cookie.replace('cart=', ''))
   });
 
   var themes = {};
@@ -59,7 +63,11 @@ const Overview = (props) => {
         {JSON.stringify(state.themes)}
         <div className={`navbar h ${themes['t4'][state.theme]}`}>
           <h1>jasmine</h1>
-          <input className="overInput" type="text" placeholder="Search for a product..."></input>
+          <div className="navright h">
+            <input className="overInput" type="text" placeholder="Search for a product..."></input>
+            <BsCart className="cart" size={48}/>
+            <div className="cartNum">{state.cart.length}</div>
+          </div>
         </div>
         <div className={`announce v ${themes['t3'][state.theme]}`}>
           <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div>
