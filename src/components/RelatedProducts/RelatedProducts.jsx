@@ -139,39 +139,39 @@ const RelatedProducts = ( { productId, changeId } ) => {
       })
 
 
-      return (
-        <div className="related-products-buttons">
-          {relatedId.map(id => {
-            return (
-              <div classname="related-button">
-                <button onClick={(e) => {
-                  e.preventDefault();
-                  changeId(id);
-                }}>
-                  {id}
-                </button>
-              </div>
-            );
-          })}
-        </div>
-        );
+      // return (
+      //   <div className="related-products-buttons">
+      //     {relatedId.map(id => {
+      //       return (
+      //         <div classname="related-button">
+      //           <button onClick={(e) => {
+      //             e.preventDefault();
+      //             changeId(id);
+      //           }}>
+      //             {id}
+      //           </button>
+      //         </div>
+      //       );
+      //     })}
+      //   </div>
+      //   );
 
-  // return (
-  //   <div>
-  //     {/* <button>Show Modal</button>
-  //     <Modal /> */}
-  //     <h2 className="product-category">Related Products </h2>
-  //   <section className="product">
-  //     <button  className="pre-btn" >&#8592;</button>
-  //     <button  className="nxt-btn">&#8594;</button>
-  //     <div className="product-container">
-  //         {relprods.map((card, i) => {
-  //         return <SingleProduct card={card} key={i} styles={styles} />
-  //         })}
-  //     </div>
-  //  </section>
-  //  </div>
-  // )
+  return (
+    <div>
+      {/* <button>Show Modal</button>
+      <Modal /> */}
+      <h2 className="product-category">Related Products </h2>
+    <section className="product">
+      <button  className="pre-btn" >&#8592;</button>
+      <button  className="nxt-btn">&#8594;</button>
+      <div className="product-container">
+          {relatedId.map((productId, i) => {
+          return <SingleProduct productId={productId} changeId={changeId} key={i} />
+          })}
+      </div>
+   </section>
+   </div>
+  )
 
 }
 
