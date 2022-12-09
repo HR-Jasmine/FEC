@@ -73,8 +73,8 @@ const Overview = (props) => {
           <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div>
         </div>
         <div className="info h">
-          <Gallery state={state} setState={setState} themes={themes}/>
-          <OverviewInterface state={state} setState={setState} themes={themes}/>
+          <Gallery state={state} setState={setState} themes={themes} />
+          <OverviewInterface state={state} setState={setState} themes={themes} />
         </div>
         <br/>
         <div className="slogan">

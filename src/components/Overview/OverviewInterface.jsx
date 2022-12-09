@@ -113,7 +113,12 @@ const OverviewInterface = (props) => {
       ...state,
       activeStyle: styles[index]
     })
-  }
+  };
+
+  var scrollToReviews = function(e) {
+    e.preventDefault();
+    document.getElementById("reviews").scrollIntoView();
+  };
 
   var getPrice = function() {
     var price = state.activeStyle.original_price;
@@ -153,13 +158,8 @@ const OverviewInterface = (props) => {
     })
   }
 
-  var scrollToReviews = function(e) {
-    e.preventDefault();
-    document.getElementById("reviews").scrollIntoView();
-  };
-
   return (
-    <div className={`interface card v ${props.themes['t0'][state.theme]}`}>
+    <div className={`interface card noPad v ${props.themes['t0'][state.theme]}`}>
       <div className="interfaceHead v">
         <div className="social h">
           <div className="ratingsDiv" >
@@ -178,10 +178,10 @@ const OverviewInterface = (props) => {
       </div>
       <div id="select-container">
         <div className="selectors h">
-          <select className="bigSelect t0a" id="selectSize" value={sku.size} onChange={sizeChange}>
+          <select className={`bigSelect ${props.themes['t1'][state.theme]}`} id="selectSize" value={sku.size} onChange={sizeChange}>
             {optionSet('size')}
           </select>
-          <select className="bigSelect t0a" id="selectQuantity">
+          <select className={`bigSelect ${props.themes['t1'][state.theme]}`} id="selectQuantity">
             {optionSet('quantity')}
           </select>
         </div>
