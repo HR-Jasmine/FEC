@@ -7,14 +7,15 @@ import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import QA from './Question/Main.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 
-import './styles/style.css';
-import './styles/style.css';
 import './styles/app.css';
+import './styles/style.css';
 
 const App = (props) => {
   const [state, setState] = useState({
     productId: props.product.id,
-    product: props.product
+    product: props.product,
+
+    theme: 'a'
   });
 
   const changeId = (id) => {

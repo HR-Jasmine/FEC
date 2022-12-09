@@ -150,7 +150,7 @@ const OverviewInterface = (props) => {
     }
 
     cart.push(purchase);
-    document.cookie = `cart=${JSON.stringify(cart)};`;
+    // document.cookie = `cart=${JSON.stringify(cart)};`;
 
     setState({
       ...state,
@@ -159,7 +159,7 @@ const OverviewInterface = (props) => {
   }
 
   return (
-    <div className={`interface card noPad v ${props.themes['t0'][state.theme]}`}>
+    <div className={`interface card noPad v ${props.themes['t0'][props.theme]}`}>
       <div className="interfaceHead v">
         <div className="social h">
           <div className="ratingsDiv" >
@@ -178,16 +178,16 @@ const OverviewInterface = (props) => {
       </div>
       <div id="select-container">
         <div className="selectors h">
-          <select className={`bigSelect ${props.themes['t1'][state.theme]}`} id="selectSize" value={sku.size} onChange={sizeChange}>
+          <select className={`bigSelect ${props.themes['t1'][props.theme]}`} id="selectSize" value={sku.size} onChange={sizeChange}>
             {optionSet('size')}
           </select>
-          <select className={`bigSelect ${props.themes['t1'][state.theme]}`} id="selectQuantity">
+          <select className={`bigSelect ${props.themes['t1'][props.theme]}`} id="selectQuantity">
             {optionSet('quantity')}
           </select>
         </div>
         <div className="productButtons h">
-          <button className={`bigButton hover ${props.themes['t4'][state.theme]}`} id="addToCart" onClick={addToCart}>Add to Cart</button>
-          <button className={`bigButton hover ${props.themes['t4'][state.theme]}`} id="addToFav"><div className='star'>★</div></button>
+          <button className={`bigButton hover ${props.themes['t4'][props.theme]}`} id="addToCart" onClick={addToCart}>Add to Cart</button>
+          <button className={`bigButton hover ${props.themes['t4'][props.theme]}`} id="addToFav"><div className='star'>★</div></button>
         </div>
       </div>
     </div>
