@@ -150,7 +150,7 @@ const OverviewInterface = (props) => {
     }
 
     cart.push(purchase);
-    document.cookie = `cart=${JSON.stringify(cart)};`;
+    // document.cookie = `cart=${JSON.stringify(cart)};`;
 
     setState({
       ...state,
