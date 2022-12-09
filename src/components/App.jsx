@@ -14,7 +14,9 @@ import './styles/app.css';
 const App = (props) => {
   const [state, setState] = useState({
     productId: props.product.id,
-    product: props.product
+    product: props.product,
+
+    theme: 'a'
   });
 
   const changeId = (id) => {
