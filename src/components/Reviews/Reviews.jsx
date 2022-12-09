@@ -131,7 +131,7 @@ const Reviews = ({productId, product}) => {
             interaction(e.target);
             setNumOfRevs(numOfRevs + 2);
           }}>More Reviews</button>&nbsp;&nbsp;
-          <button className="add-review-button" onClick={(e) => {
+          <button className="add-review-button" onClick={() => {
             setShowForm(true);
           }}>Add Review</button><br></br>
 
