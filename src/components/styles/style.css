@@ -67,13 +67,6 @@ h2, h3 {
   padding: 0px;
 }
 
-
-
-
-
-
-
-
 /* theme colors */
 .t0a {
   border-color:     rgb(112, 46, 73);
@@ -109,36 +102,34 @@ h2, h3 {
 }
 
 .t0b {
-  border-color:     rgb(25, 50, 60);
-  color:            rgb(202, 65, 99);
-  background-color: rgb(243, 227, 228);
+  border-color:     rgb(218, 170, 190);
+  color:            rgb(211, 172, 188);
+  background-color: rgb(136, 64, 88);
 }
 
 .t1b {
-  border-color:     rgb(25, 50, 60);
-  color:            rgb(202, 65, 99);
-  background-color: rgb(247, 242, 240);
+  border-color:     rgb(112, 46, 73);
+  color:            rgb(112, 46, 73);
+  background-color: rgb(245, 232, 199);
 }
 
 .t2b {
-  border-color:     rgb(25, 50, 60);
-  color:            rgb(202, 65, 99);
-  background-color: rgb(236, 178, 231);
+  border-color:     rgb(112, 46, 73);
+  color:            rgb(112, 46, 73);
+  background-color: rgb(236, 204, 178);
 }
 
 .t3b {
-  border-color:     rgb(25, 50, 60);
-  color:            rgb(139, 20, 76);
-  background-color: rgb(236, 173, 178);
+  border-color:     rgb(112, 46, 73);
+  background-color: rgb(222, 182, 171);
 }
 
 .t4b {
-  border-color:     rgb(25, 50, 60);
-  color:            rgb(255, 255, 255);
-  background-color:   rgb(129, 62, 89);
+  border-color:     rgb(112, 46, 73);
+  background-color: rgb(160, 95, 121);
 }
 
 .t5b {
-  border-color:     rgb(25, 50, 60);
-  background-color: rgb(73, 27, 41);
+  border-color:     rgb(112, 46, 73);
+  background-color: rgb(112, 46, 73);
 }
