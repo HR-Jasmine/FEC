@@ -10,17 +10,12 @@ const ReviewForm = ({showForm, onClose, product, metaData}) => {
     return null;
   }
 
-
-
-
   const imgStyle = {
     "max-height": "150px",
     "max-width": "150px",
     "height": "auto",
     "width": "auto",
 }
-
-
 
   const blankFormState = {
     rating: 0,
@@ -142,7 +137,7 @@ const ReviewForm = ({showForm, onClose, product, metaData}) => {
         </div>
         <div className="review-form-modal-body">
           <form>
-            <label class="review-star-rating">
+            <label className="review-star-rating">
               <strong>Rating: {formState.rating === 0 ? null : ratingMeaning[formState.rating]}</strong>
               <input className="review-rating" max="100" onChange={(e) => {
                 let updatedFormState = {...formState, rating: Math.ceil(e.target.value / 20)};
@@ -168,7 +163,7 @@ const ReviewForm = ({showForm, onClose, product, metaData}) => {
               setFormState(updatedForm);
             }}></textarea><br></br>
             <div className="review-chars-left">
-              {formState.reviewBody.length > 49 ? "Minimum reached" : "Minimum required chars left:" + (50 - formState.reviewBody.length)}
+              {formState.reviewBody.length > 49 ? "Minimum reached" : "Minimum required chars left: " + (50 - formState.reviewBody.length)}
             </div>
             <div className="review-uploaded-image-holder">
               {formState.photos.map((photo, i) => {
@@ -189,16 +184,16 @@ const ReviewForm = ({showForm, onClose, product, metaData}) => {
               e.preventDefault();
               let updatedForm = {...formState, email: e.target.value};
               setFormState(updatedForm);
-            }}></input>
+            }}></input><br></br><br></br>
             {Object.keys(metaData.characteristics).map((char, i) => {
               return (
                 <div className="char-holder" key={i}>
-                  <p>{char}</p><br></br>
+                  <p><b>{char}</b></p>
                   <input type="radio" name={metaData.characteristics[char].id} value={1} onClick={scaleChange}></input>&nbsp; {scales[char][0]}<br></br>
                   <input type="radio" name={metaData.characteristics[char].id} value={2} onClick={scaleChange}></input>&nbsp; {scales[char][1]}<br></br>
                   <input type="radio" name={metaData.characteristics[char].id} value={3} onClick={scaleChange}></input>&nbsp; {scales[char][2]}<br></br>
                   <input type="radio" name={metaData.characteristics[char].id} value={4} onClick={scaleChange}></input>&nbsp; {scales[char][3]}<br></br>
-                  <input type="radio" name={metaData.characteristics[char].id} value={5} onClick={scaleChange}></input>&nbsp; {scales[char][4]}<br></br>
+                  <input type="radio" name={metaData.characteristics[char].id} value={5} onClick={scaleChange}></input>&nbsp; {scales[char][4]}<br></br><br></br>
                 </div>
               )
             })}
