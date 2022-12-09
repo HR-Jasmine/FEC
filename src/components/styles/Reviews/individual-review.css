@@ -1,7 +1,7 @@
 .review-item {
-  border: 2px solid black;
-  margin: 15px;
-  width: 85%;
+  margin-bottom: 16px;
+  width: 95%;
+  flex-shrink: 0;
 }
 
 .review-image {
