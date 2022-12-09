@@ -31,6 +31,7 @@ const QA = ({productId, product}) => {
       page: 1,
       count: 5
     }
+
     axios.get(url, {params, headers})
       .then((response) => {
         console.log(typeof response.data.results[0].question_helpfulness)
