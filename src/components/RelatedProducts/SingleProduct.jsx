@@ -46,7 +46,7 @@ const SingleProduct = ( { productId, changeId } ) => {
 
   useEffect(() => {
     console.log(productInfo);
-    if (dumbRender > 0) {
+    if (dumbRender > 0 && productInfo.photos) {
       let photoUrl = productInfo.photos[0].thumbnail_url;
       setProductPhoto(photoUrl);
     }

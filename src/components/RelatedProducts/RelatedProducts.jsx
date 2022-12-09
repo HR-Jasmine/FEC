@@ -31,6 +31,7 @@ const RelatedProducts = ( { productId, changeId } ) => {
     }
     })
     .then(data => {
+      console.log(data.data);
       setrelatedId(data.data);
     })
   }
@@ -52,6 +53,7 @@ const RelatedProducts = ( { productId, changeId } ) => {
         }
         })
         .then(response => {
+          console.log('resonse in get product', response.data)
           return setrelprods(relprods => ([...relprods, response.data]))
         })
       }
