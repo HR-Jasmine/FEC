@@ -109,7 +109,7 @@ const Reviews = ({productId, product}) => {
     return null;
   } else {
     return (
-      <div className="reviews-panel" id="reviews" onClick={(e) => {interaction(e.target, 'Reviews')}}>
+      <div className="reviews-panel " id="reviews" onClick={(e) => {interaction(e.target, 'Reviews')}}>
         <ReviewBreakdown metaData={metaData} filterSelector={filterSelector} ratingFilters={ratingFilters} isFiltered={isFiltered}/>
         <div className="review-nav">
           Sort by: &nbsp;&nbsp;

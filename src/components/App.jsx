@@ -39,8 +39,8 @@ const App = (props) => {
   return (
       <div className="app">
         <Overview product={state.product} themes={themes} />
-        {/* <RelatedProducts productId={state.productId} changeId={changeId}/>
-        <QA productId={state.productId} product={state.product}/> */}
+        <RelatedProducts productId={state.productId} changeId={changeId}/>
+        <QA productId={state.productId} product={state.product}/>
         <Reviews productId={state.productId} product={state.product} />
       </div>
   )
