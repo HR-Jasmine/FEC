@@ -5,6 +5,7 @@ import IndividualReview from './IndividualReview.jsx';
 import ReviewBreakdown from './ReviewBreakdown.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import '../styles/Reviews/reviews.css';
+import interaction from '../interaction.js';
 
 const Reviews = ({productId, product}) => {
 
@@ -108,11 +109,14 @@ const Reviews = ({productId, product}) => {
     return null;
   } else {
     return (
-      <div className="reviews-panel" id="reviews">
+      <div className="reviews-panel" id="reviews" onClick={(e) => {interaction(e.target, 'Reviews')}}>
         <ReviewBreakdown metaData={metaData} filterSelector={filterSelector} ratingFilters={ratingFilters} isFiltered={isFiltered}/>
         <div className="review-nav">
           Sort by: &nbsp;&nbsp;
-          <select className="sort-menu" onChange={(e) => {sortSelector(e.target.value)}}>
+          <select className="sort-menu" onChange={(e) => {
+            interaction(e.target);
+            sortSelector(e.target.value);
+          }}>
             <option value="relevance">Relevance</option>
             <option value="helpful">Helpful</option>
             <option value="newest">Newest</option>
@@ -124,9 +128,12 @@ const Reviews = ({productId, product}) => {
           })}
           <button className="more-reviews-btn" hidden={numOfRevs >= displayReviews.length ? true : false} onClick={(e) => {
             e.preventDefault();
+            interaction(e.target);
             setNumOfRevs(numOfRevs + 2);
           }}>More Reviews</button>&nbsp;&nbsp;
-          <button onClick={() => {setShowForm(true)}}>Add Review</button><br></br>
+          <button className="add-review-button" onClick={(e) => {
+            setShowForm(true);
+          }}>Add Review</button><br></br>
 
           <ReviewForm showForm={showForm} metaData={metaData} product={product} onClose={() => {setShowForm(false)}}/>
         </div>
