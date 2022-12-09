@@ -42,7 +42,7 @@ const App = (props) => {
         <Overview product={state.product} themes={themes} />
         <RelatedProducts productId={state.productId} changeId={changeId}/>
         <QA productId={state.productId} product={state.product}/>
-        <Reviews productId={state.productId} product={state.product} />
+        <Reviews productId={state.productId} product={state.product} theme={state.theme} themes={themes}/>
       </div>
   )
 }
