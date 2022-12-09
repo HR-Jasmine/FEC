@@ -1,9 +1,10 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/Question/accordion.css';
 import {format} from 'date-fns'
 import AnswerModal from './AnswerModal.jsx'
 import QuestModal from './QuestModal.jsx'
+import axios from 'axios'
 
 
 const Accordion = ({question, product}) => {
@@ -19,6 +20,22 @@ const Accordion = ({question, product}) => {
     return answers[b].helpfulness - answers[a].helpfulness
   })
 
+  // const headers = {'Authorization': process.env.API_KEY};
+  // let id = question.question_id
+  // const getAnswers = (id) => {
+  //   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/:question_id/answers';
+  //   const params = {
+  //     question_id: id,
+  //     page: 1,
+  //     count: 100
+  //   }
+  //   axios.get(url,{params, headers})
+  //     .then((res) => {
+  //       console.log(res)
+  //     })
+  // }
+
+  // useEffect(getAnswers(id),[])
   // const helpCountChange = (e) => {
   //   e.preventDefault();
   //   setHelpfulness((prev) => prev + 1)

@@ -2,8 +2,12 @@ import React from 'react';
 import FormInput from './FormComp/FormInput.jsx'
 import FormTextArea from './FormComp/FormTextArea.jsx'
 import { useState } from 'react';
+import axios from 'axios'
+import PhotoModal from './PhotoModal.jsx'
 
-const AnswerForm = () => {
+const AnswerForm = ({question}) => {
+  const headers = {'Authorization': process.env.API_KEY};
+  const [photoIsOpen, setPhotoIsOpen] = useState(false)
   const [values, setValues] = useState({
     Nickname: "",
     Email:"",
@@ -39,15 +43,28 @@ const AnswerForm = () => {
     label: "Answer:"
   }]
 
+
+
+
   const handleAnswerSubmit = (e) => {
+    console.log(question.id)
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question.question_id}/answers`;
+    const params = {
+      body: values.Answer,
+      name: values.Nickname,
+      email: values.Email,
+    }
     e.preventDefault();
+    axios.post(url, params, {headers})
+      .then((res) => {
+        console.log(res)
+      })
 
   }
   const handleChange = (e) => {
     e.preventDefault();
     setValues({...values, [e.target.name]: e.target.value})
   }
-  console.log(values)
 
   return (
     <div className="form-app">
@@ -67,7 +84,9 @@ const AnswerForm = () => {
           }
         </div>
         <button className="submit-btn" type="submit">Submit</button>
+        <button>Upload Photos</button>
       </form>
+      <PhotoModal photoIsOpen={photoIsOpen} setPhotoIsOpen={setPhotoIsOpen}/>
     </div>
   )
 }

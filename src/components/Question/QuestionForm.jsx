@@ -5,7 +5,8 @@ import { useState } from 'react';
 import axios from 'axios'
 
 const headers = {'Authorization': process.env.API_KEY};
-const QuestionForm = ({productId}) => {
+const QuestionForm = ({productId, closeQuestModal}) => {
+
   const [values, setValues] = useState({
     Nickname: "",
     Email:"",
@@ -42,21 +43,21 @@ const QuestionForm = ({productId}) => {
   }]
 
   const handleQuestionSubmit = (e) => {
-    const formData = JSON.stringify(values)
-    const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions';
-    const params = {
-      body: formData.Question,
-      name: formData.Nickname,
-      email: formData.Email,
-      product_id: productId,
-    }
     e.preventDefault();
-    axios.post(url, params, headers)
+    const formData = JSON.stringify(values)
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`;
+    const params = {
+      body: values.Question,
+      name: values.Nickname,
+      email: values.Email,
+      product_id: productId
+    }
+    axios.post(url, params, {headers})
       .then((res) => {
         console.log(res)
       })
       .catch((error) => {
-        res.send("cannot post")
+        console.log('Cannot post')
       })
   }
   const handleChange = (e) => {

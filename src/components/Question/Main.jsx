@@ -31,6 +31,7 @@ const QA = ({productId, product}) => {
         console.log(typeof response.data.results[0].question_helpfulness)
         const sortedList = response.data.results.sort((a, b) => {
           console.log(response.data.results)
+          console.log(productId)
           return b.question_helpfulness - a.question_helpfulness
         })
         setOriginalLength(sortedList.length)
@@ -43,7 +44,7 @@ const QA = ({productId, product}) => {
   };
 
 
-  useEffect(getQuestions,[numOfQuestionsRendered])
+  useEffect(getQuestions,[numOfQuestionsRendered, productId])
 
   // const handleSearchChange = (value) => {
   //   console.log(value.length)
