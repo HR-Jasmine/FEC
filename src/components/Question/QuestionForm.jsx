@@ -45,12 +45,11 @@ const QuestionForm = ({productId, closeQuestModal}) => {
   const handleQuestionSubmit = (e) => {
     e.preventDefault();
     const formData = JSON.stringify(values)
-    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/`;
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${productId}`;
     const params = {
       body: values.Question,
       name: values.Nickname,
       email: values.Email,
-      product_id: productId
     }
     axios.post(url, params, {headers})
       .then((res) => {

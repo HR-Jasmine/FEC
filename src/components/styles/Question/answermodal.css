@@ -2,7 +2,7 @@
 .modal{
   position: fixed;
   width: 600px;
-  height: 640px;
+  height: 700px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -25,3 +25,9 @@ h1, .modal-title, .modal-product{
 /* h3{
   margin-bottom: 1rem;
 } */
+.upload-btn{
+  padding: 10px;
+  border: 2px solid plum ;
+  background-color: transparent;
+}
+

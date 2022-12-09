@@ -1,4 +1,5 @@
 import React from 'react';
+import './formInput.css'
 
 const FormTextArea = (props) => {
   const {handleChange, label, ...otherTextProps} = props

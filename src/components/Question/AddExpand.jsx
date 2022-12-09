@@ -11,10 +11,12 @@ const AddExpand = ({setNumOfQuestionsRendered, productId, product, listOfQuestio
 
   const moreQuestions = (e) => {
     e.preventDefault();
-    setNumOfQuestionsRendered((prev) => prev + 2)
-    if(numOfQuestionsRendered > originalLength) {
-      e.target.disabled = true
-    }
+    setNumOfQuestionsRendered((prev) => {
+      if(numOfQuestionsRendered === originalLength) {
+        e.target.disabled = true
+      }
+      return prev + 2
+    })
   }
   const openQuestModal = (e) => {
     e.preventDefault();
@@ -30,7 +32,7 @@ const AddExpand = ({setNumOfQuestionsRendered, productId, product, listOfQuestio
 
     <div className="button-container">
       {
-      originalLength === 2 ? <div className="add-expand-btn-container">
+      originalLength > 2 ? <div className="add-expand-btn-container">
         <button className="more" onClick={moreQuestions}> More Questions</button>
         <button className="add" onClick={openQuestModal} > Add a question </button>
       </div>: <button className="add" onClick={openQuestModal} > Add a question </button>

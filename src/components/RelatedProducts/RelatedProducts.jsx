@@ -31,7 +31,6 @@ const RelatedProducts = ( { productId, changeId } ) => {
     }
     })
     .then(data => {
-      console.log(data.data);
       setrelatedId(data.data);
     })
   }
@@ -39,7 +38,7 @@ const RelatedProducts = ( { productId, changeId } ) => {
   useEffect(() => {
   getRelatedProducts(productId);
   }, [productId])
-  // console.log('relatedId from setState', relatedId)
+
 
   // want to get individual product obj with info
   // add result obj to array in relprods
@@ -53,7 +52,7 @@ const RelatedProducts = ( { productId, changeId } ) => {
         }
         })
         .then(response => {
-          console.log('resonse in get product', response.data)
+
           return setrelprods(relprods => ([...relprods, response.data]))
         })
       }
@@ -141,9 +140,9 @@ const RelatedProducts = ( { productId, changeId } ) => {
 
       return (
         <div className="related-products-buttons">
-          {relatedId.map(id => {
+          {relatedId.map((id, i) => {
             return (
-              <div classname="related-button">
+              <div className="related-button" key={i}>
                 <button onClick={(e) => {
                   e.preventDefault();
                   changeId(id);

@@ -66,6 +66,15 @@ const AnswerForm = ({question}) => {
     setValues({...values, [e.target.name]: e.target.value})
   }
 
+  const openPhoto = (e) => {
+    e.preventDefault();
+    setPhotoIsOpen(true)
+  }
+  const closePhotoModal = (e) => {
+    e.preventDefault();
+    setPhotoIsOpen(false)
+  }
+
   return (
     <div className="form-app">
       <form onSubmit={handleAnswerSubmit}>
@@ -76,6 +85,7 @@ const AnswerForm = ({question}) => {
             })
           }
         </div>
+        <input type="file" className="upload-btn"  ></input>
         <div className="textarea-div">
           {
             textObj.map((text, i) => {
@@ -84,11 +94,13 @@ const AnswerForm = ({question}) => {
           }
         </div>
         <button className="submit-btn" type="submit">Submit</button>
-        <button>Upload Photos</button>
+
       </form>
-      <PhotoModal photoIsOpen={photoIsOpen} setPhotoIsOpen={setPhotoIsOpen}/>
+      <PhotoModal photoIsOpen={photoIsOpen} setPhotoIsOpen={setPhotoIsOpen} closePhotoModal={closePhotoModal}/>
     </div>
   )
 }
 
 export default AnswerForm;
+
+// onClick={openPhoto}

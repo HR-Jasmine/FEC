@@ -11,14 +11,14 @@ import QuestionForm from './QuestionForm.jsx'
 
 const QA = ({productId, product}) => {
 
-  if (!product) {
-    return null;
-  }
+  // if (!product) {
+  //   return null;
+  // }
 
   //State Management
   const [listOfQuestions, setListOfQuestions] = useState([])
   const [filteredQuestions, setFilteredQuestions] = useState([])
-  const [numOfQuestionsRendered, setNumOfQuestionsRendered] = useState(4)
+  const [numOfQuestionsRendered, setNumOfQuestionsRendered] = useState(2)
   const [originalLength, setOriginalLength] = useState(0)
 
   // API calls
@@ -28,15 +28,10 @@ const QA = ({productId, product}) => {
     const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions';
     const params = {
       product_id: productId,
-      page: 1,
-      count: 5
     }
     axios.get(url, {params, headers})
       .then((response) => {
-        console.log(typeof response.data.results[0].question_helpfulness)
         const sortedList = response.data.results.sort((a, b) => {
-          console.log(response.data.results)
-          console.log(productId)
           return b.question_helpfulness - a.question_helpfulness
         })
         setOriginalLength(sortedList.length)
@@ -50,19 +45,8 @@ const QA = ({productId, product}) => {
 
 
   useEffect(getQuestions,[numOfQuestionsRendered, productId])
+  console.log(originalLength)
 
-  // const handleSearchChange = (value) => {
-  //   console.log(value.length)
-  //   if(value.length >= 3){
-  //     let filteredQuestionsList = listOfQuestions.filter((question) => {
-  //       return question.question_body.toLowerCase().includes(value.toLowerCase())
-  //     })
-
-  //    return setFilteredQuestions(filteredQuestionsList)
-  //   }
-
-  //   return setFilteredQuestions(listOfQuestions)
-  // }
 
   return (
     <div className="main-container">

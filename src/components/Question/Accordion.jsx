@@ -19,23 +19,19 @@ const Accordion = ({question, product}) => {
   const sortedAnswersId = Object.keys(answers).slice(0,numOfAnswersRendered).sort((a, b) => {
     return answers[b].helpfulness - answers[a].helpfulness
   })
+console.log(question)
+  const headers = {'Authorization': process.env.API_KEY};
+  const getAnswers = (question) => {
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question.question_id}/answers`;
+    axios.get(url,{headers})
+      .then((res) => {
+        console.log(res)
+      })
+  }
 
-  // const headers = {'Authorization': process.env.API_KEY};
-  // let id = question.question_id
-  // const getAnswers = (id) => {
-  //   const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/:question_id/answers';
-  //   const params = {
-  //     question_id: id,
-  //     page: 1,
-  //     count: 100
-  //   }
-  //   axios.get(url,{params, headers})
-  //     .then((res) => {
-  //       console.log(res)
-  //     })
-  // }
-
-  // useEffect(getAnswers(id),[])
+  useEffect(() => {
+    getAnswers(question)
+  },[])
   // const helpCountChange = (e) => {
   //   e.preventDefault();
   //   setHelpfulness((prev) => prev + 1)
