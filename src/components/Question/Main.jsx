@@ -10,6 +10,11 @@ import AnswerForm from './AnswerForm.jsx';
 import QuestionForm from './QuestionForm.jsx'
 
 const QA = ({productId, product}) => {
+
+  if (!product) {
+    return null;
+  }
+
   //State Management
   const [listOfQuestions, setListOfQuestions] = useState([])
   const [filteredQuestions, setFilteredQuestions] = useState([])

@@ -3,9 +3,11 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import IndividualReview from './IndividualReview.jsx';
 import ReviewBreakdown from './ReviewBreakdown.jsx';
+import ReviewForm from './ReviewForm.jsx';
 import '../styles/Reviews/reviews.css';
+import interaction from '../interaction.js';
 
-const Reviews = ({productId}) => {
+const Reviews = ({productId, product}) => {
 
   const [allReviews, setAllReviews] = useState([]);
   const [numOfRevs, setNumOfRevs] = useState(2);
@@ -13,8 +15,9 @@ const Reviews = ({productId}) => {
   const [metaData, setMetaData] = useState({});
   const [ratingFilters, setRatingFilters] = useState({1: false, 2: false, 3: false, 4: false, 5: false});
   const [isFiltered, setIsFiltered] = useState(false);
-
-  // console.log(productId)
+  const [showForm, setShowForm] = useState(false);
+  const [beenClicked, setBeenClicked] = useState({});
+  const [renderCount, setRenderCount] = useState(0);
 
   useEffect(() => {
     if (productId === '') {
@@ -22,7 +25,7 @@ const Reviews = ({productId}) => {
     }
 
     // Get the reviews
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}`,
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&count=1000`,
       {
         headers: {
           'Authorization': process.env.API_KEY
@@ -44,31 +47,10 @@ const Reviews = ({productId}) => {
       setMetaData(response.data);
     })
 
+    setNumOfRevs(0);
+    setRenderCount(renderCount + 1);
   }, [productId])
 
-  const sortSelector = (param) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&sort=${param}`,
-    {
-      headers: {
-        'Authorization': process.env.API_KEY
-      }
-    })
-    .then(response => {
-      setAllReviews(response.data.results);
-      setDisplayReviews(response.data.results);
-      setNumOfRevs(2);
-    })
-  }
-
-  const filterSelector = (num) => {
-    if (num === 'clear') {
-      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
-      return;
-    }
-    let newFilters = {...ratingFilters};
-    newFilters[num] = !newFilters[num];
-    setRatingFilters(newFilters);
-  }
 
   useEffect(() => {
     let allFilters = Object.values(ratingFilters);
@@ -87,17 +69,54 @@ const Reviews = ({productId}) => {
       })
       setDisplayReviews(compiledReviews);
     }
-  }, [ratingFilters])
+    setNumOfRevs(0);
+    setRenderCount(renderCount + 1);
+  }, [ratingFilters]);
+
+  useEffect(() => {
+    setNumOfRevs(2);
+  }, [renderCount]);
+
+  const sortSelector = (param) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/?product_id=${productId}&sort=${param}&count=1000`,
+    {
+      headers: {
+        'Authorization': process.env.API_KEY
+      }
+    })
+    .then(response => {
+      setAllReviews(response.data.results);
+      setDisplayReviews(response.data.results);
+      setNumOfRevs(0);
+      setRenderCount(renderCount + 1);
+      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
+    })
+  }
+
+  const filterSelector = (num) => {
+    console.log('in filter selector');
+    if (num === 'clear') {
+      setRatingFilters({1: false, 2: false, 3: false, 4: false, 5: false});
+      return;
+    }
+    let newFilters = {...ratingFilters};
+    newFilters[num] = !newFilters[num];
+    setRatingFilters(newFilters);
+  }
+
 
   if (!allReviews[0] || !metaData.ratings) {
     return null;
   } else {
     return (
-      <div className="reviews-panel">
+      <div className="reviews-panel" id="reviews" onClick={(e) => {interaction(e.target, 'Reviews')}}>
         <ReviewBreakdown metaData={metaData} filterSelector={filterSelector} ratingFilters={ratingFilters} isFiltered={isFiltered}/>
         <div className="review-nav">
           Sort by: &nbsp;&nbsp;
-          <select className="sort-menu" onChange={(e) => {sortSelector(e.target.value)}}>
+          <select className="sort-menu" onChange={(e) => {
+            interaction(e.target);
+            sortSelector(e.target.value);
+          }}>
             <option value="relevance">Relevance</option>
             <option value="helpful">Helpful</option>
             <option value="newest">Newest</option>
@@ -105,13 +124,20 @@ const Reviews = ({productId}) => {
         </div>
         <div className="review-list">
           {displayReviews.slice(0, numOfRevs).map((review, i) => {
-            return <IndividualReview review={review} key={i}/>
+            return <IndividualReview review={review} beenClicked={beenClicked} setBeenClicked={setBeenClicked} key={i}/>
           })}
-          <button className="more-reviews-btn" hidden={numOfRevs >= allReviews.length ? true : false} onClick={(e) => {
+          <button className="more-reviews-btn" hidden={numOfRevs >= displayReviews.length ? true : false} onClick={(e) => {
             e.preventDefault();
+            interaction(e.target);
             setNumOfRevs(numOfRevs + 2);
-          }}>More Reviews</button>
+          }}>More Reviews</button>&nbsp;&nbsp;
+          <button className="add-review-button" onClick={(e) => {
+            setShowForm(true);
+          }}>Add Review</button><br></br>
+
+          <ReviewForm showForm={showForm} metaData={metaData} product={product} onClose={() => {setShowForm(false)}}/>
         </div>
+        <div id="modal-holder"></div>
       </div>
     );
   }

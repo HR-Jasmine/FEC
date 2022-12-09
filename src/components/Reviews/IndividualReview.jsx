@@ -2,10 +2,11 @@ import React from 'react';
 import {useState} from 'react';
 import {format, parseISO} from 'date-fns';
 import Stars from '../Stars.jsx';
+import ReviewImgThumbnail from './ReviewImgThumbnail.jsx';
 import '../styles/Reviews/individual-review.css';
 import axios from 'axios';
 
-const IndividualReview = ({review}) => {
+const IndividualReview = ({review, beenClicked, setBeenClicked}) => {
 
 
   const [reviewBody, setReviewBody] = useState(review.body.slice(0, 250));
@@ -20,27 +21,33 @@ const IndividualReview = ({review}) => {
       <Stars rating={review.rating} />
       <h6 className="review-username">Review by: {review.reviewer_name}</h6>
       <h5 className="review-date">{format(parseISO(review.date), 'MMMM dd, yyyy')}</h5>
-      <p className="review-body">
+      <div className="review-body">
         {reviewBody}<br></br>
+        <div className="review-image-holder">
+          <span>
         {review.photos.map((photo, i) => {
-          return <img src={photo.url} key={i} width="150"></img>
-        })}<br></br>
-        {review.recommend ? <a>I recommend this product &#x2713;</a> : null}
+          return (<ReviewImgThumbnail photo={photo} key={i} />);
+        })}
+          </span>
+        </div><br></br>
         <button hidden={review.body.length >= 250 ? false : true} onClick={(e) => {
-          e.target.preventDefault();
+          e.target.hidden=true;
           setReviewBody(review.body);
-        }}>See More</button>
-      </p>
+        }}>See More</button><br></br>
+        {review.recommend ? <a>I recommend this product &#x2713;</a> : null}
+      </div>
       <p className="review-response" hidden={review.response === null ? true : false}>
         Response from seller:<br></br>
         {review.response}
       </p>
       <div className="review-helpful">
         Was this review helpful?
-        <button className={"helpful-button" + review.review_id} onClick={(e) => {
+        <button className={"helpful-button" + review.review_id} disabled={beenClicked[review.review_id] === true ? true : false} onClick={(e) => {
           e.preventDefault();
-          document.querySelectorAll(`.helpful-button${review.review_id}`).forEach(button => button.disabled=true);
-          axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review.review_id}/helpful/`,
+          let copyOfBeenClicked = {...beenClicked};
+          copyOfBeenClicked[review.review_id] = true;
+          setBeenClicked(copyOfBeenClicked);
+          axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review.review_id}/helpful/`, {},
           {
             headers: {
               'Authorization': process.env.API_KEY
@@ -48,9 +55,17 @@ const IndividualReview = ({review}) => {
           })
           setIsHelpful(isHelpful + 1);
         }}>Yes ({isHelpful})</button>&nbsp;&nbsp;&nbsp;
-        <button className={"helpful-button" + review.review_id} onClick={(e) => {
+        <button className={"helpful-button" + review.review_id} disabled={beenClicked[review.review_id] === true ? true : false} onClick={(e) => {
           e.preventDefault();
-          document.querySelectorAll(`.helpful-button${review.review_id}`).forEach(button => button.disabled=true);
+          let copyOfBeenClicked = {...beenClicked};
+          copyOfBeenClicked[review.review_id] = true;
+          setBeenClicked(copyOfBeenClicked);
+          axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review.review_id}/report/`, {},
+          {
+            headers: {
+              'Authorization': process.env.API_KEY
+            }
+          })
           setNotHelpful(notHelpful + 1);
         }}>No ({notHelpful})</button>
       </div>
