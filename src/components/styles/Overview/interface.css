@@ -9,7 +9,6 @@
 
 .interfaceHead {
   padding: 16px;
-  flex: 1 1 auto;
 }
 
 .star {
@@ -44,7 +43,7 @@
   height: 60px;
   border-radius: 60px;
   background-color: rgb(207, 207, 207);
-  box-shadow: 0 2px 2px 1px rgb(192, 177, 177);
+  box-shadow: 0 2px 2px 1px rgb(184, 157, 157);
   box-sizing: content-box;
 
   object-fit: cover;
@@ -83,7 +82,7 @@
   color: white;
 
   font-weight: bold;
-  box-shadow: 0 2px 2px 1px rgb(211, 204, 204);
+  box-shadow: 0 2px 2px 1px rgb(184, 157, 157);
 }
 
 .bigButton:active {
