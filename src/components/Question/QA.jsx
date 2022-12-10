@@ -3,6 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 // Components //
+import Search from './Search.jsx'
 import QuestionList from './QuestionList.jsx'
 import MoreBtn from './MoreBtn.jsx'
 import AddQ from './AddQ.jsx'
@@ -13,7 +14,9 @@ import sortQuestions from './lib/sortQuestions.js'
 import '../styles/Question/main.css';
 
 const QA = ({productId, product}) => {
-
+  if (!product) {
+    return null;
+  }
   // State management //
   const [questions, setQuestions] = useState([])
   const [filteredQuestions, setFilteredQuestions] = useState([])
@@ -46,10 +49,11 @@ const QA = ({productId, product}) => {
   return (
     <div className="QA-ctn">
       <h2 className="section-title">Questions & Answers</h2>
+      <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} questions={questions} />
       <QuestionList questions={filteredQuestions} product={product}/>
       <div className="btn-container">
         <MoreBtn setQuestRendered={setQuestRendered} questCount={questCount} questRendered={questRendered} />
-        <AddQ />
+        <AddQ product={product}/>
       </div>
     </div>
   )

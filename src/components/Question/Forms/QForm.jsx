@@ -4,7 +4,7 @@ import Finput from './Finput.jsx'
 import Ftextarea from './Ftextarea.jsx'
 import axios from'axios'
 
-const AForm = ({question, closeQuestModal}) => {
+const AForm = ({question, closeQuestModal, product}) => {
 
   const headers = {'Authorization': process.env.API_KEY};
   const [photoIsOpen, setPhotoIsOpen] = useState(false)
@@ -74,11 +74,12 @@ const AForm = ({question, closeQuestModal}) => {
 
   return (
     <div className="form-app">
-      <form onSubmit={handleAnswerSubmit}>
-        <div className="close-modal-btn">
-          <button onClick={closeQuestModal}>Close</button>
+      <form onSubmit={handleAnswerSubmit} className="question-form">
+        <button onClick={closeQuestModal} className="closeModal-btn"> X </button>
+        <div className="modal-details">
+          <span className="modal-title">Ask Your Question</span>
+          <span className="product-details">Product: {product.name}</span>
         </div>
-        <h2>Test</h2>
         <div className="input-div">
           {
             inputs.map((input, i) => {
@@ -86,7 +87,7 @@ const AForm = ({question, closeQuestModal}) => {
             })
           }
         </div>
-        <input type="file" className="upload-btn"  ></input>
+        {/* <input type="file" className="upload-btn"  ></input> */}
         <div className="textarea-div">
           {
             textObj.map((text, i) => {

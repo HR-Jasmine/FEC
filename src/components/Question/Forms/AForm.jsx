@@ -4,9 +4,9 @@ import Finput from './Finput.jsx'
 import Ftextarea from './Ftextarea.jsx'
 import axios from'axios'
 
-import '../../styles/Question/forminput.css'
+import '../../styles/Question/formInput.css'
 
-const AForm = ({question, closeAnsModal}) => {
+const AForm = ({question, closeAnsModal, product}) => {
 
   const headers = {'Authorization': process.env.API_KEY};
   const [photoIsOpen, setPhotoIsOpen] = useState(false)
@@ -77,8 +77,11 @@ const AForm = ({question, closeAnsModal}) => {
   return (
     <div className="form-app">
       <form onSubmit={handleAnswerSubmit}>
-        <div className="close-modal-btn">
-            <button onClick={closeAnsModal}>Close</button>
+          <button onClick={closeAnsModal} className="closeModal-btn"> X </button>
+        <div className="modal-details">
+          <span className="modal-title">Ask Your Question</span>
+          <span className="product-details">Product: {product.name}</span>
+          <span className="product-details">Question: {question.question_body}</span>
         </div>
         <div className="input-div">
           {

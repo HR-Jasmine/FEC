@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../styles/Question/answermodal.css'
+import '../../styles/Question/modal.css'
 import AForm from '../Forms/AForm.jsx'
 
 const AnswerModal = ({product, question, setOpenAnswer}) => {
@@ -11,7 +11,7 @@ const AnswerModal = ({product, question, setOpenAnswer}) => {
 
   return (
     <div className="answer-modal-bg">
-        <AForm question={question} closeAnsModal={closeAnsModal}/>
+        <AForm question={question} closeAnsModal={closeAnsModal} product={product}/>
     </div>
   )
 }

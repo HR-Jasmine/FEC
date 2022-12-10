@@ -7,7 +7,6 @@ const FormTextArea = (props) => {
   return (
     <div className="textarea">
       <label className="labels">{label}</label>
-      <br/>
       <textarea {...otherTextProps} onChange={handleChange} cols="48" rows="8"></textarea>
     </div>
   )

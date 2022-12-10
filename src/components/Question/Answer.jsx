@@ -7,7 +7,7 @@ import AnswerModal from './Modals/AnswerModal.jsx'
 
 import '../styles/Question/accordion.css';
 
-const Answer = ({answer, question, qId}) => {
+const Answer = ({answer, question, qId, product}) => {
 
   const {answer_id, body, date, answerer_name, helpfulness, photos} = answer
   const newDate = format(new Date (date), 'MMMM d, yyyy')
@@ -37,19 +37,31 @@ const Answer = ({answer, question, qId}) => {
   }
 
   return (
-    <div>
-      <h4>A: {body}</h4>
-      <span>By: {answerer_name === "Seller" ? <span>Seller</span> : <span>{answerer_name}</span>}</span>
-      <span>{newDate}</span>
-      <button onClick={updateCount}>Helpful?</button>
-      <span>Yes({helpCount})</span>
-      <button onClick={openAnsModal}> Add Answer</button>
-      <button onClick={report}> Report </button>
+    <div className="answer">
+      <div className="Apart1">
+        <h4>A: {body}</h4>
+        <div className="Apart2">
+          <button onClick={updateCount} className="accord-btn">Helpful?</button>
+          <span className="yes">Yes({helpCount})</span>
+        </div>
+      </div>
+      <div className="Apart3">
+        <div className="Apart5">
+
+          <span>By: {answerer_name === "Seller" ? <span>Seller</span> : <span>{answerer_name}</span>}</span>
+          <span>{newDate}</span>
+        </div>
+        <div className="Apart4">
+          <button onClick={openAnsModal} className="accord-btn" > Add Answer</button>
+          <button onClick={report} className="accord-btn"> Report </button>
+        </div>
+      </div>
       { pics.map((pic,i) => {
         return <img className="answer-img" key={i} src={pic.url}></img>
       }) }
-      {openAnswer && <AnswerModal question={question} answer={answer} setOpenAnswer={setOpenAnswer} qId={qId}/>}
+      {openAnswer && <AnswerModal question={question} answer={answer} setOpenAnswer={setOpenAnswer} qId={qId} product={product}/>}
     </div>
   )
 }
 export default Answer;
+

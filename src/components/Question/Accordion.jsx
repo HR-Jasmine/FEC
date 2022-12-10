@@ -69,14 +69,18 @@ const Accordion = ({question, product}) => {
     <div className="accordion">
       <div className="accordion-item">
         <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
-          <div>Q: {question_body}</div>
-          <button onClick={helpfulIncrement}>Helpful?</button>
-          <span>Yes({questionHelpfulness})</span>
-          <div>{isActive ? <FaAngleDoubleUp className="bounce" onClick={() => setIsActive(!isActive)}/> : <FaAngleDoubleDown className="bounce" onClick={() => setIsActive(!isActive)}/>}</div>
+          <div className="Qpart1">
+            <h3>Q: {question_body}</h3>
+            <div>{isActive ? <FaAngleDoubleUp className="bounce" /> : <FaAngleDoubleDown className="bounce" />}</div>
+          </div>
+          <div className="Qpart2">
+            <button onClick={helpfulIncrement} className="accord-btn">Helpful?</button>
+            <span className="yes">Yes({questionHelpfulness})</span>
+          </div>
         </div>
         {isActive &&
           <div className="accordion-content">{ answers.map((answer, i) => {
-              return <Answer key={i} answer={answer} question={question} />
+              return <Answer key={i} answer={answer} question={question} product={product}/>
           })}
           {
             numOfAnswers > 2 ? <button className="see-more-btn" onClick={changeToCollapse}> See more </button> : <span></span>
@@ -88,5 +92,3 @@ const Accordion = ({question, product}) => {
 }
 
 export default Accordion;
-
-// <Answer />
