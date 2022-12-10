@@ -4,8 +4,8 @@ import axios from 'axios';
 
 import Overview from './Overview/Overview.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
-import QA from './Question/Main.jsx';
 import Reviews from './Reviews/Reviews.jsx';
+import QA from './Question/QA.jsx'
 
 import './styles/app.css';
 import './styles/style.css';
@@ -39,11 +39,11 @@ const App = (props) => {
 
   return (
     <div className={`app ${themes['t1'][state.theme]}`}>
-    <Overview product={state.product} state={state} setState={setState} theme={state.theme} themes={themes} />
-    <RelatedProducts productId={state.productId} changeId={changeId}/>
-    <QA productId={state.productId} product={state.product}/>
-    <Reviews productId={state.productId} product={state.product} theme={state.theme} themes={themes}/>
-  </div>
+      <Overview product={state.product} state={state} setState={setState} theme={state.theme} themes={themes} />
+      <RelatedProducts productId={state.productId} changeId={changeId}/>
+      <QA productId={state.productId} product={state.product}/>
+      <Reviews productId={state.productId} product={state.product} theme={state.theme} themes={themes}/>
+    </div>
   )
 }
 
