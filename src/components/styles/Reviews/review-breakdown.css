@@ -86,3 +86,7 @@
 .polar-right {
   float: right;
 }
+
+.big-percent {
+  font-size: 4em;
+}

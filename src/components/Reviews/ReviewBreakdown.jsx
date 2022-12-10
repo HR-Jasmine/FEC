@@ -81,8 +81,9 @@ const ReviewBreakdown = ({metaData, filterSelector, ratingFilters, isFiltered}) 
           </div>
         )
       })}
+      <br></br>
       <div className="percent-recommended">
-        {Math.floor((Number(metaData.recommended.true) / totalRatings) * 100)}% of people recommend this product.
+        <div className="big-percent">{Math.floor((Number(metaData.recommended.true) / totalRatings) * 100)}%</div> of people recommend this product.
       </div>
     </div>
   );
