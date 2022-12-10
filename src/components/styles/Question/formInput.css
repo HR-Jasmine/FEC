@@ -1,0 +1,63 @@
+.error-msg{
+  color: red;
+  display: none;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.extra-msg{
+  font-size: 0.75rem;
+}
+
+form{
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: lightslategray;
+  color: white
+
+}
+.form-input{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+/******* LABEL styling *******/
+.labels{
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+
+/******* INPUT styling *******/
+
+.inputs{
+  padding: 0.75em;
+  width: 50%;
+  border-radius: 5px;
+}
+
+.inputs:invalid[focused="true"] ~ .error-msg{
+  display: block;
+}
+.inputs:invalid[focused="true"] {
+  border: 2px solid red
+}
+
+/** TEXT AREA styling **/
+.textarea{
+  margin: 1rem 0;
+}
+textarea{
+  margin-top: 0.75rem;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+/***** SUBMIT BUTTON styling *****/
+.submit-btn{
+  padding: 0.5em;
+  width: 20%;
+  border-radius: 10px;
+}

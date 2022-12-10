@@ -4,9 +4,8 @@ import axios from 'axios';
 
 import Overview from './Overview/Overview.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
-// import QA from './Question/Main.jsx';
 import Reviews from './Reviews/Reviews.jsx';
-import QA from './Refactor/QA.jsx'
+import QA from './Question/QA.jsx'
 
 import './styles/style.css';
 import './styles/style.css';
@@ -33,11 +32,10 @@ const App = (props) => {
 
   return (
       <div className="app">
-        {/* <Overview product={state.product} />
-        <RelatedProducts productId={state.productId} changeId={changeId}/> */}
-        {/* <QA productId={state.productId} product={state.product}/> */}
+        <Overview product={state.product} />
+        <RelatedProducts productId={state.productId} changeId={changeId}/>
         <QA productId={state.productId} product={state.product}/>
-        {/* <Reviews productId={state.productId} product={state.product} /> */}
+        <Reviews productId={state.productId} product={state.product} />
       </div>
   )
 }

@@ -1,33 +1,47 @@
-
-.modal{
-  position: fixed;
-  width: 600px;
-  height: 700px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: grey;
-  z-index: 1000;
-  padding: 25px;
-}
-
-.close-modal{
-  position: absolute;
-  top: 3px;
-  right: 5px
-}
-
-h1, .modal-title, .modal-product{
-  text-align: center;
-  color: white;
-}
-
-/* h3{
-  margin-bottom: 1rem;
-} */
 .upload-btn{
   padding: 10px;
   border: 2px solid plum ;
   background-color: transparent;
 }
 
+.answer-modal-bg{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200,200,200);
+  top: 0;
+  left:0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.answer-modal-ctn{
+  width: 800px;
+  height: 800px;
+  background-color: white;
+  box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+.answer-title{
+  color: black;
+}
+.answer-modal-title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+}
+
+.close-btn-ctn{
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}

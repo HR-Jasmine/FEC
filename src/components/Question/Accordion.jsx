@@ -1,121 +1,92 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import '../styles/Question/accordion.css';
-import {format} from 'date-fns'
-import AnswerModal from './AnswerModal.jsx'
-import QuestModal from './QuestModal.jsx'
 import axios from 'axios'
 
+import Answer from './Answer.jsx'
+
+import sortAnswers from './lib/sortAnswers.js'
+
+import { FaAngleDoubleDown} from "react-icons/fa";
+import { FaAngleDoubleUp} from "react-icons/fa";
+
+
+
+import '../styles/Question/accordion.css';
 
 const Accordion = ({question, product}) => {
-  const { question_body, answers, question_helpfulness } = question
-  const [isActive, setIsActive] = useState(false);
-  const [isOpen, setIsOpen] = useState(false)
+  const {question_body, question_helpfulness, question_id} = question
+  const [qId, setQid] = useState(question_id)
   const [questionHelpfulness, setQuestionHelpfulness] = useState(question_helpfulness)
-  const [answerHelpfulness, setAnswerHelpfulness] = useState(0);
-  const [numOfAnswersRendered, setNumOfAnswersRendered] = useState(2)
 
-  const numOfAnswers = Object.keys(answers).length
-  const sortedAnswersId = Object.keys(answers).slice(0,numOfAnswersRendered).sort((a, b) => {
-    return answers[b].helpfulness - answers[a].helpfulness
-  })
-console.log(question)
+
+
+  // State Variables //
+  const [isActive, setIsActive] = useState(false) // Functionality for accordion
+  const [answers, setAnswers] = useState([])
+  const [numOfAnswers, setNumOfAnswers] = useState(0)
+  const [ansRendered, setAnsRendered] = useState(2)
+
+
+
+  //Global Variables
+  const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question_id}/answers`;
   const headers = {'Authorization': process.env.API_KEY};
-  const getAnswers = (question) => {
-    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question.question_id}/answers`;
+  const params = {
+    page: 1,
+    count: 5
+  }
+  // Fetching answers for a particular Id //
+  const getAnswers = () => {
     axios.get(url,{headers})
       .then((res) => {
-        console.log(res)
+        let answers = sortAnswers(res.data.results)
+        setNumOfAnswers(answers.length)
+        setAnswers(answers.slice(0,ansRendered))
       })
   }
+  useEffect(getAnswers,[ansRendered])
+  console.log(answers)
 
-  useEffect(() => {
-    getAnswers(question)
-  },[])
-  // const helpCountChange = (e) => {
-  //   e.preventDefault();
-  //   setHelpfulness((prev) => prev + 1)
-  // }
-
-  const openModal = (e) => {
+  // Functions //
+  const helpfulIncrement = (e) => { // Increments the helpfulness counter //
     e.preventDefault();
-    setIsOpen(true)
+    setQuestionHelpfulness((prev) => { return prev + 1})
+    e.target.disabled = true;
   }
-  const closeModal = (e) => {
-    e.preventDefault();
-    setIsOpen(false)
-  }
-
 
   const changeToCollapse = (e) => {
     e.preventDefault();
     if(e.target.innerText === "See more") {
       e.target.innerText = "Collapse"
-      setNumOfAnswersRendered((prev) => prev + 1000)
+      setAnsRendered((prev) => prev + 2)
     } else {
       e.target.innerText = "See more"
-      setNumOfAnswersRendered(2)
+      setAnsRendered(2)
     }
-
-  }
-
-  const helpfulIncrement = (e) => {
-    e.preventDefault();
-    setQuestionHelpfulness((prev) => prev + 1)
-    console.log(e)
-    e.target.disabled = true;
   }
 
   return (
     <div className="accordion">
       <div className="accordion-item">
-        <div className="accordion-title" >
-          <div className="question-row">
-            <AnswerModal isOpen={isOpen} closeModal={closeModal} question={question} product={product}/>
-            <div className="q-div">
-              <h4>Q: {question_body} </h4>
-              <div className="quest-help-div">
-                <button className="accord-btn" onClick={helpfulIncrement}> Helpful ?</button>
-                <span className="yes">Yes ({questionHelpfulness})</span>
-              </div>
-            </div>
-            <div className="arrow bounce" onClick={() => setIsActive(!isActive)}></div>
-          </div>
+        <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
+          <div>Q: {question_body}</div>
+          <button onClick={helpfulIncrement}>Helpful?</button>
+          <span>Yes({questionHelpfulness})</span>
+          <div>{isActive ? <FaAngleDoubleUp className="bounce" onClick={() => setIsActive(!isActive)}/> : <FaAngleDoubleDown className="bounce" onClick={() => setIsActive(!isActive)}/>}</div>
         </div>
         {isActive &&
-          <div className="answer-container accordion-content">
-            {
-             sortedAnswersId.map((answerId, i) => {
-                const date = answers[answerId].date
-                const newDate = format(new Date (date), 'MMMM d, yyyy')
-                return (
-                  <div key={i}>
-                    <h4 className="answer">A: {answers[answerId].body} </h4>
-                    <div className="user">
-                      {
-                        answers[answerId].answerer_name === 'Seller' ? <p className="seller">Seller</p> : <p className="username">By: {answers[answerId].answerer_name} </p>
-                      }
-                      <span className="answer-date">{newDate}</span>
-                      <button className="accord-btn"> Helpful ?</button>
-                      <span className="yes">Yes({answers[answerId].helpfulness})</span>
-                      <button className="accord-btn"onClick={openModal}>Add Answer</button>
-                      <button className="accord-btn" onClick={(e) => {
-                        e.target.innerText = "Reported"
-                        e.target.disabled = true;
-                      }}>Report</button>
-                    </div>
-                  </div>
-                )
-              })
-            }
-            {
-              numOfAnswers > 2 ? <button className="see-more-btn" onClick={changeToCollapse}> See more </button> : <span></span>
-            }
-          </div>
-        }
+          <div className="accordion-content">{ answers.map((answer, i) => {
+              return <Answer key={i} answer={answer} question={question} />
+          })}
+          {
+            numOfAnswers > 2 ? <button className="see-more-btn" onClick={changeToCollapse}> See more </button> : <span></span>
+          }
+          </div>}
       </div>
     </div>
   )
 }
 
 export default Accordion;
+
+// <Answer />
