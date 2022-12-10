@@ -197,6 +197,7 @@ justify-content: flex-end;
   height: 400px;
   margin-right: 20px;
   border: 2px solid green;
+  cursor: pointer;
 }
 
 .outfit-container {
