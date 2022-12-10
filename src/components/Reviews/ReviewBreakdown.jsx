@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import Stars from '../Stars.jsx';
 import '../styles/Reviews/review-breakdown.css';
 
-const ReviewBreakdown = ({metaData, filterSelector, ratingFilters, isFiltered}) => {
+const ReviewBreakdown = ({metaData, filterSelector, ratingFilters, isFiltered, themes, theme}) => {
   const [filterString, setFilterString] = useState('');
   let ratingsArray = Object.values(metaData.ratings);
   let totalRatings = Number(metaData.recommended.false) + Number(metaData.recommended.true);
@@ -45,12 +45,14 @@ const ReviewBreakdown = ({metaData, filterSelector, ratingFilters, isFiltered}) 
       Average rating of {Math.floor(avgRating * 10) / 10} across {totalRatings} reviews.
       <Stars rating={avgRating} />
       <div className="applied-filters" hidden={!isFiltered}>
+      <br></br>
           Filtering by star ratings of: {filterString}<br></br>
-          <button onClick={(e) => {
+          <button  className={`more-reviews-btn helpful-button ${themes['t4'][theme]}`} onClick={(e) => {
             e.preventDefault();
             filterSelector('clear');
           }}>Remove filters</button>
       </div>
+      <br></br>
       {ratingsArray.map((num, rating) => {
         let styleObj = {
           width: String((num / totalRatings) * 100) + '%'
