@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 import Overview from './Overview/Overview.jsx';
@@ -7,14 +7,15 @@ import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import QA from './Question/QA.jsx'
 
-import './styles/style.css';
-import './styles/style.css';
 import './styles/app.css';
+import './styles/style.css';
 
 const App = (props) => {
   const [state, setState] = useState({
     productId: props.product.id,
-    product: props.product
+    product: props.product,
+
+    theme: 'a'
   });
 
   const changeId = (id) => {
@@ -28,15 +29,21 @@ const App = (props) => {
           product: response.data
         });
       });
-  }
+  };
+
+  var themes = {};
+
+  for (var i = 0; i < 5; i++) {
+    themes['t' + i] = {a: `t${i}a`, b: `t${i}b`};
+  };
 
   return (
-      <div className="app">
-        <Overview product={state.product} />
-        <RelatedProducts productId={state.productId} changeId={changeId}/>
-        <QA productId={state.productId} product={state.product}/>
-        <Reviews productId={state.productId} product={state.product} />
-      </div>
+    <div className={`app ${themes['t1'][state.theme]}`}>
+    <Overview product={state.product} state={state} setState={setState} theme={state.theme} themes={themes} />
+    <RelatedProducts productId={state.productId} changeId={changeId}/>
+    {/* <QA productId={state.productId} product={state.product}/> */}
+    <Reviews productId={state.productId} product={state.product} theme={state.theme} themes={themes}/>
+  </div>
   )
 }
 

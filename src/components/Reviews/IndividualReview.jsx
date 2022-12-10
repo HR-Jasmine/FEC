@@ -6,7 +6,7 @@ import ReviewImgThumbnail from './ReviewImgThumbnail.jsx';
 import '../styles/Reviews/individual-review.css';
 import axios from 'axios';
 
-const IndividualReview = ({review, beenClicked, setBeenClicked}) => {
+const IndividualReview = ({review, beenClicked, setBeenClicked, theme, themes}) => {
 
 
   const [reviewBody, setReviewBody] = useState(review.body.slice(0, 250));
@@ -16,7 +16,7 @@ const IndividualReview = ({review, beenClicked, setBeenClicked}) => {
   const [notHelpful, setNotHelpful] = useState(0);
 
   return (
-    <div className="review-item">
+    <div className={`review-item card hover ${themes['t0'][theme]}`}>
       <h4 className="review-title">{review.summary}</h4>
       <Stars rating={review.rating} />
       <h6 className="review-username">Review by: {review.reviewer_name}</h6>
@@ -42,7 +42,7 @@ const IndividualReview = ({review, beenClicked, setBeenClicked}) => {
       </p>
       <div className="review-helpful">
         Was this review helpful?
-        <button className={"helpful-button" + review.review_id} disabled={beenClicked[review.review_id] === true ? true : false} onClick={(e) => {
+        <button className={"shareButton card hover helpful-button" + review.review_id + ' ' + themes['t3'][theme]} disabled={beenClicked[review.review_id] === true ? true : false} onClick={(e) => {
           e.preventDefault();
           let copyOfBeenClicked = {...beenClicked};
           copyOfBeenClicked[review.review_id] = true;
@@ -55,7 +55,7 @@ const IndividualReview = ({review, beenClicked, setBeenClicked}) => {
           })
           setIsHelpful(isHelpful + 1);
         }}>Yes ({isHelpful})</button>&nbsp;&nbsp;&nbsp;
-        <button className={"helpful-button" + review.review_id} disabled={beenClicked[review.review_id] === true ? true : false} onClick={(e) => {
+        <button className={"shareButton card hover helpful-button" + review.review_id + ' ' + themes['t3'][theme]} disabled={beenClicked[review.review_id] === true ? true : false} onClick={(e) => {
           e.preventDefault();
           let copyOfBeenClicked = {...beenClicked};
           copyOfBeenClicked[review.review_id] = true;

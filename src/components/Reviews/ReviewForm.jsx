@@ -2,7 +2,6 @@ import React from 'react';
 import {useState} from 'react';
 import axios from 'axios';
 import '../styles/Reviews/review-form.css';
-import ReviewImgThumbnail from './ReviewImgThumbnail.jsx';
 
 
 const ReviewForm = ({showForm, onClose, product, metaData}) => {
@@ -147,7 +146,7 @@ const ReviewForm = ({showForm, onClose, product, metaData}) => {
             </label>&nbsp;&nbsp;
             <div className="review-form-checkbox">
               Do you recommend this product?
-              <input type="checkbox" value={formState.recommend} onChange={(e) => {
+              <input type="checkbox" value={formState.recommend} onChange={() => {
                 let updatedForm = {...formState, recommend: !formState.recommend};
                 setFormState(updatedForm);
               }}></input>

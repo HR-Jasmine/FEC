@@ -1,6 +1,8 @@
 import React from 'react';
 import {useState, useEffect, createContext} from 'react';
 
+import {BsCart} from 'react-icons/bs';
+
 import Gallery from './Gallery.jsx';
 import OverviewInterface from './OverviewInterface.jsx';
 import helper from './helpers.jsx';
@@ -20,24 +22,28 @@ const Overview = (props) => {
       size: 'Select Size'
     },
     selectedPhoto: 0,
-    theme: 'b'
+
+    cart: function() {
+      if (document.cookie) {
+        return JSON.parse(document.cookie.replace('cart=', ''));
+      } else {
+        return [];
+      }
+    }(  )
   });
 
-  var themes = {};
-
-  for (var i = 0; i < 5; i++) {
-    themes['t' + i] = {a: `t${i}a`, b: `t${i}b`};
-  }
+  var theme = props.theme;
+  var themes = props.themes;
 
   var toggleTheme = function() {
-    if (state.theme === 'a') {
-      setState({
-        ...state,
+    if (theme === 'a') {
+      props.setState({
+        ...props.state,
         theme: 'b'
       });
     } else {
-      setState({
-        ...state,
+      props.setState({
+        ...props.state,
         theme: 'a'
       });
     }
@@ -49,24 +55,27 @@ const Overview = (props) => {
 
   useEffect(getStyles, [state.product]);
 
-  // if (!state.styles) {
-  //   return;
-  // }
+  if (!state.styles) {
+    return;
+  }
 
   return (
-      <div className={`overview v ${themes['t1'][state.theme]}`}>
-        <div className={`themeToggle ${themes['t4'][state.theme]}`} onClick={toggleTheme}></div>
-        {JSON.stringify(state.themes)}
-        <div className={`navbar h ${themes['t4'][state.theme]}`}>
+      <div className={`overview v ${themes['t1'][theme]}`}>
+        <div className={`themeToggle ${themes['t4'][theme]}`} onClick={toggleTheme}></div>
+        <div className={`navbar h ${themes['t4'][theme]}`}>
           <h1>jasmine</h1>
-          <input className="overInput" type="text" placeholder="Search for a product..."></input>
+          <div className="navright h">
+            <input className="overInput" type="text" placeholder="Search for a product..."></input>
+            <BsCart className="cart" size={48}/>
+            <div className="cartNum">{state.cart.length}</div>
+          </div>
         </div>
-        <div className={`announce v ${themes['t3'][state.theme]}`}>
+        <div className={`announce v ${themes['t3'][theme]}`}>
           <div>THIS IS THE ANNOUNCEMENT BAR WHERE ANNOUNCEMENTS WILL GO! <small>...like sales and such.</small></div>
         </div>
         <div className="info h">
-          <Gallery state={state} setState={setState} themes={themes} />
-          <OverviewInterface state={state} setState={setState} themes={themes} />
+          <Gallery state={state} setState={setState} theme={theme} themes={themes} />
+          <OverviewInterface state={state} setState={setState} theme={theme} themes={themes} />
         </div>
         <br/>
         <div className="slogan">
@@ -75,16 +84,16 @@ const Overview = (props) => {
           {state.product.description}
         </div>
         <br/>
-        <div className={'shareContainer ' + themes['t1'][state.theme]}>
+        <div className={'shareContainer ' + themes['t1'][theme]}>
           <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
               target="_blank"
-              className={'shareButton card hover ' + themes['t3'][state.theme]}>FaceBook</a>
+              className={'shareButton card hover ' + themes['t3'][theme]}>FaceBook</a>
           <a href={`https://twitter.com/share?ref_src=${window.location.href}`}
               target="_blank"
-              className={'shareButton card hover ' + themes['t3'][state.theme]}>Twitter</a>
+              className={'shareButton card hover ' + themes['t3'][theme]}>Twitter</a>
           <a href={`http://pinterest.com/pin/create/link/?url=${window.location.href}`}
               target="_blank"
-              className={'shareButton card hover ' + themes['t3'][state.theme]}>Pinterest</a>
+              className={'shareButton card hover ' + themes['t3'][theme]}>Pinterest</a>
         </div>
       </div>
 

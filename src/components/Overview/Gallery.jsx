@@ -21,7 +21,7 @@ const Gallery = (props) => {
           if (i === state.selectedPhoto) {
             selected = ' selected';
           }
-          return "imageThumb noPad hover " + props.themes['t1'][state.theme] + ' ' + selected;
+          return "imageThumb noPad hover t1a" + selected;
         }();
 
         thumbs.push(
