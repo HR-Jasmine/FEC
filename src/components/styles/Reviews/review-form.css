@@ -157,3 +157,16 @@
   border: 2px solid #fd3777;
   margin: 10px;
 }
+
+.write-review {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+}
+
+.close-review-modal {
+  justify-self: right;
+  align-self: right;
+  display: inline-block;
+}

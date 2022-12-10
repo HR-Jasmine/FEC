@@ -131,8 +131,13 @@ const ReviewForm = ({showForm, onClose, product, metaData}) => {
     <div className="review-form-modal">
       <div className="review-form-modal-content">
         <div className="review-form-modal-body form-app">
-          <h4 className="review-form-modal-title">Write your review</h4>
-          <h6>About the {product.name}</h6>
+          <div className="write-review">
+            <div className="review-write-header">
+              <h4 className="review-form-modal-title">Write your review</h4>
+              <h6>About the {product.name}</h6>
+            </div>
+            <div className="close-review-modal" onClick={onClose}>X</div>
+          </div><br></br><br></br>
           <form className="add-review-form">
             <label className="review-star-rating">
               <strong>Rating: {formState.rating === 0 ? null : ratingMeaning[formState.rating]}</strong>
