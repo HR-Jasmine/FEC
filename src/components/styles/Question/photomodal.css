@@ -1,0 +1,18 @@
+.photo-modal{
+
+  position: fixed;
+  width: 575px;
+  height: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
+  z-index: 1000;
+  padding: 25px;
+}
+
+.close-photo-btn{
+  position: absolute;
+  top: 3px;
+  right: 5px
+}
