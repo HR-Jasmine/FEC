@@ -41,7 +41,7 @@ const App = (props) => {
     <div className={`app ${themes['t1'][state.theme]}`}>
     <Overview product={state.product} state={state} setState={setState} theme={state.theme} themes={themes} />
     <RelatedProducts productId={state.productId} changeId={changeId}/>
-    <QA productId={state.productId} product={state.product}/>
+    {/* <QA productId={state.productId} product={state.product}/> */}
     <Reviews productId={state.productId} product={state.product} theme={state.theme} themes={themes}/>
   </div>
   )
