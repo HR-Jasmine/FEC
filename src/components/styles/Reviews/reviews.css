@@ -9,6 +9,7 @@
     "review-breakdown review-list";
   width: 100%;
   max-height: 100vh;
+  min-height: 100vh;
 }
 
 .review-breakdown {

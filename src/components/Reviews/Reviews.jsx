@@ -110,7 +110,7 @@ const Reviews = ({productId, product, theme, themes}) => {
   } else {
     return (
       <div className={`reviews-panel ${themes['t1'][theme]}`} id="reviews" onClick={(e) => {interaction(e.target, 'Reviews')}}>
-        <ReviewBreakdown metaData={metaData} filterSelector={filterSelector} ratingFilters={ratingFilters} isFiltered={isFiltered}/>
+        <ReviewBreakdown metaData={metaData} filterSelector={filterSelector} ratingFilters={ratingFilters} isFiltered={isFiltered} theme={theme} themes={themes}/>
         <div className="review-nav">
           Sort by: &nbsp;&nbsp;
           <select className="sort-menu" onChange={(e) => {
@@ -137,9 +137,11 @@ const Reviews = ({productId, product, theme, themes}) => {
             }}>Add Review</button>
           </div>
 
-          <ReviewForm showForm={showForm} metaData={metaData} product={product} onClose={() => {setShowForm(false)}}/>
         </div>
-        <div id="modal-holder"></div>
+        <div id="modal-holder">
+          <ReviewForm showForm={showForm} metaData={metaData} product={product} onClose={() => {setShowForm(false)}}/>
+
+        </div>
       </div>
     );
   }

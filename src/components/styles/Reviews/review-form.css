@@ -4,17 +4,27 @@
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   overflow-y: auto;
+  border: 2px solid #fd3777;
+  border-radius: 15px;
+  padding: 2em 2.5em 2em 2.5em;
+  background-color: #2e2157;
+  color: white;
+  z-index: 1000;
+
+}
+
+.modal-holder {
+  background-color: #2e2157;
 }
 
 .review-form-modal-content {
-  width: 85vw;
-  background-color: #fff;
+  width: 100%;
+  background-color: #2e2157;
   flex-direction: column;
   overflow-y: auto;
 }
@@ -40,8 +50,9 @@
 
 .review-rating {
   --dir: right;
-  --fill: gold;
-  --fillbg: rgba(100, 100, 100, 0.15);
+  --fill: #fd3777;
+  --fillbg: rgba(100, 100, 100, 1);
+  background-color: #2e2157;
   --star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');
   --stars: 5;
   --starsize: 3rem;
@@ -118,4 +129,46 @@
   max-height: 150px;
   max-width: 150px;
   display: inline-block;
+}
+
+.review-radio {
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.add-review-form {
+  width: 85%;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 10px;
+}
+
+.char-holder {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: flex-end;
+  border: 2px solid #fd3777;
+  margin: 10px;
+}
+
+.write-review {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+}
+
+.close-review-modal {
+  justify-self: right;
+  align-self: right;
+  display: inline-block;
+  cursor: pointer;
 }

@@ -130,12 +130,15 @@ const ReviewForm = ({showForm, onClose, product, metaData}) => {
   return (
     <div className="review-form-modal">
       <div className="review-form-modal-content">
-        <div className="review-form-modal-header">
-          <h4 className="review-form-modal-title">Write your review</h4>
-          <h6>About the {product.name}</h6>
-        </div>
-        <div className="review-form-modal-body">
-          <form>
+        <div className="review-form-modal-body form-app">
+          <div className="write-review">
+            <div className="review-write-header">
+              <h4 className="review-form-modal-title">Write your review</h4>
+              <h6>About the {product.name}</h6>
+            </div>
+            <div className="close-review-modal" onClick={onClose}>X</div>
+          </div><br></br><br></br>
+          <form className="add-review-form">
             <label className="review-star-rating">
               <strong>Rating: {formState.rating === 0 ? null : ratingMeaning[formState.rating]}</strong>
               <input className="review-rating" max="100" onChange={(e) => {
@@ -187,31 +190,46 @@ const ReviewForm = ({showForm, onClose, product, metaData}) => {
             {Object.keys(metaData.characteristics).map((char, i) => {
               return (
                 <div className="char-holder" key={i}>
-                  <p><b>{char}</b></p>
-                  <input type="radio" name={metaData.characteristics[char].id} value={1} onClick={scaleChange}></input>&nbsp; {scales[char][0]}<br></br>
-                  <input type="radio" name={metaData.characteristics[char].id} value={2} onClick={scaleChange}></input>&nbsp; {scales[char][1]}<br></br>
-                  <input type="radio" name={metaData.characteristics[char].id} value={3} onClick={scaleChange}></input>&nbsp; {scales[char][2]}<br></br>
-                  <input type="radio" name={metaData.characteristics[char].id} value={4} onClick={scaleChange}></input>&nbsp; {scales[char][3]}<br></br>
-                  <input type="radio" name={metaData.characteristics[char].id} value={5} onClick={scaleChange}></input>&nbsp; {scales[char][4]}<br></br><br></br>
+                  <p><b>{char}</b></p><br></br>
+                  <div className="break"></div>
+                  <div className="review-radio">
+                    {scales[char][0]}
+                    <input type="radio" name={metaData.characteristics[char].id} value={1} onClick={scaleChange}></input><br></br>
+                  </div>
+                  <div className="review-radio">
+                    {scales[char][1]}
+                    <input type="radio" name={metaData.characteristics[char].id} value={2} onClick={scaleChange}></input><br></br>
+                  </div>
+                  <div className="review-radio">
+                    {scales[char][2]}
+                    <input type="radio" name={metaData.characteristics[char].id} value={3} onClick={scaleChange}></input><br></br>
+                  </div>
+                  <div className="review-radio">
+                    {scales[char][3]}
+                    <input type="radio" name={metaData.characteristics[char].id} value={4} onClick={scaleChange}></input><br></br>
+                  </div>
+                  <div className="review-radio">
+                    {scales[char][4]}
+                    <input type="radio" name={metaData.characteristics[char].id} value={5} onClick={scaleChange}></input><br></br>
+                  </div>
+                  <br></br><br></br>
                 </div>
               )
             })}
           </form>
-
-        </div>
-        <div className="review-form-modal-footer">
-          <button onClick={(e) => {
+          <button className="submit-btn" onClick={(e) => {
             e.preventDefault();
             let verified = formVerify();
              if (verified) {
               onClose();
              }
           }}>Submit</button>&nbsp;&nbsp;
-          <button onClick={onClose}>Close</button>
+          <button className="submit-btn" onClick={onClose}>Close</button>
         </div>
       </div>
       <div id="imageUploaderContainer"></div>
     </div>
+
   )
 }
 

@@ -30,7 +30,7 @@ const IndividualReview = ({review, beenClicked, setBeenClicked, theme, themes}) 
         })}
           </span>
         </div><br></br>
-        <button hidden={review.body.length >= 250 ? false : true} onClick={(e) => {
+        <button hidden={review.body.length >= 250 ? false : true} className={`more-reviews-btn helpful-button ${themes['t4'][theme]}`} onClick={(e) => {
           e.target.hidden=true;
           setReviewBody(review.body);
         }}>See More</button><br></br>

@@ -31,7 +31,6 @@ const RelatedProducts = ( { productId, changeId, theme, themes } ) => {
     }
     })
     .then(data => {
-      console.log(data.data);
       setrelatedId(data.data);
     })
   }
@@ -39,7 +38,7 @@ const RelatedProducts = ( { productId, changeId, theme, themes } ) => {
   useEffect(() => {
   getRelatedProducts(productId);
   }, [productId])
-  // console.log('relatedId from setState', relatedId)
+
 
   // want to get individual product obj with info
   // add result obj to array in relprods
@@ -53,7 +52,7 @@ const RelatedProducts = ( { productId, changeId, theme, themes } ) => {
         }
         })
         .then(response => {
-          console.log('resonse in get product', response.data)
+
           return setrelprods(relprods => ([...relprods, response.data]))
         })
       }

@@ -2,16 +2,16 @@ import React from 'react';
 import '../styles/Question/search.css';
 import { useState } from 'react';
 
-const Search = ({handleSearchChange, filteredQuestions, setFilteredQuestions, listOfQuestions}) => {
+const Search = ({ filteredQuestions, setFilteredQuestions, questions}) => {
   const [searchVal, setSearchVal] = useState('')
 
   const search = (e) => {
     if(e.target.value.length >= 3) {
-      return setFilteredQuestions(listOfQuestions.filter((question) => {
+      return setFilteredQuestions(questions.filter((question) => {
         return question.question_body.toLowerCase().includes(e.target.value.toLowerCase())
       }))
     }
-    return setFilteredQuestions(listOfQuestions)
+    return setFilteredQuestions(questions)
   }
 
 
