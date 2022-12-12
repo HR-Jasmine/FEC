@@ -7,7 +7,7 @@ import SingleProduct from './SingleProduct.jsx'
 // import Modal from './Modal.jsx'
 
 
-const RelatedProducts = ( { productId, changeId } ) => {
+const RelatedProducts = ( { productId, changeId, theme, themes } ) => {
   // console.log('productId', productId)
 
   if (!productId) {
@@ -157,7 +157,7 @@ const RelatedProducts = ( { productId, changeId } ) => {
       //   );
 
   return (
-    <div>
+    <div className={`${themes['t1'][theme]}`}>
       {/* <button>Show Modal</button>
       <Modal /> */}
       <h2 className="product-category">Related Products </h2>

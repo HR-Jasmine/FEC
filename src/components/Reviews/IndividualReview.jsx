@@ -16,7 +16,7 @@ const IndividualReview = ({review, beenClicked, setBeenClicked, theme, themes}) 
   const [notHelpful, setNotHelpful] = useState(0);
 
   return (
-    <div className={`review-item card hover ${themes['t0'][theme]}`}>
+    <div className={`review-item card ${themes['t0'][theme]}`}>
       <h4 className="review-title">{review.summary}</h4>
       <Stars rating={review.rating} />
       <h6 className="review-username">Review by: {review.reviewer_name}</h6>

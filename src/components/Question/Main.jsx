@@ -34,7 +34,7 @@ const QA = ({productId, product}) => {
 
     axios.get(url, {params, headers})
       .then((response) => {
-        console.log(typeof response.data.results[0].question_helpfulness)
+        // console.log(typeof response.data.results[0].question_helpfulness)
         const sortedList = response.data.results.sort((a, b) => {
           console.log(response.data.results)
           console.log(productId)

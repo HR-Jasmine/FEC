@@ -10,6 +10,9 @@ import Reviews from './Reviews/Reviews.jsx';
 import './styles/app.css';
 import './styles/style.css';
 
+document.documentElement.style.backgroundColor = '#241734';
+document.body.setAttribute('class', 't0a');
+
 const App = (props) => {
   const [state, setState] = useState({
     productId: props.product.id,
@@ -25,6 +28,7 @@ const App = (props) => {
     axios.get(url, {headers})
       .then(response => {
         setState({
+          ...state,
           productId: response.data.id,
           product: response.data
         });
@@ -40,8 +44,8 @@ const App = (props) => {
   return (
     <div className={`app ${themes['t1'][state.theme]}`}>
     <Overview product={state.product} state={state} setState={setState} theme={state.theme} themes={themes} />
-    <RelatedProducts productId={state.productId} changeId={changeId}/>
-    <QA productId={state.productId} product={state.product}/>
+    {/* <RelatedProducts productId={state.productId} changeId={changeId} theme={state.theme} themes={themes}/> */}
+    {/* <QA productId={state.productId} product={state.product}/> */}
     <Reviews productId={state.productId} product={state.product} theme={state.theme} themes={themes}/>
   </div>
   )

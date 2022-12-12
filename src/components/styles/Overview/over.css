@@ -71,6 +71,7 @@
 
   border-width: 1px;
   border-style: solid none none none;
+  box-shadow: none;
 }
 
 .shareButton {
@@ -79,6 +80,7 @@
   height: 25px;
   margin: 4px;
   padding: 4px;
+  box-shadow: none;
 }
 
 .themeToggle {
@@ -90,4 +92,5 @@
 
   top: 12px;
   left: -24px;
+  box-shadow: none;
 }

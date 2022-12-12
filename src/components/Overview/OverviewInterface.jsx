@@ -158,18 +158,22 @@ const OverviewInterface = (props) => {
     })
   }
 
+  useEffect(function() {
+    setState(props.state);
+  }, [props]);
+
   return (
     <div className={`interface card noPad v ${props.themes['t0'][props.theme]}`}>
       <div className="interfaceHead v">
         <div className="social h">
           <div className="ratingsDiv" >
-            <Stars rating={product.rating}/>
+            <Stars rating={state.product.rating}/>
             <small className="reviewLink"><a href="" onClick={scrollToReviews}>Read all reviews.</a></small>
           </div>
         </div>
 
-        <h3>{product.category}</h3>
-        <h2>{product.name}</h2>
+        <h3>{state.product.category}</h3>
+        <h2>{state.product.name}</h2>
         <b>{getPrice()}</b>
       </div>
       <div id="styleName"><b>STYLE - </b>{function() {if (activeStyle) {return activeStyle.name} else {return 'STYLE'}}()}</div>
@@ -186,8 +190,8 @@ const OverviewInterface = (props) => {
           </select>
         </div>
         <div className="productButtons h">
-          <button className={`bigButton hover ${props.themes['t4'][props.theme]}`} id="addToCart" onClick={addToCart}>Add to Cart</button>
-          <button className={`bigButton hover ${props.themes['t4'][props.theme]}`} id="addToFav"><div className='star'>★</div></button>
+          <button className={`bigButton hover ${props.themes['t3'][props.theme]}`} id="addToCart" onClick={addToCart}>Add to Cart</button>
+          <button className={`bigButton hover ${props.themes['t3'][props.theme]}`} id="addToFav"><div className='star'>★</div></button>
         </div>
       </div>
     </div>

@@ -2,8 +2,8 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import helper from './helpers.jsx';
 
-import '../styles/style.css';
 import '../styles/Overview/gallery.css';
+import '../styles/style.css';
 
 const Gallery = (props) => {
   const [state, setState] = [props.state, props.setState];
@@ -21,7 +21,8 @@ const Gallery = (props) => {
           if (i === state.selectedPhoto) {
             selected = ' selected';
           }
-          return "imageThumb noPad hover t1a" + selected;
+          console.log(state)
+          return `imageThumb noPad hover ${props.themes['t1'][props.theme]} ${selected}`;
         }();
 
         thumbs.push(
@@ -61,7 +62,7 @@ const Gallery = (props) => {
         {renderThumbs()}
       </div>
       <div className="gallery h">
-        <img className={`galleryImg card noPad hover ${props.themes['t1'][state.theme]}`} src={helper.getImageURL(state)} onClick={handleClick}></img>
+        <img className={`galleryImg card noPad hover ${props.themes['t1'][props.theme]}`} src={helper.getImageURL(state)} onClick={handleClick}></img>
       </div>
     </div>
   )
