@@ -8,12 +8,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  overflow-y: auto;
-  border: 2px solid #fd3777;
-  border-radius: 15px;
-  padding: 2em 2.5em 2em 2.5em;
-  background-color: #2e2157;
-  color: white;
+  background-color: #00000063;
   z-index: 1000;
 
 }
@@ -23,7 +18,8 @@
 }
 
 .review-form-modal-content {
-  width: 100%;
+  width: 80%;
+  height: 80%;
   background-color: #2e2157;
   flex-direction: column;
   overflow-y: auto;
@@ -143,6 +139,19 @@
   width: 85%;
 }
 
+.form-app-review{
+  border: 2px solid;
+  border-radius: 15px;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 85%;
+  width: 85%;
+}
+
 .break {
   flex-basis: 100%;
   height: 10px;
@@ -150,20 +159,20 @@
 
 .char-holder {
   display: flex;
-  justify-content: center;
-  width: 100%;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: flex-end;
-  border: 2px solid #fd3777;
-  margin: 10px;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: flex-end;
+    border: 2px solid;
+    margin-bottom: 10px;
 }
 
 .write-review {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  width: 100%;
+  width: 85%;
 }
 
 .close-review-modal {

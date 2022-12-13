@@ -8,7 +8,7 @@ import interaction from '../interaction.js';
 // import Modal from './Modal.jsx'
 
 
-const RelatedProducts = ( { productId, changeId } ) => {
+const RelatedProducts = ( { productId, changeId, theme, themes } ) => {
   // console.log('productId', productId)
 
   if (!productId) {
@@ -157,7 +157,7 @@ const RelatedProducts = ( { productId, changeId } ) => {
       //   );
 
   return (
-    <div onClick={(e) => {interaction(e.target, 'Related Products')}}>
+    <div className={`${themes['t1'][theme]}`} onClick={(e) => {interaction(e.target, 'Related Products')}}>
       {/* <button>Show Modal</button>
       <Modal /> */}
       <h2 className="product-category">Related Products </h2>

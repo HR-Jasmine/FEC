@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import {render, screen} from '@testing-library/react';
+import {render, screen, fireEvent} from '@testing-library/react';
 
 import React from 'react';
 import Overview from '../Overview.jsx';
@@ -19,15 +19,36 @@ var testProduct = {
     "updated_at": "2021-08-13T14:37:33.145Z"
 };
 
-test('Testing works.', function() {
-  var num = -1;
+var themes = {};
 
-  expect(true).toBe(true);
-  expect(num > 0).toBe(false);
-})
+for (var i = 0; i < 5; i++) {
+  themes['t' + i] = {a: `t${i}a`, b: `t${i}b`};
+};
+
+const testState = {
+  productId: testProduct.id,
+  product: testProduct,
+  theme: 'a'
+};
 
 test('<Overview />', async() => {
-  var overview = render(<Overview product={testProduct}/>);
+  const {overview} = await render(<Overview product={testProduct} state={testState} setState={null} theme={testState.theme} themes={themes}/>);
 
-  expect(overview).toBeTruthy();
+  expect({overview}).toBeTruthy();
+
+  const styleExists = await screen.findAllByText("Forest Green", {exact: false});
+  expect(styleExists).toBeTruthy();
+
+  const facebookExists = await screen.findAllByText("FaceBook");
+  expect(facebookExists).toBeTruthy();
+
+  const pinterestExists = await screen.findAllByText("Pinterest");
+  expect(pinterestExists).toBeTruthy();
+
+  const twitterExists = await screen.findAllByText("Twitter");
+  expect(twitterExists).toBeTruthy();
+
+  // fireEvent.click(screen.getByText('More Reviews'));
+  // const newItems = await screen.findAllByText("Was this review helpful", {exact: false});
+  // expect(newItems).toHaveLength(4);
 })

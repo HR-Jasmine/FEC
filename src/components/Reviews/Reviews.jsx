@@ -127,19 +127,20 @@ const Reviews = ({productId, product, theme, themes}) => {
             return <IndividualReview review={review} beenClicked={beenClicked} setBeenClicked={setBeenClicked} theme={theme} themes={themes} key={i}/>
           })}
           <div className="review-buttons h">
-            <button className={`more-reviews-btn bigButton bigButtonReviews hover ${themes['t4'][theme]}`} hidden={numOfRevs >= displayReviews.length ? true : false} onClick={(e) => {
+            <button className={`more-reviews-btn bigButton bigButtonReviews hover ${themes['t3'][theme]}`} hidden={numOfRevs >= displayReviews.length ? true : false} onClick={(e) => {
               e.preventDefault();
               interaction(e.target);
               setNumOfRevs(numOfRevs + 2);
             }}>More Reviews</button>
-            <button className={`add-review-button bigButton bigButtonReviews hover ${themes['t4'][theme]}`} onClick={() => {
+            <button className={`add-review-button bigButton bigButtonReviews hover ${themes['t3'][theme]}`} onClick={(e) => {
               setShowForm(true);
             }}>Add Review</button>
           </div>
 
         </div>
         <div id="modal-holder">
-          <ReviewForm showForm={showForm} metaData={metaData} product={product} onClose={() => {setShowForm(false)}}/>
+          <ReviewForm showForm={showForm} metaData={metaData} product={product} theme={theme} themes={themes} onClose={() => {setShowForm(false)}}/>
+
         </div>
       </div>
     );

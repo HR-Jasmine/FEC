@@ -4,7 +4,7 @@ import Finput from './Finput.jsx'
 import Ftextarea from './Ftextarea.jsx'
 import axios from'axios'
 
-const QForm = ({closeQuestModal, product, productId}) => {
+const QForm = ({question, closeQuestModal, product, theme, themes}) => {
 
   const headers = {'Authorization': process.env.API_KEY};
   // const [photoIsOpen, setPhotoIsOpen] = useState(false)
@@ -100,7 +100,7 @@ const QForm = ({closeQuestModal, product, productId}) => {
             })
           }
         </div>
-        <button className="submit-btn" type="submit">Submit</button>
+        <button className={`submit-btn ${themes['t4'][theme]}`} type="submit">Submit</button>
 
       </form>
       {/* <PhotoModal photoIsOpen={photoIsOpen} setPhotoIsOpen={setPhotoIsOpen} closePhotoModal={closePhotoModal}/> */}

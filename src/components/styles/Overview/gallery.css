@@ -59,7 +59,7 @@
 
   object-fit: cover;
 
-  box-shadow: 0 2px 2px 1px rgb(192, 177, 177);
+  box-shadow: 0 2px 2px 1px;
 }
 
 .selected {

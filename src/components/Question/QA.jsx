@@ -14,7 +14,7 @@ import sortQuestions from './lib/sortQuestions.js'
 import '../styles/Question/main.css';
 import interaction from '../interaction.js';
 
-const QA = ({productId, product}) => {
+const QA = ({productId, product, theme, themes}) => {
   if (!product) {
     return null;
   }
@@ -48,13 +48,13 @@ const QA = ({productId, product}) => {
 
 
   return (
-    <div className="QA-ctn" onClick={(e) => {interaction(e.target, 'Question')}} data-testid="qa">
-      <h2 className="section-title" data-testid="section-title">Questions & Answers</h2>
-      <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} questions={questions} data-testid="search-bar"/>
+    <div className={`QA-ctn ${themes['t1'][theme]}`}>
+      <h2 className="section-title">Questions & Answers</h2>
+      <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} questions={questions} theme={theme} themes={themes}/>
       <QuestionList questions={filteredQuestions} product={product}/>
-      <div className="btn-container" data-testid='btn-ctn'>
+      <div className={`btn-container ${themes['t1'][theme]}`}>
         <MoreBtn setQuestRendered={setQuestRendered} questCount={questCount} questRendered={questRendered} />
-        <AddQ product={product} productId={productId}/>
+        <AddQ product={product} theme={theme} themes={themes} />
       </div>
     </div>
   )
