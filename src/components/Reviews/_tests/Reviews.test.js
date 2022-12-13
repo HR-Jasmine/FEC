@@ -50,5 +50,7 @@ test('<Reviews />', async() => {
   fireEvent.click(screen.getByText('3 Stars', {exact: false}));
   const sortedItems = await screen.findAllByText("Was this review helpful", {exact: false});
   expect(sortedItems).toHaveLength(2);
+
+  fireEvent.click(screen.getByText('Add Review'));
 })
 
