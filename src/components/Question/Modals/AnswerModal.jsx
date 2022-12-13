@@ -10,7 +10,7 @@ const AnswerModal = ({product, question, setOpenAnswer}) => {
   }
 
   return (
-    <div className="answer-modal-bg">
+    <div className="answer-modal-bg" data-testid="ans-modal">
         <AForm question={question} closeAnsModal={closeAnsModal} product={product}/>
     </div>
   )

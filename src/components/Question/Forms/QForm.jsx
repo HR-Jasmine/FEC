@@ -4,10 +4,10 @@ import Finput from './Finput.jsx'
 import Ftextarea from './Ftextarea.jsx'
 import axios from'axios'
 
-const AForm = ({question, closeQuestModal, product}) => {
+const QForm = ({closeQuestModal, product, productId}) => {
 
   const headers = {'Authorization': process.env.API_KEY};
-  const [photoIsOpen, setPhotoIsOpen] = useState(false)
+  // const [photoIsOpen, setPhotoIsOpen] = useState(false)
   const [values, setValues] = useState({
     Nickname: "",
     Email:"",
@@ -43,17 +43,22 @@ const AForm = ({question, closeQuestModal, product}) => {
     label: "Question:"
   }]
 
-  const handleAnswerSubmit = (e) => {
+  const handleQuestSubmit = (e) => {
     e.preventDefault();
-    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question.question_id}/answers`;
+    const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions`;
     const params = {
       body: values.Answer,
       name: values.Nickname,
       email: values.Email,
+      product_id: productId
     }
+
     axios.post(url, params, {headers})
       .then((res) => {
-        console.log(res)
+        console.log(res) // This need to be fixed
+      })
+      .catch((err) => {
+        console.log(err)
       })
   }
 
@@ -62,19 +67,19 @@ const AForm = ({question, closeQuestModal, product}) => {
     setValues({...values, [e.target.name]: e.target.value})
   }
 
-  const openPhoto = (e) => {
-    e.preventDefault();
-    setPhotoIsOpen(true)
-  }
-  const closePhotoModal = (e) => {
-    e.preventDefault();
-    setPhotoIsOpen(false)
-  }
+  // const openPhoto = (e) => {
+  //   e.preventDefault();
+  //   setPhotoIsOpen(true)
+  // }
+  // const closePhotoModal = (e) => {
+  //   e.preventDefault();
+  //   setPhotoIsOpen(false)
+  // }
 
 
   return (
     <div className="form-app">
-      <form onSubmit={handleAnswerSubmit} className="question-form">
+      <form onSubmit={handleQuestSubmit} className="question-form">
         <button onClick={closeQuestModal} className="closeModal-btn"> X </button>
         <div className="modal-details">
           <span className="modal-title">Ask Your Question</span>
@@ -103,4 +108,4 @@ const AForm = ({question, closeQuestModal, product}) => {
   )
 }
 
-export default AForm;
+export default QForm;

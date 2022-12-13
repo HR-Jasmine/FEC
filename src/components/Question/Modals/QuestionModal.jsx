@@ -2,7 +2,7 @@ import React from 'react'
 import '../../styles/Question/modal.css'
 import QForm from '../Forms/QForm.jsx'
 
-const QuestionModal = ({product, question, setQuestModalOpen}) => {
+const QuestionModal = ({product, question, setQuestModalOpen, productId}) => {
 
   const closeQuestModal = (e) => {
     e.preventDefault();
@@ -12,7 +12,7 @@ const QuestionModal = ({product, question, setQuestModalOpen}) => {
   return (
     <div className="answer-modal-bg">
 
-        <QForm question={question} closeQuestModal={closeQuestModal} product={product}/>
+        <QForm question={question} closeQuestModal={closeQuestModal} product={product} productId={productId}/>
 
     </div>
   )

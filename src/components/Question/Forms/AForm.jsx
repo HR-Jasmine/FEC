@@ -9,7 +9,7 @@ import '../../styles/Question/formInput.css'
 const AForm = ({question, closeAnsModal, product}) => {
 
   const headers = {'Authorization': process.env.API_KEY};
-  const [photoIsOpen, setPhotoIsOpen] = useState(false)
+  // const [photoIsOpen, setPhotoIsOpen] = useState(false)
   const [values, setValues] = useState({
     Nickname: "",
     Email:"",
@@ -45,8 +45,7 @@ const AForm = ({question, closeAnsModal, product}) => {
     label: "Answer:"
   }]
 
-  const handleAnswerSubmit = (e) => {
-    e.preventDefault();
+  const handleAnswerSubmit = () => {
     const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question.question_id}/answers`;
     const params = {
       body: values.Answer,
@@ -55,7 +54,8 @@ const AForm = ({question, closeAnsModal, product}) => {
     }
     axios.post(url, params, {headers})
       .then((res) => {
-        console.log(res)
+        console.log(res) // This has to then be a GET request to Answers API
+        closeAnsModal();
       })
   }
 
@@ -64,14 +64,14 @@ const AForm = ({question, closeAnsModal, product}) => {
     setValues({...values, [e.target.name]: e.target.value})
   }
 
-  const openPhoto = (e) => {
-    e.preventDefault();
-    setPhotoIsOpen(true)
-  }
-  const closePhotoModal = (e) => {
-    e.preventDefault();
-    setPhotoIsOpen(false)
-  }
+  // const openPhoto = (e) => {
+  //   e.preventDefault();
+  //   setPhotoIsOpen(true)
+  // }
+  // const closePhotoModal = (e) => {
+  //   e.preventDefault();
+  //   setPhotoIsOpen(false)
+  // }
 
 
   return (

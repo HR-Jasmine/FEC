@@ -9,7 +9,7 @@ import '../styles/Question/accordion.css';
 
 const Answer = ({answer, question, qId, product}) => {
 
-  const {answer_id, body, date, answerer_name, helpfulness, photos} = answer
+  const {body, date, answerer_name, helpfulness, photos} = answer
   const newDate = format(new Date (date), 'MMMM d, yyyy')
 
   // State variables //
@@ -28,7 +28,6 @@ const Answer = ({answer, question, qId, product}) => {
   const report = (e) => {
     e.target.innerText = "Reported"
     e.target.disabled = true;
-    console.log(photos[0].url)
   }
 
   const openAnsModal = (e) => {
@@ -37,11 +36,11 @@ const Answer = ({answer, question, qId, product}) => {
   }
 
   return (
-    <div className="answer">
+    <div className="answer" data-testid="answer">
       <div className="Apart1">
         <h4>A: {body}</h4>
         <div className="Apart2">
-          <button onClick={updateCount} className="accord-btn">Helpful?</button>
+          <button onClick={updateCount} className="accord-btn" data-testid="ans-helpful">Helpful?</button>
           <span className="yes">Yes({helpCount})</span>
         </div>
       </div>

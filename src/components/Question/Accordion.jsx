@@ -39,13 +39,14 @@ const Accordion = ({question, product}) => {
   const getAnswers = () => {
     axios.get(url,{headers})
       .then((res) => {
+        console.log(res.data.results)
         let answers = sortAnswers(res.data.results)
         setNumOfAnswers(answers.length)
         setAnswers(answers.slice(0,ansRendered))
       })
   }
   useEffect(getAnswers,[ansRendered])
-  console.log(answers)
+
 
   // Functions //
   const helpfulIncrement = (e) => { // Increments the helpfulness counter //
@@ -66,11 +67,11 @@ const Accordion = ({question, product}) => {
   }
 
   return (
-    <div className="accordion">
-      <div className="accordion-item">
-        <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
+    <div className="accordion" data-testid="accord">
+      <div className="accordion-item" data-testid="accord-title">
+        <div className="accordion-title" onClick={() => setIsActive(!isActive)} data-testid="accord-main">
           <div className="Qpart1">
-            <h3>Q: {question_body}</h3>
+            <h3 data-testid="question-title">Q: {question_body}</h3>
             <div>{isActive ? <FaAngleDoubleUp className="bounce" /> : <FaAngleDoubleDown className="bounce" />}</div>
           </div>
           <div className="Qpart2">
@@ -79,7 +80,7 @@ const Accordion = ({question, product}) => {
           </div>
         </div>
         {isActive &&
-          <div className="accordion-content">{ answers.map((answer, i) => {
+          <div className="accordion-content" data-testid='accord-content'>{ answers.map((answer, i) => {
               return <Answer key={i} answer={answer} question={question} product={product}/>
           })}
           {

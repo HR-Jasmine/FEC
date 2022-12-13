@@ -12,6 +12,7 @@ import sortQuestions from './lib/sortQuestions.js'
 
 // Styling //
 import '../styles/Question/main.css';
+import interaction from '../interaction.js';
 
 const QA = ({productId, product}) => {
   if (!product) {
@@ -47,13 +48,13 @@ const QA = ({productId, product}) => {
 
 
   return (
-    <div className="QA-ctn">
-      <h2 className="section-title">Questions & Answers</h2>
-      <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} questions={questions} />
+    <div className="QA-ctn" onClick={(e) => {interaction(e.target, 'Question')}} data-testid="qa">
+      <h2 className="section-title" data-testid="section-title">Questions & Answers</h2>
+      <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} questions={questions} data-testid="search-bar"/>
       <QuestionList questions={filteredQuestions} product={product}/>
-      <div className="btn-container">
+      <div className="btn-container" data-testid='btn-ctn'>
         <MoreBtn setQuestRendered={setQuestRendered} questCount={questCount} questRendered={questRendered} />
-        <AddQ product={product}/>
+        <AddQ product={product} productId={productId}/>
       </div>
     </div>
   )

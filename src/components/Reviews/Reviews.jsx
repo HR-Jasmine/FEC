@@ -132,7 +132,7 @@ const Reviews = ({productId, product, theme, themes}) => {
               interaction(e.target);
               setNumOfRevs(numOfRevs + 2);
             }}>More Reviews</button>
-            <button className={`add-review-button bigButton bigButtonReviews ${themes['t4'][theme]}`} onClick={(e) => {
+            <button className={`add-review-button bigButton bigButtonReviews ${themes['t4'][theme]}`} onClick={() => {
               setShowForm(true);
             }}>Add Review</button>
           </div>
