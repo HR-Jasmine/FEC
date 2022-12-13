@@ -22,6 +22,7 @@ const Overview = (props) => {
       size: 'Select Size'
     },
     selectedPhoto: 0,
+    theme: props.theme,
 
     cart: function() {
       if (document.cookie) {
@@ -29,7 +30,7 @@ const Overview = (props) => {
       } else {
         return [];
       }
-    }(  )
+    }()
   });
 
   var theme = props.theme;
@@ -37,11 +38,15 @@ const Overview = (props) => {
 
   var toggleTheme = function() {
     if (theme === 'a') {
+      document.documentElement.style.backgroundColor = 'white';
+      document.body.setAttribute('class', 't0b');
       props.setState({
         ...props.state,
         theme: 'b'
       });
     } else {
+      document.documentElement.style.backgroundColor = '#241734';
+      document.body.setAttribute('class', 't0a');
       props.setState({
         ...props.state,
         theme: 'a'
@@ -50,10 +55,14 @@ const Overview = (props) => {
   }
 
   var getStyles = function() {
-    helper.getProductStyles(state.product.id, state, setState);
+    helper.getProductStyles(props.product.id, state, setState);
   };
 
-  useEffect(getStyles, [state.product]);
+  useEffect(getStyles, [props.product]);
+
+  useEffect(function() {
+    setState(props.state);
+  }, [props.product]);
 
   if (!state.styles) {
     return;
@@ -61,7 +70,7 @@ const Overview = (props) => {
 
   return (
       <div className={`overview v ${themes['t1'][theme]}`}>
-        <div className={`themeToggle ${themes['t4'][theme]}`} onClick={toggleTheme}></div>
+        <span className={`themeToggle ${themes['t4'][theme]}`} onClick={toggleTheme}></span>
         <div className={`navbar h ${themes['t4'][theme]}`}>
           <h1>jasmine</h1>
           <div className="navright h">
@@ -79,9 +88,9 @@ const Overview = (props) => {
         </div>
         <br/>
         <div className="slogan">
-          <h3>{state.product.slogan}</h3>
+          <h3>{props.product.slogan}</h3>
           <br/>
-          {state.product.description}
+          {props.product.description}
         </div>
         <br/>
         <div className={'shareContainer ' + themes['t1'][theme]}>

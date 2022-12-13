@@ -11,7 +11,6 @@ const interaction = (element, module) => {
     "time": String(time)
   }
 
-
   axios.post(url, data, {headers});
 }
 

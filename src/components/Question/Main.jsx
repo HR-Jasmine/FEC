@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import AnswerForm from './AnswerForm.jsx';
 import QuestionForm from './QuestionForm.jsx'
 
-const QA = ({productId, product}) => {
+const QA = ({productId, product, theme, themes}) => {
 
   if (!product) {
     return null;
@@ -34,7 +34,7 @@ const QA = ({productId, product}) => {
 
     axios.get(url, {params, headers})
       .then((response) => {
-        console.log(typeof response.data.results[0].question_helpfulness)
+        // console.log(typeof response.data.results[0].question_helpfulness)
         const sortedList = response.data.results.sort((a, b) => {
           console.log(response.data.results)
           console.log(productId)

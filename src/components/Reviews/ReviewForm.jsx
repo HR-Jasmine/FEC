@@ -2,9 +2,10 @@ import React from 'react';
 import {useState} from 'react';
 import axios from 'axios';
 import '../styles/Reviews/review-form.css';
+import '../styles/style.css';
 
 
-const ReviewForm = ({showForm, onClose, product, metaData, testing}) => {
+const ReviewForm = ({showForm, onClose, theme, themes, product, metaData, testing}) => {
   if (!showForm) {
     return null;
   }
@@ -138,15 +139,14 @@ const ReviewForm = ({showForm, onClose, product, metaData, testing}) => {
 
   return (
     <div className="review-form-modal">
-      <div className="review-form-modal-content">
-        <div className="review-form-modal-body form-app">
+        <div className={`form-app-review ${themes['t1'][theme]}`}>
           <div className="write-review">
             <div className="review-write-header">
               <h4 className="review-form-modal-title">Write your review</h4>
               <h6>About the {product.name}</h6>
             </div>
             <div className="close-review-modal" onClick={onClose}>X</div>
-          </div><br></br><br></br>
+          </div><br/>
           <form className="add-review-form">
             <label className="review-star-rating">
               <strong>Rating: {formState.rating === 0 ? null : ratingMeaning[formState.rating]}</strong>
@@ -155,7 +155,7 @@ const ReviewForm = ({showForm, onClose, product, metaData, testing}) => {
                 setFormState(updatedFormState);
                 e.target.style.setProperty('--value', Math.ceil(e.target.value / 20));
               }} step="1" type="range" value={formState.rating}></input><br></br>
-            </label>&nbsp;&nbsp;
+            </label>
             <div className="review-form-checkbox">
               Do you recommend this product?
               <input type="checkbox" value={formState.recommend} onChange={() => {
@@ -235,7 +235,7 @@ const ReviewForm = ({showForm, onClose, product, metaData, testing}) => {
           }}>Submit</button>&nbsp;&nbsp;
           <button className="submit-btn" onClick={onClose}>Close</button>
         </div>
-      </div>
+
       <div id="imageUploaderContainer"></div>
     </div>
 
