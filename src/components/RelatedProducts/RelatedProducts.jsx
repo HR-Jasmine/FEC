@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../styles/RelatedProducts/relatedProducts.css';
 import Outfit from './Outfit.jsx'
 import SingleProduct from './SingleProduct.jsx'
+import interaction from '../interaction.js';
 // import Modal from './Modal.jsx'
 
 
@@ -156,7 +157,7 @@ const RelatedProducts = ( { productId, changeId, theme, themes } ) => {
       //   );
 
   return (
-    <div className={`${themes['t1'][theme]}`}>
+    <div className={`${themes['t1'][theme]}`} onClick={(e) => {interaction(e.target, 'Related Products')}}>
       {/* <button>Show Modal</button>
       <Modal /> */}
       <h2 className="product-category">Related Products </h2>

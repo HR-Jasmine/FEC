@@ -7,7 +7,8 @@
     "start": "webpack --mode=development -w",
     "build": "webpack --mode=production",
     "dev": "webpack serve --open",
-    "test": "jest",
+
+    "test": "jest --coverage --setupFiles dotenv/config",
     "coverage": "jest --coverage"
   },
   "repository": {
