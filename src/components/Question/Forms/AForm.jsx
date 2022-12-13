@@ -76,7 +76,7 @@ const AForm = ({question, closeAnsModal, product}) => {
 
   return (
     <div className="form-app">
-      <form onSubmit={handleAnswerSubmit}>
+      <form onSubmit={handleAnswerSubmit} data-testid='form' >
           <button onClick={closeAnsModal} className="closeModal-btn"> X </button>
         <div className="modal-details">
           <span className="modal-title">Ask Your Question</span>
