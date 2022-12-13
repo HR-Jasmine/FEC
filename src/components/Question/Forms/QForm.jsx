@@ -4,7 +4,7 @@ import Finput from './Finput.jsx'
 import Ftextarea from './Ftextarea.jsx'
 import axios from'axios'
 
-const AForm = ({question, closeQuestModal, product}) => {
+const AForm = ({question, closeQuestModal, product, theme, themes}) => {
 
   const headers = {'Authorization': process.env.API_KEY};
   const [photoIsOpen, setPhotoIsOpen] = useState(false)
@@ -73,7 +73,7 @@ const AForm = ({question, closeQuestModal, product}) => {
 
 
   return (
-    <div className="form-app">
+    <div className={`form-app ${themes['t1'][theme]}`}>
       <form onSubmit={handleAnswerSubmit} className="question-form">
         <button onClick={closeQuestModal} className="closeModal-btn"> X </button>
         <div className="modal-details">
@@ -95,7 +95,7 @@ const AForm = ({question, closeQuestModal, product}) => {
             })
           }
         </div>
-        <button className="submit-btn" type="submit">Submit</button>
+        <button className={`submit-btn ${themes['t4'][theme]}`} type="submit">Submit</button>
 
       </form>
       {/* <PhotoModal photoIsOpen={photoIsOpen} setPhotoIsOpen={setPhotoIsOpen} closePhotoModal={closePhotoModal}/> */}

@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import AnswerForm from './AnswerForm.jsx';
 import QuestionForm from './QuestionForm.jsx'
 
-const QA = ({productId, product}) => {
+const QA = ({productId, product, theme, themes}) => {
 
   if (!product) {
     return null;

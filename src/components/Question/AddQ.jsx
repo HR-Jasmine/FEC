@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react'
 import QuestionModal from './Modals/QuestionModal.jsx'
 
-const AddQ = ({product}) => {
+const AddQ = ({product, theme, themes}) => {
   const [questModalOpen, setQuestModalOpen] = useState(false)
 
   const openQuestionModal = (e) => {
@@ -13,7 +13,7 @@ const AddQ = ({product}) => {
   return (
     <div>
       <button onClick={openQuestionModal}>Add Question</button>
-      {questModalOpen && <QuestionModal setQuestModalOpen={setQuestModalOpen} product={product}/> }
+      {questModalOpen && <QuestionModal setQuestModalOpen={setQuestModalOpen} product={product} theme={theme} themes={themes}/> }
     </div>
   )
 }

@@ -13,7 +13,7 @@ import sortQuestions from './lib/sortQuestions.js'
 // Styling //
 import '../styles/Question/main.css';
 
-const QA = ({productId, product}) => {
+const QA = ({productId, product, theme, themes}) => {
   if (!product) {
     return null;
   }
@@ -47,13 +47,13 @@ const QA = ({productId, product}) => {
 
 
   return (
-    <div className="QA-ctn">
+    <div className={`QA-ctn ${themes['t1'][theme]}`}>
       <h2 className="section-title">Questions & Answers</h2>
-      <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} questions={questions} />
+      <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} questions={questions} theme={theme} themes={themes}/>
       <QuestionList questions={filteredQuestions} product={product}/>
-      <div className="btn-container">
+      <div className={`btn-container ${themes['t1'][theme]}`}>
         <MoreBtn setQuestRendered={setQuestRendered} questCount={questCount} questRendered={questRendered} />
-        <AddQ product={product}/>
+        <AddQ product={product} theme={theme} themes={themes} />
       </div>
     </div>
   )
