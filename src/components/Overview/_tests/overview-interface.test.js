@@ -5,7 +5,7 @@
 import {render, screen, fireEvent} from '@testing-library/react';
 
 import React from 'react';
-import Overview from '../Overview.jsx';
+import OverviewInterface from '../OverviewInterface.jsx';
 
 var testProduct = {
     "id": 37311,
@@ -31,24 +31,18 @@ const testState = {
   theme: 'a'
 };
 
-test('<Overview />', async() => {
-  const {overview} = await render(<Overview product={testProduct} state={testState} setState={null} theme={testState.theme} themes={themes}/>);
+test('<OverviewInterface />', async() => {
+  const {inter} = await render(<OverviewInterface state={testState} setState={null} theme={testState.theme} themes={themes}/>);
 
-  expect({overview}).toBeTruthy();
+  expect({inter}).toBeTruthy();
 
-  const styleExists = await screen.findAllByText("Forest Green", {exact: false});
-  expect(styleExists).toBeTruthy();
-
-  const facebookExists = await screen.findAllByText("FaceBook");
-  expect(facebookExists).toBeTruthy();
-
-  const pinterestExists = await screen.findAllByText("Pinterest");
-  expect(pinterestExists).toBeTruthy();
-
-  const twitterExists = await screen.findAllByText("Twitter");
-  expect(twitterExists).toBeTruthy();
-
+  // // Add two reviews when clicked
   // fireEvent.click(screen.getByText('More Reviews'));
   // const newItems = await screen.findAllByText("Was this review helpful", {exact: false});
   // expect(newItems).toHaveLength(4);
+
+  // // // Reset to two reviews when changing sorting
+  // fireEvent.click(screen.getByText('3 Stars', {exact: false}));
+  // const sortedItems = await screen.findAllByText("Was this review helpful", {exact: false});
+  // expect(sortedItems).toHaveLength(2);
 })

@@ -162,6 +162,10 @@ const OverviewInterface = (props) => {
     setState(props.state);
   }, [props]);
 
+  if (!state.styles) {
+    return;
+  }
+
   return (
     <div className={`interface card noPad v ${props.themes['t0'][props.theme]}`}>
       <div className="interfaceHead v">

@@ -30,7 +30,7 @@ const Overview = (props) => {
       } else {
         return [];
       }
-    }(  )
+    }()
   });
 
   var theme = props.theme;
@@ -70,7 +70,7 @@ const Overview = (props) => {
 
   return (
       <div className={`overview v ${themes['t1'][theme]}`}>
-        <div className={`themeToggle ${themes['t4'][theme]}`} onClick={toggleTheme}></div>
+        <span className={`themeToggle ${themes['t4'][theme]}`} onClick={toggleTheme}></span>
         <div className={`navbar h ${themes['t4'][theme]}`}>
           <h1>jasmine</h1>
           <div className="navright h">
