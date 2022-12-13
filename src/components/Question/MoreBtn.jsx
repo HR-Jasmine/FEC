@@ -1,4 +1,6 @@
 import React from 'react';
+import '../styles/Question/addexpand.css'
+
 
 const MoreBtn = ({setQuestRendered, questCount, questRendered}) => {
   if(questRendered >= questCount) {
@@ -17,7 +19,7 @@ const MoreBtn = ({setQuestRendered, questCount, questRendered}) => {
 
   return (
     <div>
-      <button onClick={showMoreQuestion}> More Questions </button>
+      <button onClick={showMoreQuestion} className="addexpand-btn" data-testid="more-btn"> More Questions </button>
     </div>
   )
 }

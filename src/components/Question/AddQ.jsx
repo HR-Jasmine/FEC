@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react'
 import QuestionModal from './Modals/QuestionModal.jsx'
+import '../styles/Question/addexpand.css'
 
 const AddQ = ({product, theme, themes}) => {
   const [questModalOpen, setQuestModalOpen] = useState(false)

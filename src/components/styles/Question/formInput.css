@@ -104,13 +104,17 @@ input:focus{
 .closeModal-btn{
   font-size: 1rem;
   color: #FD3777;
-  font-weight: 800;
+  font-weight: 700;
+  font-size: 0.75rem;
   background-color: transparent;
-  border: none;
+  border: 2px solid #FD3777;
   cursor: pointer;
   position: absolute;
   right: 10px;
-  top: 5px
+  top: 10px;
+  border-radius: 60%;
+  width: 25px;
+  height: 25px;
 }
 
 .closeModal-btn:hover{

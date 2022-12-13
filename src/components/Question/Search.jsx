@@ -1,9 +1,8 @@
 import React from 'react';
 import '../styles/Question/search.css';
-import { useState } from 'react';
 
-const Search = ({ filteredQuestions, setFilteredQuestions, questions}) => {
-  const [searchVal, setSearchVal] = useState('')
+const Search = ({setFilteredQuestions, questions}) => {
+
 
   const search = (e) => {
     if(e.target.value.length >= 3) {
@@ -17,7 +16,7 @@ const Search = ({ filteredQuestions, setFilteredQuestions, questions}) => {
 
 
   return (
-    <div className="search-container">
+    <div className="search-container" data-testid="search">
       <input type="text" placeholder="Have a question? Search for answers..." className="search-bar" onChange={search}/>
     </div>
   )

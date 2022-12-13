@@ -12,6 +12,7 @@ import sortQuestions from './lib/sortQuestions.js'
 
 // Styling //
 import '../styles/Question/main.css';
+import interaction from '../interaction.js';
 
 const QA = ({productId, product, theme, themes}) => {
   if (!product) {

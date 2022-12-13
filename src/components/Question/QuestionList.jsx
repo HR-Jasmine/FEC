@@ -4,7 +4,7 @@ import Accordion from './Accordion.jsx'
 
 const QuestionList = ({questions, product}) => {
   return (
-    <div>
+    <div data-testid="question-list">
       {
         questions.map((question, i) => {
           return <Accordion key={i} question={question} product={product}/>
