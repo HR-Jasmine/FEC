@@ -140,7 +140,6 @@ const Reviews = ({productId, product, theme, themes}) => {
         </div>
         <div id="modal-holder">
           <ReviewForm showForm={showForm} metaData={metaData} product={product} onClose={() => {setShowForm(false)}}/>
-
         </div>
       </div>
     );
