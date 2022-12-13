@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../styles/Reviews/review-form.css';
 
 
-const ReviewForm = ({showForm, onClose, product, metaData}) => {
+const ReviewForm = ({showForm, onClose, product, metaData, testing}) => {
   if (!showForm) {
     return null;
   }
@@ -62,7 +62,7 @@ const ReviewForm = ({showForm, onClose, product, metaData}) => {
       alertMsg += 'You must rate every characteristic of the product\n';
     }
 
-    if (submitData.body.length < 51) {
+    if (submitData.body.length < 50) {
       alertMsg += 'You must have a review over 50 characters long\n'
     }
 
@@ -101,41 +101,53 @@ const ReviewForm = ({showForm, onClose, product, metaData}) => {
     setFormState({...formState, characteristics: currChars});
   }
 
-  var myWidget = window.cloudinary.createUploadWidget(
-    {
-      cloudName: "dhjvvkko0",
-      uploadPreset: 'jasmine',
-      // inlineContainer: document.getElementById('imageUploaderContainer'),
-      // cropping: true, //add a cropping step
-      // showAdvancedOptions: true,  //add advanced options (public_id and tag)
-      sources: [ "local"], // restrict the upload sources to URL and local files
-      multiple: false,  //restrict upload to a single file
-      // folder: "user_images", //upload files to the specified folder
-      // tags: ["users", "profile"], //add the given tags to the uploaded files
-      // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
-      // clientAllowedFormats: ["images"], //restrict uploading to image files only
-      // maxImageFileSize: 2000000,  //restrict file size to less than 2MB
-      // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
-      theme: "purple" //change to a purple theme
-    },
-    (error, result) => {
-      if (!error && result && result.event === "success") {
-        let copyOfFormState = {...formState};
-        copyOfFormState.photos.push(result.info.secure_url);
-        setFormState(copyOfFormState);
+  if (!testing) {
+
+    var myWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "dhjvvkko0",
+        uploadPreset: 'jasmine',
+        // inlineContainer: document.getElementById('imageUploaderContainer'),
+        // cropping: true, //add a cropping step
+        // showAdvancedOptions: true,  //add advanced options (public_id and tag)
+        sources: [ "local"], // restrict the upload sources to URL and local files
+        multiple: false,  //restrict upload to a single file
+        // folder: "user_images", //upload files to the specified folder
+        // tags: ["users", "profile"], //add the given tags to the uploaded files
+        // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
+        // clientAllowedFormats: ["images"], //restrict uploading to image files only
+        // maxImageFileSize: 2000000,  //restrict file size to less than 2MB
+        // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
+        theme: "purple" //change to a purple theme
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          let copyOfFormState = {...formState};
+          copyOfFormState.photos.push(result.info.secure_url);
+          setFormState(copyOfFormState);
+        }
+      }
+      );
+  } else {
+    var myWidget = {
+      open: () => {
+        console.log('I am testing');
       }
     }
-  );
+  }
 
   return (
     <div className="review-form-modal">
       <div className="review-form-modal-content">
-        <div className="review-form-modal-header">
-          <h4 className="review-form-modal-title">Write your review</h4>
-          <h6>About the {product.name}</h6>
-        </div>
-        <div className="review-form-modal-body">
-          <form>
+        <div className="review-form-modal-body form-app">
+          <div className="write-review">
+            <div className="review-write-header">
+              <h4 className="review-form-modal-title">Write your review</h4>
+              <h6>About the {product.name}</h6>
+            </div>
+            <div className="close-review-modal" onClick={onClose}>X</div>
+          </div><br></br><br></br>
+          <form className="add-review-form">
             <label className="review-star-rating">
               <strong>Rating: {formState.rating === 0 ? null : ratingMeaning[formState.rating]}</strong>
               <input className="review-rating" max="100" onChange={(e) => {
@@ -187,31 +199,46 @@ const ReviewForm = ({showForm, onClose, product, metaData}) => {
             {Object.keys(metaData.characteristics).map((char, i) => {
               return (
                 <div className="char-holder" key={i}>
-                  <p><b>{char}</b></p>
-                  <input type="radio" name={metaData.characteristics[char].id} value={1} onClick={scaleChange}></input>&nbsp; {scales[char][0]}<br></br>
-                  <input type="radio" name={metaData.characteristics[char].id} value={2} onClick={scaleChange}></input>&nbsp; {scales[char][1]}<br></br>
-                  <input type="radio" name={metaData.characteristics[char].id} value={3} onClick={scaleChange}></input>&nbsp; {scales[char][2]}<br></br>
-                  <input type="radio" name={metaData.characteristics[char].id} value={4} onClick={scaleChange}></input>&nbsp; {scales[char][3]}<br></br>
-                  <input type="radio" name={metaData.characteristics[char].id} value={5} onClick={scaleChange}></input>&nbsp; {scales[char][4]}<br></br><br></br>
+                  <p><b>{char}</b></p><br></br>
+                  <div className="break"></div>
+                  <div className="review-radio">
+                    {scales[char][0]}
+                    <input type="radio" name={metaData.characteristics[char].id} value={1} onClick={scaleChange}></input><br></br>
+                  </div>
+                  <div className="review-radio">
+                    {scales[char][1]}
+                    <input type="radio" name={metaData.characteristics[char].id} value={2} onClick={scaleChange}></input><br></br>
+                  </div>
+                  <div className="review-radio">
+                    {scales[char][2]}
+                    <input type="radio" name={metaData.characteristics[char].id} value={3} onClick={scaleChange}></input><br></br>
+                  </div>
+                  <div className="review-radio">
+                    {scales[char][3]}
+                    <input type="radio" name={metaData.characteristics[char].id} value={4} onClick={scaleChange}></input><br></br>
+                  </div>
+                  <div className="review-radio">
+                    {scales[char][4]}
+                    <input type="radio" name={metaData.characteristics[char].id} value={5} onClick={scaleChange}></input><br></br>
+                  </div>
+                  <br></br><br></br>
                 </div>
               )
             })}
           </form>
-
-        </div>
-        <div className="review-form-modal-footer">
-          <button onClick={(e) => {
+          <button className="submit-btn" onClick={(e) => {
             e.preventDefault();
             let verified = formVerify();
              if (verified) {
               onClose();
              }
           }}>Submit</button>&nbsp;&nbsp;
-          <button onClick={onClose}>Close</button>
+          <button className="submit-btn" onClick={onClose}>Close</button>
         </div>
       </div>
       <div id="imageUploaderContainer"></div>
     </div>
+
   )
 }
 
