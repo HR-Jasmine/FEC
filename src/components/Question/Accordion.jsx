@@ -39,7 +39,6 @@ const Accordion = ({question, product, theme, themes}) => {
   const getAnswers = () => {
     axios.get(url,{headers})
       .then((res) => {
-        console.log(res.data.results)
         let answers = sortAnswers(res.data.results)
         setNumOfAnswers(answers.length)
         setAnswers(answers.slice(0,ansRendered))

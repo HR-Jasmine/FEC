@@ -84,7 +84,7 @@ const Overview = (props) => {
         </div>
         <div className="info h">
           <Gallery state={state} setState={setState} theme={theme} themes={themes} />
-          <OverviewInterface state={state} setState={setState} theme={theme} themes={themes} />
+          <OverviewInterface product={props.product} state={state} setState={setState} theme={theme} themes={themes} />
         </div>
         <br/>
         <div className="slogan">
