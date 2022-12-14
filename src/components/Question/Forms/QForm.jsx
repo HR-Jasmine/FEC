@@ -81,7 +81,7 @@ const QForm = ({question, closeQuestModal, product, theme, themes}) => {
 
 
   return (
-    <div className="form-app">
+    <div className={"form-app " + themes['t1'][theme]}>
       <form onSubmit={handleQuestSubmit} className="question-form">
         <button onClick={closeQuestModal} className="closeModal-btn"> X </button>
         <div className="modal-details">

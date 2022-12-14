@@ -18,7 +18,7 @@ const IndividualReview = ({review, beenClicked, setBeenClicked, theme, themes}) 
   return (
     <div className={`review-item card ${themes['t0'][theme]}`}>
       <h4 className="review-title">{review.summary}</h4>
-      <Stars rating={review.rating} />
+      <Stars rating={review.rating} theme={theme} themes={themes}/>
       <h6 className="review-username">Review by: {review.reviewer_name}</h6>
       <h5 className="review-date">{format(parseISO(review.date), 'MMMM dd, yyyy')}</h5>
       <div className="review-body">

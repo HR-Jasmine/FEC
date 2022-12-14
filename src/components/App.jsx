@@ -10,8 +10,8 @@ import QA from './Question/QA.jsx'
 import './styles/app.css';
 import './styles/style.css';
 
-document.documentElement.style.backgroundColor = '#241734';
-document.body.setAttribute('class', 't0a');
+document.documentElement.style.backgroundColor = 'rgb(255 218 218)';
+document.body.setAttribute('class', 't0b');
 
 
 // 37319 //
@@ -20,7 +20,7 @@ const App = (props) => {
     productId: 37319,
     product: props.product,
 
-    theme: 'a'
+    theme: 'b'
   });
 
   const changeId = (id) => {
