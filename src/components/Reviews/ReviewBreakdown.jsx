@@ -43,7 +43,7 @@ const ReviewBreakdown = ({metaData, filterSelector, ratingFilters, isFiltered, t
   return (
     <div className="review-breakdown">
       Average rating of {Math.floor(avgRating * 10) / 10} across {totalRatings} reviews.
-      <Stars rating={avgRating} />
+      <Stars rating={avgRating} theme={theme} themes={themes}/>
       <div className="applied-filters" hidden={!isFiltered}>
       <br></br>
           Filtering by star ratings of: {filterString}<br></br>

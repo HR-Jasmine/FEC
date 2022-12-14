@@ -6,7 +6,7 @@ import Stars from '../Stars.jsx';
 
 
 
-const SingleProduct = ( { productId, changeId } ) => {
+const SingleProduct = ( { productId, changeId, theme, themes } ) => {
 
   if (!productId) {
     return null;
@@ -59,10 +59,10 @@ const SingleProduct = ( { productId, changeId } ) => {
 
     // console.log('this is stylessss', styles)
   return (
-    <div className="product-card" onClick={() => {
+    <div className={"product-card card hover " + themes['t0'][theme]} onClick={() => {
       changeId(productId);
     }}>
-      <div className="product-image">
+      <div className={"product-image " + themes['t1'][theme]}>
         <img className="product-thumb" src={productPhoto} ></img>
         <button className="favorite-star">&#9734;</button>
      </div>
@@ -70,7 +70,7 @@ const SingleProduct = ( { productId, changeId } ) => {
             <p className="rp-category">{productName}</p>
             <p className="product-brand"></p>
             <span className="price">{productInfo.original_price}</span>
-            <Stars className="stars" />
+            <Stars className="stars" theme={theme} themes={themes} />
        </div>
     </div>
   )

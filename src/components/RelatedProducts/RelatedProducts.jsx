@@ -166,7 +166,7 @@ const RelatedProducts = ( { productId, changeId, theme, themes } ) => {
       <button  className="nxt-btn">&#8594;</button>
       <div className="product-container">
           {relatedId.map((productId, i) => {
-          return <SingleProduct productId={productId} changeId={changeId} key={i} />
+          return <SingleProduct productId={productId} changeId={changeId} key={i} theme={theme} themes={themes} />
           })}
       </div>
    </section>

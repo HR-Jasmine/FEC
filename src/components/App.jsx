@@ -10,15 +10,15 @@ import QA from './Question/QA.jsx'
 import './styles/app.css';
 import './styles/style.css';
 
-document.documentElement.style.backgroundColor = '#241734';
-document.body.setAttribute('class', 't0a');
+document.documentElement.style.backgroundColor = 'rgb(255 218 218)';
+document.body.setAttribute('class', 't0b');
 
 const App = (props) => {
   const [state, setState] = useState({
     productId: 37317,
     product: props.product,
 
-    theme: 'a'
+    theme: 'b'
   });
 
   const changeId = (id) => {
@@ -44,7 +44,7 @@ const App = (props) => {
   return (
     <div className={`app ${themes['t1'][state.theme]}`}>
     <Overview product={state.product} state={state} setState={setState} theme={state.theme} themes={themes} />
-    {/* <RelatedProducts productId={state.productId} changeId={changeId} theme={state.theme} themes={themes}/> */}
+    <RelatedProducts productId={state.productId} changeId={changeId} theme={state.theme} themes={themes}/>
     <QA productId={state.productId} product={state.product} theme={state.theme} themes={themes} />
     <Reviews productId={state.productId} product={state.product} theme={state.theme} themes={themes} />
   </div>

@@ -51,7 +51,7 @@ const QA = ({productId, product, theme, themes}) => {
     <div className={`QA-ctn ${themes['t1'][theme]}`}>
       <h2 className="section-title">Questions & Answers</h2>
       <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} questions={questions} theme={theme} themes={themes}/>
-      <QuestionList questions={filteredQuestions} product={product}/>
+      <QuestionList questions={filteredQuestions} product={product} theme={theme} themes={themes} />
       <div className={`btn-container ${themes['t1'][theme]}`}>
         <MoreBtn setQuestRendered={setQuestRendered} questCount={questCount} questRendered={questRendered} />
         <AddQ product={product} theme={theme} themes={themes} />

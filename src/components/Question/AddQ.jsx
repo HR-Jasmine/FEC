@@ -13,7 +13,7 @@ const AddQ = ({product, theme, themes}) => {
 
   return (
     <div>
-      <button onClick={openQuestionModal}>Add Question</button>
+      <button onClick={openQuestionModal} className={'card smallButton hover ' + themes['t2'][theme]}>Add Question</button>
       {questModalOpen && <QuestionModal setQuestModalOpen={setQuestModalOpen} product={product} theme={theme} themes={themes}/> }
     </div>
   )

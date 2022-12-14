@@ -171,7 +171,7 @@ const OverviewInterface = (props) => {
       <div className="interfaceHead v">
         <div className="social h">
           <div className="ratingsDiv" >
-            <Stars rating={state.product.rating}/>
+            <Stars rating={state.product.rating} theme={props.theme} themes={props.themes}/>
             <small className="reviewLink"><a href="" onClick={scrollToReviews}>Read all reviews.</a></small>
           </div>
         </div>
