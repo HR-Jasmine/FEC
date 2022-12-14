@@ -6,7 +6,7 @@ import axios from'axios'
 
 import '../../styles/Question/formInput.css'
 
-const AForm = ({question, closeAnsModal, product}) => {
+const AForm = ({question, closeAnsModal, product, theme, themes}) => {
 
   const headers = {'Authorization': process.env.API_KEY};
   // const [photoIsOpen, setPhotoIsOpen] = useState(false)
@@ -75,7 +75,7 @@ const AForm = ({question, closeAnsModal, product}) => {
 
 
   return (
-    <div className="form-app">
+    <div className={"form-app " + themes['t1'][theme]}>
       <form onSubmit={handleAnswerSubmit} data-testid='form' >
           <button onClick={closeAnsModal} className="closeModal-btn"> X </button>
         <div className="modal-details">
@@ -90,7 +90,7 @@ const AForm = ({question, closeAnsModal, product}) => {
             })
           }
         </div>
-        <input type="file" className="upload-btn"  ></input>
+        <input type="file" className="upload-btn" ></input>
         <div className="textarea-div">
           {
             textObj.map((text, i) => {
