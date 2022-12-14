@@ -44,7 +44,7 @@ const App = (props) => {
   return (
     <div className={`app ${themes['t1'][state.theme]}`}>
     <Overview product={state.product} state={state} setState={setState} theme={state.theme} themes={themes} />
-    {/* <RelatedProducts productId={state.productId} changeId={changeId} theme={state.theme} themes={themes}/> */}
+    <RelatedProducts productId={state.productId} changeId={changeId} theme={state.theme} themes={themes}/>
     <QA productId={state.productId} product={state.product} theme={state.theme} themes={themes} />
     <Reviews productId={state.productId} product={state.product} theme={state.theme} themes={themes} />
   </div>

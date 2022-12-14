@@ -29,3 +29,8 @@ body {
 #footer {
   height: 150px;
 }
+
+button:disabled,
+button[disabled] {
+  opacity: 0.5;
+}
