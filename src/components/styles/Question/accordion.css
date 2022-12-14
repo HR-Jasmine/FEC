@@ -10,8 +10,8 @@
 
   cursor: pointer;
   background-color: none;
-  width: 630px;
-  border: 1px solid;
+  width: 750px;
+  border: 1px solid black;
 }
 
 .accordion-title,
@@ -144,6 +144,11 @@
 .seller{
   font-weight: 800;
 }
+.seller-span{
+  font-weight: 800;
+}
+
+
 
 .answer-container{
   max-height: 500px;
@@ -153,4 +158,8 @@
 .answer-img{
   width: 30px;
   display: block;
+}
+
+.answer-div{
+  width: 600px;
 }
