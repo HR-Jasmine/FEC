@@ -7,7 +7,7 @@ import AnswerModal from './Modals/AnswerModal.jsx'
 
 import '../styles/Question/accordion.css';
 
-const Answer = ({answer, question, qId, product}) => {
+const Answer = ({answer, question, qId, product, theme, themes}) => {
 
   const {body, date, answerer_name, helpfulness, photos} = answer
   const newDate = format(new Date (date), 'MMMM d, yyyy')
@@ -61,7 +61,7 @@ const Answer = ({answer, question, qId, product}) => {
       { pics.map((pic,i) => {
         return <img className="answer-img" key={i} src={pic.url}></img>
       }) }
-      {openAnswer && <AnswerModal question={question} answer={answer} setOpenAnswer={setOpenAnswer} qId={qId} product={product}/>}
+      {openAnswer && <AnswerModal question={question} answer={answer} setOpenAnswer={setOpenAnswer} qId={qId} product={product} theme={theme} themes={themes}/>}
     </div>
   )
 }

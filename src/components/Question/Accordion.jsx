@@ -82,7 +82,7 @@ const Accordion = ({question, product, theme, themes}) => {
         </div>
         {isActive &&
           <div className={`accordion-content ${themes['t3'][theme]}`} data-testid='accord-content'>{ answers.map((answer, i) => {
-              return <Answer key={i} answer={answer} question={question} product={product}/>
+              return <Answer key={i} answer={answer} question={question} product={product} theme={theme} themes={themes}/>
           })}
           {
             numOfAnswers > 2 ? <button className={"see-more-btn hover " + themes['t4'][theme]} onClick={changeToCollapse}> See more </button> : <span></span>

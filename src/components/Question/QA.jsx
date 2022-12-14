@@ -53,7 +53,7 @@ const QA = ({productId, product, theme, themes}) => {
       <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} questions={questions} theme={theme} themes={themes}/>
       <QuestionList questions={filteredQuestions} product={product} theme={theme} themes={themes} />
       <div className={`btn-container ${themes['t1'][theme]}`}>
-        <MoreBtn setQuestRendered={setQuestRendered} questCount={questCount} questRendered={questRendered} />
+        <MoreBtn setQuestRendered={setQuestRendered} questCount={questCount} questRendered={questRendered} theme={theme} themes={themes}/>
         <AddQ product={product} theme={theme} themes={themes} />
       </div>
     </div>
