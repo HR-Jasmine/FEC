@@ -11,7 +11,7 @@
   cursor: pointer;
   background-color: none;
   width: 630px;
-  border: 1px solid black;
+  border: 1px solid;
 }
 
 .accordion-title,
@@ -32,7 +32,7 @@
 }
 
 .accordion-content {
-  border: 1px solid black;
+  border: 1px solid;
 }
 
 .accordion-item button {
