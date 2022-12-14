@@ -10,7 +10,7 @@
 
   cursor: pointer;
   background-color: none;
-  width: 630px;
+  width: 900px;
   border: 1px solid black;
 }
 
@@ -34,7 +34,7 @@
 
 
 .accordion-content {
-  background-color: lightgray;
+  background-color: ;
   border: 1px solid black;
 }
 
@@ -149,6 +149,11 @@
 .seller{
   font-weight: 800;
 }
+.seller-span{
+  font-weight: 800;
+}
+
+
 
 .answer-container{
   max-height: 500px;
@@ -158,4 +163,8 @@
 .answer-img{
   width: 30px;
   display: block;
+}
+
+.answer-div{
+  width: 600px;
 }

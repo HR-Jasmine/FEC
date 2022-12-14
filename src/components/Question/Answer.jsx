@@ -38,7 +38,10 @@ const Answer = ({answer, question, qId, product}) => {
   return (
     <div className="answer" data-testid="answer">
       <div className="Apart1">
-        <h4>A: {body}</h4>
+        <div className="answer-div">
+
+          <h4>A: {body}</h4>
+        </div>
         <div className="Apart2">
           <button onClick={updateCount} className="accord-btn" data-testid="ans-helpful">Helpful?</button>
           <span className="yes">Yes({helpCount})</span>
@@ -47,7 +50,7 @@ const Answer = ({answer, question, qId, product}) => {
       <div className="Apart3">
         <div className="Apart5">
 
-          <span>By: {answerer_name === "Seller" ? <span>Seller</span> : <span>{answerer_name}</span>}</span>
+          <span>By: {answerer_name === "Seller" ? <span className="seller-span">Seller</span> : <span>{answerer_name}</span>}</span>
           <span>{newDate}</span>
         </div>
         <div className="Apart4">

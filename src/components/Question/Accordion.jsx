@@ -11,6 +11,7 @@ import { FaAngleDoubleUp} from "react-icons/fa";
 
 
 
+
 import '../styles/Question/accordion.css';
 
 const Accordion = ({question, product}) => {

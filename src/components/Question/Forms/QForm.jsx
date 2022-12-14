@@ -6,6 +6,9 @@ import axios from'axios'
 
 const QForm = ({question, closeQuestModal, product, theme, themes}) => {
 
+  const [textCharCount, setTextCharCount] = useState(0)
+
+
   const headers = {'Authorization': process.env.API_KEY};
   // const [photoIsOpen, setPhotoIsOpen] = useState(false)
   const [values, setValues] = useState({
@@ -43,14 +46,13 @@ const QForm = ({question, closeQuestModal, product, theme, themes}) => {
     label: "Question:"
   }]
 
-  const handleQuestSubmit = (e) => {
-    e.preventDefault();
+  const handleQuestSubmit = () => {
     const url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions`;
     const params = {
       body: values.Answer,
       name: values.Nickname,
       email: values.Email,
-      product_id: productId
+      product_id: product.id
     }
 
     axios.post(url, params, {headers})
@@ -60,6 +62,7 @@ const QForm = ({question, closeQuestModal, product, theme, themes}) => {
       .catch((err) => {
         console.log(err)
       })
+    closeQuestModal();
   }
 
   const handleChange = (e) => {

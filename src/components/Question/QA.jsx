@@ -21,7 +21,7 @@ const QA = ({productId, product, theme, themes}) => {
   // State management //
   const [questions, setQuestions] = useState([])
   const [filteredQuestions, setFilteredQuestions] = useState([])
-  const [questRendered, setQuestRendered] = useState(4)
+  const [questRendered, setQuestRendered] = useState(1)
   const [questCount, setQuestCount] = useState(0)
 
 

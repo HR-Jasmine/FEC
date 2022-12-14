@@ -13,9 +13,11 @@ import './styles/style.css';
 document.documentElement.style.backgroundColor = '#241734';
 document.body.setAttribute('class', 't0a');
 
+
+// 37319 //
 const App = (props) => {
   const [state, setState] = useState({
-    productId: 37317,
+    productId: 37319,
     product: props.product,
 
     theme: 'a'
@@ -44,7 +46,7 @@ const App = (props) => {
   return (
     <div className={`app ${themes['t1'][state.theme]}`}>
     <Overview product={state.product} state={state} setState={setState} theme={state.theme} themes={themes} />
-    {/* <RelatedProducts productId={state.productId} changeId={changeId} theme={state.theme} themes={themes}/> */}
+    <RelatedProducts productId={state.productId} changeId={changeId} theme={state.theme} themes={themes}/>
     <QA productId={state.productId} product={state.product} theme={state.theme} themes={themes} />
     <Reviews productId={state.productId} product={state.product} theme={state.theme} themes={themes} />
   </div>

@@ -47,9 +47,6 @@
   margin-bottom: 25px
 }
 
-input:focus{
-  color: green
-}
 
 /******* LABEL styling *******/
 .labels{
@@ -75,11 +72,14 @@ input:focus{
 
 /** TEXT AREA styling **/
 .textarea{
-
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
+}
+
+.text-ctn{
+  padding: 10px;
 }
 
 /***** SUBMIT BUTTON styling *****/

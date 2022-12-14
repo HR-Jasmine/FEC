@@ -5,9 +5,9 @@
   align-items: center;
   justify-content: center;
   gap: 50px;
-  border: 1px solid;
+
   border-style: none none solid none;
-  border-color: rgb(255 164 201);
+  border: 1px solid  rgb(255 164 201);
 }
 
 .section-title{
@@ -20,3 +20,4 @@
   justify-content: center;
   gap:25px
 }
+
