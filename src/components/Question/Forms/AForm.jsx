@@ -90,7 +90,7 @@ const AForm = ({question, closeAnsModal, product, theme, themes}) => {
             })
           }
         </div>
-        <input type="file" className="upload-btn"  ></input>
+        <input type="file" className="upload-btn" ></input>
         <div className="textarea-div">
           {
             textObj.map((text, i) => {
