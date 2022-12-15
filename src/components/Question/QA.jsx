@@ -52,7 +52,7 @@ const QA = ({productId, product, theme, themes}) => {
       <h2 className="section-title">Questions & Answers</h2>
       <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} questions={questions} theme={theme} themes={themes}/>
       <QuestionList questions={filteredQuestions} product={product} theme={theme} themes={themes} />
-      <div className={`btn-container ${themes['t1'][theme]}`}>
+      <div className={`btn-container`}>
         <MoreBtn setQuestRendered={setQuestRendered} questCount={questCount} questRendered={questRendered} theme={theme} themes={themes}/>
         <AddQ product={product} theme={theme} themes={themes} />
       </div>

@@ -14,7 +14,7 @@ const Gallery = (props) => {
 
     if (state.activeStyle) {
       var photos = state.activeStyle.photos;
-      for (var i = 0; i < photos.length; i++) {
+      for (var i = 0; i < 6; i++) {
         var photo = photos[i];
         var thumbClass = function() {
           var selected = '';

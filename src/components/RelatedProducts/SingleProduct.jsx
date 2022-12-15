@@ -25,7 +25,6 @@ const SingleProduct = ( { productId, changeId, theme, themes } ) => {
       }
   })
     .then(response => {
-      console.log
       setProductInfo(response.data.results[0]);
       setDumbRender(dumbRender + 1);
     })
@@ -37,7 +36,6 @@ const SingleProduct = ( { productId, changeId, theme, themes } ) => {
       }
   })
     .then(response => {
-      console.log
       setProductName(response.data.name);
       setDumbRender(dumbRender + 1);
     })
@@ -45,7 +43,6 @@ const SingleProduct = ( { productId, changeId, theme, themes } ) => {
 
 
   useEffect(() => {
-    console.log(productInfo);
     if (dumbRender > 0 && productInfo.photos) {
       let photoUrl = productInfo.photos[0].thumbnail_url;
       setProductPhoto(photoUrl);
@@ -57,7 +54,6 @@ const SingleProduct = ( { productId, changeId, theme, themes } ) => {
     return null;
   }
 
-    // console.log('this is stylessss', styles)
   return (
     <div className={"product-card card hover " + themes['t0'][theme]} onClick={() => {
       changeId(productId);
