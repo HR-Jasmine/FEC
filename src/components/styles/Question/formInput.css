@@ -20,6 +20,7 @@
   height: 80%;
   width: 25%;
 }
+
 .quest{
   border: 2px solid;
   border-radius: 15px;
@@ -30,6 +31,7 @@
   position: relative;
   height: 68%;
   width: 25%;
+  min-width: 440px;
 }
 
 .modal-title{
