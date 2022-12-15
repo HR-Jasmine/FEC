@@ -17,8 +17,21 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 85%;
-  width: 35%;
+  height: 80%;
+  width: 25%;
+}
+
+.quest{
+  border: 2px solid;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 68%;
+  width: 25%;
+  min-width: 440px;
 }
 
 .modal-title{
@@ -47,9 +60,6 @@
   margin-bottom: 25px
 }
 
-input:focus{
-  color: green
-}
 
 /******* LABEL styling *******/
 .labels{
@@ -75,11 +85,14 @@ input:focus{
 
 /** TEXT AREA styling **/
 .textarea{
-
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
+}
+
+.text-ctn{
+  padding: 10px;
 }
 
 /***** SUBMIT BUTTON styling *****/
@@ -104,15 +117,23 @@ input:focus{
 .closeModal-btn{
   font-size: 1rem;
   color: #FD3777;
-  font-weight: 800;
+  font-weight: 700;
+  font-size: 0.75rem;
   background-color: transparent;
-  border: none;
+  border: 2px solid #FD3777;
   cursor: pointer;
   position: absolute;
   right: 10px;
-  top: 5px
+  top: 10px;
+  border-radius: 60%;
+  width: 25px;
+  height: 25px;
 }
 
 .closeModal-btn:hover{
   color: #2DE2E6
+}
+
+.upload-btn{
+  margin-bottom: 20px;
 }

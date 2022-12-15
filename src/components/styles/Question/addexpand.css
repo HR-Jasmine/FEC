@@ -1,10 +1,7 @@
-.button-container{
-  width: 30%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.more, .add{
-  padding: 1em
+.addexpand-btn{
+  padding: 1em;
+  background-color: rgb(160, 95, 121);
+  border: 1px solid rgb(112, 46, 73);
+  color: white;
+  box-shadow: 0 0 4px 1px rgb(179 155 155);
 }

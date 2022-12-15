@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/stars.css';
 
-const Stars = ({rating}) => {
+const Stars = ({rating, theme, themes}) => {
   const parseRating = (amount) => {
     let multAndFloorAndDivideAndTurnToPercentage = (Math.floor(amount * 4) / 4) * 20;
     return String(multAndFloorAndDivideAndTurnToPercentage) + '%';
@@ -14,7 +14,7 @@ const Stars = ({rating}) => {
   };
 
   return(
-    <div className="ratings">
+    <div className={"ratings " + themes['t1'][theme]}>
       <div className="empty-stars"></div>
       <div className="full-stars" style={styleObj}></div>
     </div>

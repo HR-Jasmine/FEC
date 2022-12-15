@@ -2,8 +2,9 @@
   position: relative;
   vertical-align: middle;
   display: inline-block;
-  color: #ffffff;
   overflow: hidden;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .full-stars {
@@ -12,7 +13,6 @@
   top: 0;
   white-space: nowrap;
   overflow: hidden;
-  color: rgb(255, 218, 115);
 }
 
 .empty-stars:before, .full-stars:before {
@@ -21,10 +21,10 @@
 }
 
 .empty-stars:before {
-  -webkit-text-stroke: 1px #c0c0c0;
+  color: white;
 }
 .full-stars:before {
-  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  -webkit-text-stroke: 1px;
 }
 
 @-moz-document url-prefix() {

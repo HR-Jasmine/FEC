@@ -8,9 +8,7 @@ import '../styles/style.css';
 import '../styles/Overview/over.css';
 import '../styles/Overview/interface.css';
 
-const OverviewInterface = (props) => {
-  const [state, setState] = [props.state, props.setState];
-  const product = state.product;
+const OverviewInterface = ({product, state, setState, theme, themes}) => {
   const styles = state.styles;
   const activeStyle = state.activeStyle;
   const sku = state.sku;
@@ -54,7 +52,6 @@ const OverviewInterface = (props) => {
 
     if (activeStyle) {
       if (option === 'quantity') {
-        console.log(sku)
         if (sku.size === 'Select Size') {
           options.push(<option key="-" value="-">-</option>);
         } else {
@@ -140,7 +137,7 @@ const OverviewInterface = (props) => {
     var cart = state.cart;
 
     var purchase = {
-      id:       state.product.id,
+      id:       product.id,
       style_id: p.style_id,
       name:     p.name,
       price:    p.sale_price || p.original_price,
@@ -158,26 +155,27 @@ const OverviewInterface = (props) => {
     })
   }
 
-  useEffect(function() {
-    setState(props.state);
-  }, [props]);
+  // useEffect(function() {
+  //   setState(state);
+  //   useProduct(state.product);
+  // }, [state]);
 
   if (!state.styles) {
     return;
   }
 
   return (
-    <div className={`interface card noPad v ${props.themes['t0'][props.theme]}`}>
+    <div className={`interface card noPad v ${ themes['t0'][ theme]}`}>
       <div className="interfaceHead v">
         <div className="social h">
           <div className="ratingsDiv" >
-            <Stars rating={state.product.rating}/>
+            <Stars rating={product.rating} theme={theme} themes={themes}/>
             <small className="reviewLink"><a href="" onClick={scrollToReviews}>Read all reviews.</a></small>
           </div>
         </div>
 
-        <h3>{state.product.category}</h3>
-        <h2>{state.product.name}</h2>
+        <h3>{product.category}</h3>
+        <h2>{product.name}</h2>
         <b>{getPrice()}</b>
       </div>
       <div id="styleName"><b>STYLE - </b>{function() {if (activeStyle) {return activeStyle.name} else {return 'STYLE'}}()}</div>
@@ -186,16 +184,16 @@ const OverviewInterface = (props) => {
       </div>
       <div id="select-container">
         <div className="selectors h">
-          <select className={`bigSelect ${props.themes['t1'][props.theme]}`} id="selectSize" value={sku.size} onChange={sizeChange}>
+          <select className={`bigSelect ${ themes['t1'][ theme]}`} id="selectSize" value={sku.size} onChange={sizeChange}>
             {optionSet('size')}
           </select>
-          <select className={`bigSelect ${props.themes['t1'][props.theme]}`} id="selectQuantity">
+          <select className={`bigSelect ${ themes['t1'][ theme]}`} id="selectQuantity">
             {optionSet('quantity')}
           </select>
         </div>
         <div className="productButtons h">
-          <button className={`bigButton hover ${props.themes['t3'][props.theme]}`} id="addToCart" onClick={addToCart}>Add to Cart</button>
-          <button className={`bigButton hover ${props.themes['t3'][props.theme]}`} id="addToFav"><div className='star'>★</div></button>
+          <button className={`bigButton hover ${ themes['t3'][ theme]}`} id="addToCart" onClick={addToCart}>Add to Cart</button>
+          <button className={`bigButton hover ${ themes['t3'][ theme]}`} id="addToFav"><div className='star'>★</div></button>
         </div>
       </div>
     </div>

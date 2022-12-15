@@ -12,6 +12,7 @@ import sortQuestions from './lib/sortQuestions.js'
 
 // Styling //
 import '../styles/Question/main.css';
+import interaction from '../interaction.js';
 
 const QA = ({productId, product, theme, themes}) => {
   if (!product) {
@@ -20,7 +21,7 @@ const QA = ({productId, product, theme, themes}) => {
   // State management //
   const [questions, setQuestions] = useState([])
   const [filteredQuestions, setFilteredQuestions] = useState([])
-  const [questRendered, setQuestRendered] = useState(4)
+  const [questRendered, setQuestRendered] = useState(1)
   const [questCount, setQuestCount] = useState(0)
 
 
@@ -50,9 +51,9 @@ const QA = ({productId, product, theme, themes}) => {
     <div className={`QA-ctn ${themes['t1'][theme]}`}>
       <h2 className="section-title">Questions & Answers</h2>
       <Search filteredQuestions={filteredQuestions} setFilteredQuestions={setFilteredQuestions} questions={questions} theme={theme} themes={themes}/>
-      <QuestionList questions={filteredQuestions} product={product}/>
-      <div className={`btn-container ${themes['t1'][theme]}`}>
-        <MoreBtn setQuestRendered={setQuestRendered} questCount={questCount} questRendered={questRendered} />
+      <QuestionList questions={filteredQuestions} product={product} theme={theme} themes={themes} />
+      <div className={`btn-container`}>
+        <MoreBtn setQuestRendered={setQuestRendered} questCount={questCount} questRendered={questRendered} theme={theme} themes={themes}/>
         <AddQ product={product} theme={theme} themes={themes} />
       </div>
     </div>

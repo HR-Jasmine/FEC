@@ -6,7 +6,7 @@ import Stars from '../Stars.jsx';
 
 
 
-const SingleProduct = ( { productId, changeId } ) => {
+const SingleProduct = ( { productId, changeId, theme, themes } ) => {
 
   if (!productId) {
     return null;
@@ -25,7 +25,6 @@ const SingleProduct = ( { productId, changeId } ) => {
       }
   })
     .then(response => {
-      console.log
       setProductInfo(response.data.results[0]);
       setDumbRender(dumbRender + 1);
     })
@@ -37,7 +36,6 @@ const SingleProduct = ( { productId, changeId } ) => {
       }
   })
     .then(response => {
-      console.log
       setProductName(response.data.name);
       setDumbRender(dumbRender + 1);
     })
@@ -45,7 +43,6 @@ const SingleProduct = ( { productId, changeId } ) => {
 
 
   useEffect(() => {
-    console.log(productInfo);
     if (dumbRender > 0 && productInfo.photos) {
       let photoUrl = productInfo.photos[0].thumbnail_url;
       setProductPhoto(photoUrl);
@@ -57,12 +54,11 @@ const SingleProduct = ( { productId, changeId } ) => {
     return null;
   }
 
-    // console.log('this is stylessss', styles)
   return (
-    <div className="product-card" onClick={() => {
+    <div className={"product-card card hover " + themes['t0'][theme]} onClick={() => {
       changeId(productId);
     }}>
-      <div className="product-image">
+      <div className={"product-image " + themes['t1'][theme]}>
         <img className="product-thumb" src={productPhoto} ></img>
         <button className="favorite-star">&#9734;</button>
      </div>
@@ -70,7 +66,7 @@ const SingleProduct = ( { productId, changeId } ) => {
             <p className="rp-category">{productName}</p>
             <p className="product-brand"></p>
             <span className="price">{productInfo.original_price}</span>
-            <Stars className="stars" />
+            <Stars className="stars" theme={theme} themes={themes} />
        </div>
     </div>
   )

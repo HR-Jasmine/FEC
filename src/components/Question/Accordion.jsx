@@ -11,9 +11,10 @@ import { FaAngleDoubleUp} from "react-icons/fa";
 
 
 
+
 import '../styles/Question/accordion.css';
 
-const Accordion = ({question, product}) => {
+const Accordion = ({question, product, theme, themes}) => {
   const {question_body, question_helpfulness, question_id} = question
   const [qId, setQid] = useState(question_id)
   const [questionHelpfulness, setQuestionHelpfulness] = useState(question_helpfulness)
@@ -45,7 +46,7 @@ const Accordion = ({question, product}) => {
       })
   }
   useEffect(getAnswers,[ansRendered])
-  console.log(answers)
+
 
   // Functions //
   const helpfulIncrement = (e) => { // Increments the helpfulness counter //
@@ -66,11 +67,11 @@ const Accordion = ({question, product}) => {
   }
 
   return (
-    <div className="accordion">
-      <div className="accordion-item">
-        <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
+    <div className="accordion" data-testid="accord">
+      <div className={`accordion-item ${themes['t2'][theme]}`} data-testid="accord-title">
+        <div className="accordion-title" onClick={() => setIsActive(!isActive)} data-testid="accord-main">
           <div className="Qpart1">
-            <h3>Q: {question_body}</h3>
+            <h3 data-testid="question-title">Q: {question_body}</h3>
             <div>{isActive ? <FaAngleDoubleUp className="bounce" /> : <FaAngleDoubleDown className="bounce" />}</div>
           </div>
           <div className="Qpart2">
@@ -79,11 +80,11 @@ const Accordion = ({question, product}) => {
           </div>
         </div>
         {isActive &&
-          <div className="accordion-content">{ answers.map((answer, i) => {
-              return <Answer key={i} answer={answer} question={question} product={product}/>
+          <div className={`accordion-content ${themes['t3'][theme]}`} data-testid='accord-content'>{ answers.map((answer, i) => {
+              return <Answer key={i} answer={answer} question={question} product={product} theme={theme} themes={themes}/>
           })}
           {
-            numOfAnswers > 2 ? <button className="see-more-btn" onClick={changeToCollapse}> See more </button> : <span></span>
+            numOfAnswers > 2 ? <button className={"see-more-btn hover " + themes['t4'][theme]} onClick={changeToCollapse}> See more </button> : <span></span>
           }
           </div>}
       </div>
