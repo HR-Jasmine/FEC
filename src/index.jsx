@@ -1,14 +1,13 @@
-// Bring React in to build a component.
 import React from "react";
-// Import from react-dom the ability to create a root render
 import { createRoot } from "react-dom/client";
-
 import App from './components/App.jsx';
-// create the root of the app by selection where the app should be mounted in the dom
+import axios from 'axios';
+
+const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/';
 const root = createRoot(document.getElementById("root"));
+const headers = {'Authorization': process.env.API_KEY};
 
-// Here is out base App component.
-// Notice we are NOT using jsx here. This is because we have not set up babel yet.
-
-// render the root element with the provided component
-root.render(<App />);
+axios.get(url, {headers})
+  .then(response => {
+    root.render(<App product={response.data[0]}/>);
+  });

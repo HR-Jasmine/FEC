@@ -1,0 +1,97 @@
+.overview {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 400px;
+  width: 1280px;
+  min-height: 800px;
+  text-align: center;
+
+  border-width: 1px;
+  border-style: none none solid none;
+  box-shadow: none;
+
+  padding-bottom: 16px;
+
+  position: relative;
+}
+
+.overInput {
+  height: 36px;
+  margin: 4px;
+}
+
+.navright {
+  display: flex;
+  align-items: center;
+}
+
+.cart {
+  position: relative;
+  margin: 6px;
+}
+
+.cartNum {
+  position: absolute;
+  right: 24px;
+  margin-bottom: 6px;
+  user-select: none;
+}
+
+.announce {
+  height: 32px;
+}
+
+.info {
+  margin: 16px;
+  max-height: 600px;
+}
+
+.slogan {
+  margin: 8px;
+  margin-left: 300px;
+  margin-right: 300px;
+  text-align: left;
+}
+
+.ratingsDiv {
+  position: relative;
+}
+
+.reviewLink {
+  position: absolute;
+  min-width: 100px;
+  top: 6px;
+  left: 82px;
+}
+
+.shareContainer {
+  padding: 12px;
+  padding-top: 24px;
+  text-align: center;
+
+  border-width: 1px;
+  border-style: solid none none none;
+  box-shadow: none;
+}
+
+.shareButton {
+  text-decoration: none;
+  min-height: auto;
+  height: 25px;
+  margin: 4px;
+  padding: 4px;
+  box-shadow: none;
+}
+
+.themeToggle {
+  position: absolute;
+
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
+
+  top: 12px;
+  left: -24px;
+  box-shadow: none;
+}

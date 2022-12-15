@@ -1,0 +1,15 @@
+.review-item {
+  margin-bottom: 16px;
+  width: 95%;
+  flex-shrink: 0;
+}
+
+.review-image {
+  width: 150px;
+  display: inline-block;
+  cursor: zoom-in;
+}
+
+.review-image-holder {
+  display: inline-block;
+}
