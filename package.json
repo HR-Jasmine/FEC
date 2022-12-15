@@ -4,7 +4,7 @@
   "description": "./README.md",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "node Server/index.js",
     "build": "webpack --mode=production",
     "dev": "webpack serve --open",
     "test": "jest --coverage --setupFiles dotenv/config"
