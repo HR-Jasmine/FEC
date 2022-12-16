@@ -18,14 +18,13 @@
   font-size: 48px;
 }
 
-
 .ratingsDiv {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .reviewLink {
-  position: absolute;
-  min-width: 200px;
   top: 6px;
   left: 82px;
 }
