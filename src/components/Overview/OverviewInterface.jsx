@@ -147,7 +147,7 @@ const OverviewInterface = ({rating, product, state, setState, theme, themes}) =>
     }
 
     cart.push(purchase);
-    // document.cookie = `cart=${JSON.stringify(cart)};`;
+    document.cookie = `cart=${JSON.stringify(cart)};`;
 
     setState({
       ...state,
