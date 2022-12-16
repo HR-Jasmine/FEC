@@ -21,6 +21,7 @@
   width: 25%;
   min-height: 750px;
   min-width: 500px;
+  padding: 2em
 }
 
 .quest{
@@ -31,10 +32,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 68%;
-  width: 25%;
-  min-width: 440px;
-  min-height: 640px;
+  padding: 2em 1em
 }
 
 .modal-title{
@@ -134,10 +132,6 @@
   border-radius: 60%;
   width: 25px;
   height: 25px;
-}
-
-.closeModal-btn:hover{
-  color: #2DE2E6
 }
 
 .upload-btn{
