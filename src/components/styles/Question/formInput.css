@@ -99,6 +99,9 @@
   width: 25%;
   cursor: pointer;
   font-weight: 700;
+  min-width: 100px;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 /* .submit-btn:hover{

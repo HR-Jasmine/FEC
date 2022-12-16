@@ -148,6 +148,7 @@ const ReviewForm = ({showForm, onClose, theme, themes, product, metaData, testin
             <div className="close-review-modal" onClick={onClose}>X</div>
           </div><br/>
           <form className="add-review-form">
+            <div className="review-input">
             <label className="review-star-rating">
               <strong>Rating: {formState.rating === 0 ? null : ratingMeaning[formState.rating]}</strong>
               <input className="review-rating" max="100" onChange={(e) => {
@@ -195,7 +196,8 @@ const ReviewForm = ({showForm, onClose, theme, themes, product, metaData, testin
               e.preventDefault();
               let updatedForm = {...formState, email: e.target.value};
               setFormState(updatedForm);
-            }}></input><br></br><br></br>
+            }}></input>
+            </div>
             {Object.keys(metaData.characteristics).map((char, i) => {
               return (
                 <div className="char-holder" key={i}>
@@ -226,14 +228,17 @@ const ReviewForm = ({showForm, onClose, theme, themes, product, metaData, testin
               )
             })}
           </form>
-          <button className="submit-btn" onClick={(e) => {
-            e.preventDefault();
-            let verified = formVerify();
-             if (verified) {
-              onClose();
-             }
-          }}>Submit</button>&nbsp;&nbsp;
-          <button className="submit-btn" onClick={onClose}>Close</button>
+          <div className="h">
+            <button className={"submit-btn card smallButton hover " + themes['t2'][theme]} onClick={(e) => {
+              e.preventDefault();
+              let verified = formVerify();
+              if (verified) {
+                onClose();
+              }
+            }}>Submit</button>
+            <button className={"submit-btn card smallButton hover " + themes['t2'][theme]} onClick={onClose}>Close</button>
+          </div>
+
         </div>
 
       <div id="imageUploaderContainer"></div>

@@ -162,8 +162,8 @@ const RelatedProducts = ( { productId, changeId, theme, themes } ) => {
       <Modal /> */}
       <h2 className="product-category">Related Products </h2>
     <section className="product">
-      <button  className="pre-btn" >&#8592;</button>
-      <button  className="nxt-btn">&#8594;</button>
+      <button  className={"pre-btn " + themes['t2'][theme]} >&#8592;</button>
+      <button  className={"nxt-btn " + themes['t2'][theme]}>&#8594;</button>
       <div className="product-container">
           {relatedId.map((productId, i) => {
           return <SingleProduct productId={productId} changeId={changeId} key={i} theme={theme} themes={themes} />

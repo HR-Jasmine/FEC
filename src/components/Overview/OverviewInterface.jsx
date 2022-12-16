@@ -8,7 +8,7 @@ import '../styles/style.css';
 import '../styles/Overview/over.css';
 import '../styles/Overview/interface.css';
 
-const OverviewInterface = ({product, state, setState, theme, themes}) => {
+const OverviewInterface = ({rating, product, state, setState, theme, themes}) => {
   const styles = state.styles;
   const activeStyle = state.activeStyle;
   const sku = state.sku;
@@ -147,7 +147,7 @@ const OverviewInterface = ({product, state, setState, theme, themes}) => {
     }
 
     cart.push(purchase);
-    // document.cookie = `cart=${JSON.stringify(cart)};`;
+    document.cookie = `cart=${JSON.stringify(cart)};`;
 
     setState({
       ...state,
@@ -169,7 +169,7 @@ const OverviewInterface = ({product, state, setState, theme, themes}) => {
       <div className="interfaceHead v">
         <div className="social h">
           <div className="ratingsDiv" >
-            <Stars rating={product.rating} theme={theme} themes={themes}/>
+            <Stars rating={rating} theme={theme} themes={themes}/>
             <small className="reviewLink"><a href="" onClick={scrollToReviews}>Read all reviews.</a></small>
           </div>
         </div>

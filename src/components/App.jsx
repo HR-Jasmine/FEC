@@ -19,6 +19,7 @@ const App = (props) => {
   const [state, setState] = useState({
     productId: 37319,
     product: props.product,
+    rating: null,
 
     theme: 'b'
   });
@@ -43,12 +44,14 @@ const App = (props) => {
     themes['t' + i] = {a: `t${i}a`, b: `t${i}b`};
   };
 
+  useEffect(() => {}, [state.rating]);
+
   return (
     <div className={`app ${themes['t1'][state.theme]}`}>
     <Overview product={state.product} state={state} setState={setState} theme={state.theme} themes={themes} />
     <RelatedProducts productId={state.productId} changeId={changeId} theme={state.theme} themes={themes}/>
     <QA productId={state.productId} product={state.product} theme={state.theme} themes={themes} />
-    <Reviews productId={state.productId} product={state.product} theme={state.theme} themes={themes} />
+    <Reviews state={state} setState={setState} productId={state.productId} product={state.product} theme={state.theme} themes={themes} />
   </div>
   )
 }

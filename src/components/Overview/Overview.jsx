@@ -6,6 +6,7 @@ import {BsCart} from 'react-icons/bs';
 import Gallery from './Gallery.jsx';
 import OverviewInterface from './OverviewInterface.jsx';
 import helper from './helpers.jsx';
+import interaction from '../interaction.js';
 
 import '../styles/style.css';
 import '../styles/Overview/over.css';
@@ -38,7 +39,7 @@ const Overview = (props) => {
 
   var toggleTheme = function() {
     if (theme === 'a') {
-      document.documentElement.style.backgroundColor = 'white';
+      document.documentElement.style.backgroundColor = 'rgb(255 218 218)';
       document.body.setAttribute('class', 't0b');
       props.setState({
         ...props.state,
@@ -69,7 +70,7 @@ const Overview = (props) => {
   }
 
   return (
-      <div className={`overview v ${themes['t1'][theme]}`}>
+      <div className={`overview v ${themes['t1'][theme]}`} onClick={(e) => {interaction(e.target, 'Overview')}}>
         <span className={`themeToggle ${themes['t4'][theme]}`} onClick={toggleTheme}></span>
         <div className={`navbar h ${themes['t4'][theme]}`}>
           <h1>jasmine</h1>
@@ -84,7 +85,7 @@ const Overview = (props) => {
         </div>
         <div className="info h">
           <Gallery state={state} setState={setState} theme={theme} themes={themes} />
-          <OverviewInterface product={props.product} state={state} setState={setState} theme={theme} themes={themes} />
+          <OverviewInterface rating={props.state.rating} product={props.product} state={state} setState={setState} theme={theme} themes={themes} />
         </div>
         <br/>
         <div className="slogan">
