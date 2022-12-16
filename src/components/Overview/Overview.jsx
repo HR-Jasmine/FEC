@@ -38,7 +38,7 @@ const Overview = (props) => {
 
   var toggleTheme = function() {
     if (theme === 'a') {
-      document.documentElement.style.backgroundColor = 'white';
+      document.documentElement.style.backgroundColor = 'rgb(255 218 218)';
       document.body.setAttribute('class', 't0b');
       props.setState({
         ...props.state,
