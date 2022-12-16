@@ -75,7 +75,7 @@ const Accordion = ({question, product, theme, themes}) => {
             <div>{isActive ? <FaAngleDoubleUp className="bounce" /> : <FaAngleDoubleDown className="bounce" />}</div>
           </div>
           <div className="Qpart2">
-            <button onClick={helpfulIncrement} className="accord-btn">Helpful?</button>
+            <button onClick={helpfulIncrement}className="other-accord-btn">Helpful ?</button>
             <span className="yes">Yes({questionHelpfulness})</span>
           </div>
         </div>
