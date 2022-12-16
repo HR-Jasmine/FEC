@@ -43,7 +43,7 @@ const Answer = ({answer, question, qId, product, theme, themes}) => {
           <h4>A: {body}</h4>
         </div>
         <div className="Apart2">
-          <button onClick={updateCount} className="accord-btn" data-testid="ans-helpful">Helpful?</button>
+          <button onClick={updateCount} className="other-accord-btn" data-testid="ans-helpful">Helpful ?</button>
           <span className="yes">Yes({helpCount})</span>
         </div>
       </div>
@@ -55,7 +55,7 @@ const Answer = ({answer, question, qId, product, theme, themes}) => {
         </div>
         <div className="Apart4">
           <button onClick={openAnsModal} className="accord-btn" > Add Answer</button>
-          <button onClick={report} className="accord-btn"> Report </button>
+          <button onClick={report} className="other-accord-btn"> Report </button>
         </div>
       </div>
       { pics.map((pic,i) => {
