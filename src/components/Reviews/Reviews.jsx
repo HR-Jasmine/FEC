@@ -7,7 +7,7 @@ import ReviewForm from './ReviewForm.jsx';
 import '../styles/Reviews/reviews.css';
 import interaction from '../interaction.js';
 
-const Reviews = ({productId, product, theme, themes}) => {
+const Reviews = ({state, setState, productId, product, theme, themes}) => {
 
   const [allReviews, setAllReviews] = useState([]);
   const [numOfRevs, setNumOfRevs] = useState(2);
@@ -45,6 +45,24 @@ const Reviews = ({productId, product, theme, themes}) => {
   })
     .then(response => {
       setMetaData(response.data);
+
+      var total = 0;
+      var ratingTotal = 0;
+
+      for (var key in response.data.ratings) {
+        console.log()
+        console.log(key)
+        total += Number(response.data.ratings[key]);
+        ratingTotal += Number(response.data.ratings[key]) * Number(key);
+      }
+
+      console.log(ratingTotal)
+      var rating = ratingTotal/total;
+
+      setState({
+        ...state,
+        rating: rating
+      })
     })
 
     setNumOfRevs(0);
