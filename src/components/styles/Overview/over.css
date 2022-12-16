@@ -54,17 +54,6 @@
   text-align: left;
 }
 
-.ratingsDiv {
-  position: relative;
-}
-
-.reviewLink {
-  position: absolute;
-  min-width: 100px;
-  top: 6px;
-  left: 82px;
-}
-
 .shareContainer {
   padding: 12px;
   padding-top: 24px;

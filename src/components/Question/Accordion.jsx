@@ -68,7 +68,7 @@ const Accordion = ({question, product, theme, themes}) => {
 
   return (
     <div className="accordion" data-testid="accord">
-      <div className={`accordion-item ${themes['t2'][theme]}`} data-testid="accord-title">
+      <div className={`accordion-item ${themes['t0'][theme]}`} data-testid="accord-title">
         <div className="accordion-title" onClick={() => setIsActive(!isActive)} data-testid="accord-main">
           <div className="Qpart1">
             <h3 data-testid="question-title">Q: {question_body}</h3>

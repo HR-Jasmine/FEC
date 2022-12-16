@@ -32,6 +32,7 @@
   height: 68%;
   width: 25%;
   min-width: 440px;
+  min-height: 640px;
 }
 
 .modal-title{
@@ -102,6 +103,9 @@
   width: 25%;
   cursor: pointer;
   font-weight: 700;
+  min-width: 100px;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 /* .submit-btn:hover{

@@ -18,6 +18,18 @@
   font-size: 48px;
 }
 
+
+.ratingsDiv {
+  position: relative;
+}
+
+.reviewLink {
+  position: absolute;
+  min-width: 200px;
+  top: 6px;
+  left: 82px;
+}
+
 #styleName {
   padding-left: 16px;
 }
