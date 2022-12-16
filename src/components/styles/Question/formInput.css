@@ -3,6 +3,7 @@
   display: none;
   font-size: 0.75rem;
   font-weight: 800;
+  overflow-wrap: normal;
 }
 
 .extra-msg{
@@ -32,7 +33,8 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 2em 1em
+  padding: 2em 1em;
+  min-width: 460px;
 }
 
 .modal-title{
@@ -70,6 +72,10 @@
 
 
 /******* INPUT styling *******/
+
+.input-div {
+  min-width: 425px;
+}
 
 .inputs{
   padding: 0.75em;
