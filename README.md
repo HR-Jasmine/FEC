@@ -10,13 +10,7 @@ Install all dependencies.
   npm install
 ```
 
-Run compiler.
-
-```js
-  npm start
-```
-
-Serve files to localhost.
+Compile and server to localhost.
 
 ```js
   npm run dev
