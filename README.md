@@ -19,6 +19,7 @@ Compile and server to localhost.
 ## Overview
 
 ## Questions and Answers
+The main components of the  questions and answer section consists of a search bar, a list of questions sorted by helpfulness and forms that allow users to ask new question and submit new answers about a specific product. The questions are formatted in an accordion which will collapse and expand to show answers related to each question. If users want to filter questions they can use the search bar to filter questions based on key words. 
 
 ## Ratings and Reviews
 
