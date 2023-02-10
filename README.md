@@ -2,7 +2,11 @@
 
 Welcome!
 
+![Jasmine Storefront](https://res.cloudinary.com/dhjvvkko0/image/upload/v1675103992/Screen_Shot_2023-01-30_at_1.39.36_PM_piudre.jpg)
+
 ### Run Jasmine.
+
+Unfortuneately, you will not be able to run this project locally because it requires private API keys in order to access the product data.
 
 Install all dependencies.
 
